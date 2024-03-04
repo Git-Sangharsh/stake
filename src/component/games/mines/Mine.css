@@ -17,6 +17,19 @@
   display: flex;
 }
 
+.open-boxes{
+    height: 120px;
+    width: 120px;
+    background-color: #071824;
+    background-color: #2F4553;
+    margin: 5px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+    box-shadow: 0px 5px 0px  #213743;
+    background-color: red;
+}
+
 .boxes{
     height: 120px;
     width: 120px;
@@ -37,6 +50,8 @@
 .boxes-reveal{
     background-color: #071824;
     box-shadow: 0px 5px 0px  #071824;
+    /* background-color: #2F4553;
+    box-shadow: 0px 5px 0px  #213743; */
 }
 
 .box0, .box1, .box2, .box3, .box4{
@@ -53,3 +68,8 @@
 .boxes-clicked {
     background-color: #ccc; /* Add your desired background color for clicked boxes */
   }
+
+
+.none{
+    display: none;
+}
