@@ -42,11 +42,10 @@
     box-shadow: 0px 5px 0px  #213743;
 }
 
-.boxes:hover{
+.boxes:hover:not(.boxes-reveal) {
     scale: 1.04;
     background-color: #557086;
 }
-
 .boxes-reveal{
     background-color: #071824;
     box-shadow: 0px 5px 0px  #071824;

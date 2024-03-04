@@ -67,7 +67,7 @@ const Mine = () => {
         <div
           key={`box${boxId}`}
           id={`box${boxId}`}
-          className={`box${columnIndex} ${viewBoxIds.includes(boxId) ? 'boxes-reveal' : 'boxes'}`}
+          className={`box${columnIndex} boxes ${viewBoxIds.includes(boxId) ? 'boxes-reveal' : ''}`}
           onClick={() => handleBoxClick(boxId)}
         >
           {isClickedAndNotRevealed && (
