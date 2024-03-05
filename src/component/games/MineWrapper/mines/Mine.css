@@ -1,12 +1,14 @@
-.mine-wrapper{
-    width: 100%;
-    height: 100vh;
+.mines{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color: #0F212E;
     gap: 5px;
+    user-select: none;
+    padding: 30px 120px;
+    height: 900px;
+    box-sizing: border-box;
 }
 
 .row-0,
@@ -31,8 +33,8 @@
 }
 
 .boxes{
-    height: 120px;
-    width: 120px;
+    height: 140px;
+    width: 140px;
     background-color: #071824;
     background-color: #2F4553;
     margin: 5px;
@@ -40,6 +42,8 @@
     cursor: pointer;
     transition: 0.1s ease-in;
     box-shadow: 0px 5px 0px  #213743;
+    user-select: none;
+
 }
 
 .boxes:hover:not(.boxes-reveal) {
@@ -61,8 +65,17 @@
 
 .gem-img, .mine-img{
     width: 80px;
-}
+    position: relative;
+    z-index: 999;
+    user-select: none;
+    }
 
+
+.mine-effect{
+    width: 120px;
+    position: absolute;
+    z-index: 998;
+}
 
 .boxes-clicked {
     background-color: #ccc; /* Add your desired background color for clicked boxes */
@@ -72,3 +85,7 @@
 .none{
     display: none;
 }
+
+
+
+

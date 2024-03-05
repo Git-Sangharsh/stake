@@ -1,0 +1,10 @@
+.mine-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A2C38;
+    padding: 1%;
+    box-sizing: border-box;
+    position: relative;
+    height: 100vh;
+}
