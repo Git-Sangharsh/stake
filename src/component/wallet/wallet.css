@@ -1,89 +1,91 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.wallet-blur-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 1000;
-    height: 100vh;
-    width: 100%;
-    z-index: 1000;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    backdrop-filter: blur(2px);
-
+.wallet-blur-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(2px);
 }
-.wallet-wrapper{
-    height: 200px;
-    width: 600px;
-    background-color: #1A2C38;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.222);
-}
-
-.wallet-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.wallet-header-left, .deposit-or-withdraw{
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.wallet-wrapper {
+  height: 200px;
+  width: 600px;
+  background-color: #1a2c38;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.222);
 }
 
-.wallet-title{
-    color: #fffff2;
-    font-size: 22px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
+.wallet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wallet-header-left,
+.deposit-or-withdraw {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.wallet-icon, .close-icon{
-    font-size: 40px;
-    color: #fffff2;
+.wallet-title {
+  color: #fffff2;
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
-.parent-deposit-or-withdraw{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.wallet-icon,
+.close-icon {
+  font-size: 40px;
+  color: #fffff2;
 }
 
-.deposit-or-withdraw{
-    justify-content: center;
-    background-color: #0F212E;
-    padding: 6px;
-    border-radius: 25px;
-
+.close-icon {
+  cursor: pointer;
 }
 
-.default{
-    padding: 10px 20px;
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    background-color: #2F4553;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s ease-in;
+.parent-deposit-or-withdraw {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.click{
-    padding: 10px 20px;
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    background-color: #0F212E;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s ease-in;
-
+.deposit-or-withdraw {
+  justify-content: center;
+  background-color: #0f212e;
+  padding: 6px;
+  border-radius: 25px;
 }
 
+.default {
+  padding: 10px 20px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #2f4553;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.click {
+  padding: 10px 20px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #0f212e;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
