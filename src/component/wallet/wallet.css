@@ -12,10 +12,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  backdrop-filter: blur(2px);
+  /* backdrop-filter: blur(2px); */
 }
 .wallet-wrapper {
-  height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   width: 600px;
   background-color: #1a2c38;
   padding: 20px;
@@ -88,4 +90,78 @@
   border-radius: 25px;
   cursor: pointer;
   transition: 0.3s ease-in;
+}
+
+.parent-amount-conversion{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.amount-conversion{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0F212E;
+  padding: 8px 20px;
+  border-radius: 6px;
+  width: max-content;
+}
+
+.inr{
+  color: #fffff2;
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.paragraph{
+  color: #fffff2;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 2px dashed white;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 10px 0px;
+  background-color: #0F212E;
+}
+
+.deposit-btn {
+  text-align: center;
+  width: 100%;
+  background-color: #00E701;
+  margin: 20px 0px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.deposit-btn:hover{
+  background-color: #02d102;
+}
+
+.parent-gif{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #00E701;
+  border-radius: 6px;
+  margin:  20px 0px;
+}
+
+.load-gif{
+  width: 50px;
+  margin:  0px;
+  padding: 20px;
+
 }
