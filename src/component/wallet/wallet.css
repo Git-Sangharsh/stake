@@ -156,6 +156,22 @@
   background-color: #02d102;
 }
 
+.loader-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00E701;
+  margin: 20px 0px;
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  border-radius: 6px;
+
+  color: whitesmoke;
+}
+
+
 .upi-img{
   width: 100px;
 }
@@ -288,3 +304,5 @@
   font-weight: 500;
   font-style: normal;
 }
+
+

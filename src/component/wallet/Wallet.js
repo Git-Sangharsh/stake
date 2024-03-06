@@ -5,6 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useSelector, useDispatch } from "react-redux";
 import rupeesSvg from "../assets/rs.svg";
 import upiImg from "../assets/upi-img.png";
+import { MoonLoader } from "react-spinners";
 
 const Wallet = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Wallet = () => {
   const [depositOrWithdraw, setDepositOrWithdraw] = useState(false);
   const [routeDeposit, setRouteDeposit] = useState(false);
   const [AmountBtn, setAmountBtn] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const handleDepositOrWithdraw = () => {
     setDepositOrWithdraw(!depositOrWithdraw);
@@ -24,8 +26,18 @@ const Wallet = () => {
   };
 
   const handleRouteDeposit = () => {
-    setRouteDeposit(true);
+    setShowLoader(true);
+    setTimeout(() => {
+      setShowLoader(false);
+      console.log("show loader is ", showLoader);
+      setTimeout(() => {
+        setRouteDeposit(true);
+      }, 0);
+    }, 2000);
   };
+
+  console.log("show Loader is ", showLoader);
+  console.log("routeDeposit is ", routeDeposit);
 
   const [selectedAmount, setSelectedAmount] = useState(0);
 
@@ -45,17 +57,16 @@ const Wallet = () => {
     setSelectedAmount("");
   };
 
-  useEffect (() => {
-    if (selectedAmount.length > 0 && !selectedAmount.startsWith('0') ) {
-      setAmountBtn(true)
-    } else if( selectedAmount.length === 0){
-      setAmountBtn(false)
+  useEffect(() => {
+    if (selectedAmount.length > 0 && !selectedAmount.startsWith("0")) {
+      setAmountBtn(true);
+    } else if (selectedAmount.length === 0) {
+      setAmountBtn(false);
     }
-  }, [selectedAmount, AmountBtn])
+  }, [selectedAmount, AmountBtn]);
 
   // console.log("amount btn is ", AmountBtn)
   // console.log('selectedAmount length is ', selectedAmount.length);
-
 
   return (
     <>
@@ -100,67 +111,80 @@ const Wallet = () => {
             </p>
 
             {/* wrap this shit */}
+
             {routeDeposit ? (
               <div className="route-deposit-div">
-            <div className="upi-style">
-              <h4 className="upi-title">⚪ UPI</h4>
-              <img src={upiImg} alt="" className="upi-img" />
-            </div>
-            <div className="default-amount-div">
-              <h1
-                className={`default-amount ${
-                  selectedAmount === 500 ? "default-amount-click" : ""
-                }`}
-                onClick={() => handleAmountClick(500)}
-              >
-                500
-              </h1>
-              <h1
-                className={`default-amount ${
-                  selectedAmount === 5000 ? "default-amount-click" : ""
-                }`}
-                onClick={() => handleAmountClick(5000)}
-              >
-                5,000
-              </h1>
-              <h1
-                className={`default-amount ${
-                  selectedAmount === 30000 ? "default-amount-click" : ""
-                }`}
-                onClick={() => handleAmountClick(30000)}
-              >
-                30,000
-              </h1>
-            </div>
-            <div className="amount-input-div">
-              <h6 className="amount-input-header">Amount</h6>
-              <input
-                type="text"
-                className="amount-input"
-                value={selectedAmount}
-                onChange={handleEnterAmount}
-                onClick={handleAmountToZero}
-              />
-            </div>
-            <h3 className="minimum-text">Minimum : ₹500 | Maximum : ₹49,999</h3>
-            {AmountBtn && (
-              <div className="final-amount">
-                <h5 className="final-amount-header">Total</h5>
-                <h5 className="final-amount-header">₹ {selectedAmount}</h5>
+                <div className="upi-style">
+                  <h4 className="upi-title">⚪ UPI</h4>
+                  <img src={upiImg} alt="" className="upi-img" />
+                </div>
+                <div className="default-amount-div">
+                  <h1
+                    className={`default-amount ${
+                      selectedAmount === 500 ? "default-amount-click" : ""
+                    }`}
+                    onClick={() => handleAmountClick(500)}
+                  >
+                    500
+                  </h1>
+                  <h1
+                    className={`default-amount ${
+                      selectedAmount === 5000 ? "default-amount-click" : ""
+                    }`}
+                    onClick={() => handleAmountClick(5000)}
+                  >
+                    5,000
+                  </h1>
+                  <h1
+                    className={`default-amount ${
+                      selectedAmount === 30000 ? "default-amount-click" : ""
+                    }`}
+                    onClick={() => handleAmountClick(30000)}
+                  >
+                    30,000
+                  </h1>
+                </div>
+                <div className="amount-input-div">
+                  <h6 className="amount-input-header">Amount</h6>
+                  <input
+                    type="text"
+                    className="amount-input"
+                    value={selectedAmount}
+                    onChange={handleEnterAmount}
+                    onClick={handleAmountToZero}
+                  />
+                </div>
+                <h3 className="minimum-text">
+                  Minimum: ₹500 | Maximum: ₹49,999
+                </h3>
+                {AmountBtn && (
+                  <div className="final-amount">
+                    <h5 className="final-amount-header">Total</h5>
+                    <h5 className="final-amount-header">₹ {selectedAmount}</h5>
+                  </div>
+                )}
+
+                <button
+                  className={`set-amount ${
+                    AmountBtn ? "before-set-amount" : ""
+                  }`}
+                >
+                  Set amount
+                </button>
+              </div>
+            ) : (
+              <div>
+                {showLoader ? (
+                  <div className="loader-div">
+                    <MoonLoader color="#000000" size={23} className="moon-loader"/>
+                  </div>
+                ) : (
+                  <h1 className="deposit-btn" onClick={handleRouteDeposit}>
+                    Deposit
+                  </h1>
+                )}
               </div>
             )}
-
-            <button className={`set-amount ${AmountBtn ? "before-set-amount" : ""}`}>
-                Set amount
-            </button>
-
-            </div>
-            ) : (
-              <h1 className="deposit-btn" onClick={handleRouteDeposit}>
-              Deposit
-            </h1>
-            )}
-
           </div>
         </div>
       )}
