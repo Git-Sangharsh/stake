@@ -42,7 +42,7 @@ useEffect(() => {
       setViewBoxIds((prevIds) => [...prevIds, boxId]);
 
       if (shuffledBoxIds.includes(boxId)) {
-        console.log("handleBoxClick found shuffled boxId!!");
+        // console.log("handleBoxClick found shuffled boxId!!");
         const audio = new Audio(gemSoundEffect);
         audio.play();
       } else if (revealedBoxIds.includes(boxId)) {
@@ -52,9 +52,9 @@ useEffect(() => {
     }
   };
 
-  console.log("shuffleBox id is ", shuffledBoxIds);
-  console.log("revealBox id is ", revealedBoxIds);
-  console.log("viewBox id is ", viewBoxIds);
+  // console.log("shuffleBox id is ", shuffledBoxIds);
+  // console.log("revealBox id is ", revealedBoxIds);
+  // console.log("viewBox id is ", viewBoxIds);
 
 
   const renderRow = (rowIndex) => {

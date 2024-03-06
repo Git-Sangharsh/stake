@@ -15,7 +15,7 @@ const Navbar = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
   };
 
-  console.log('ViewWallet is ', viewWallet)
+  // console.log('ViewWallet is ', viewWallet)
 
   const amount = "69.69";
   return (
