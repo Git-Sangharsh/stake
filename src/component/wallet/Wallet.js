@@ -10,11 +10,15 @@ import { MoonLoader } from "react-spinners";
 const Wallet = () => {
   const dispatch = useDispatch();
   const viewWallet = useSelector((state) => state.viewWallet);
+  const walletBalance = useSelector((state) => state.walletBalance);
+  // console.log('walletBalance', walletBalance)
 
   const [depositOrWithdraw, setDepositOrWithdraw] = useState(false);
   const [routeDeposit, setRouteDeposit] = useState(false);
   const [AmountBtn, setAmountBtn] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
+  const [showLoaderWhileSetAmount, setshowLoaderWhileSetAmount] =
+    useState(false);
 
   const handleDepositOrWithdraw = () => {
     setDepositOrWithdraw(!depositOrWithdraw);
@@ -29,15 +33,24 @@ const Wallet = () => {
     setShowLoader(true);
     setTimeout(() => {
       setShowLoader(false);
-      console.log("show loader is ", showLoader);
+      // console.log("show loader is ", showLoader);
       setTimeout(() => {
         setRouteDeposit(true);
       }, 0);
     }, 2000);
   };
 
-  console.log("show Loader is ", showLoader);
-  console.log("routeDeposit is ", routeDeposit);
+  const handleAddMoneyInWallet = () => {
+    setshowLoaderWhileSetAmount(true);
+    setTimeout(() => {
+      setshowLoaderWhileSetAmount(false);
+      setTimeout(() => {
+        dispatch({ type: "SET_WALLET_BALANCE", payload: selectedAmount });
+      },0);
+    }, 2000);
+  };
+
+  console.log('setShowLoader is', showLoaderWhileSetAmount)
 
   const [selectedAmount, setSelectedAmount] = useState(0);
 
@@ -164,19 +177,36 @@ const Wallet = () => {
                   </div>
                 )}
 
-                <button
-                  className={`set-amount ${
-                    AmountBtn ? "before-set-amount" : ""
-                  }`}
-                >
-                  Set amount
-                </button>
+                {/* here to apply shit */}
+
+                {showLoaderWhileSetAmount ? (
+                  <div className="loader-div-set">
+                    <MoonLoader
+                      color="#000000"
+                      size={23}
+                      className="moon-loader"
+                    />
+                  </div>
+                ) : (
+                  <button
+                    className={`set-amount ${
+                      AmountBtn ? "before-set-amount" : ""
+                    }`}
+                    onClick={handleAddMoneyInWallet}
+                  >
+                    Set amount
+                  </button>
+                )}
               </div>
             ) : (
               <div>
                 {showLoader ? (
                   <div className="loader-div">
-                    <MoonLoader color="#000000" size={23} className="moon-loader"/>
+                    <MoonLoader
+                      color="#000000"
+                      size={23}
+                      className="moon-loader"
+                    />
                   </div>
                 ) : (
                   <h1 className="deposit-btn" onClick={handleRouteDeposit}>

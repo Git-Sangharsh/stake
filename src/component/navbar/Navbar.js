@@ -10,6 +10,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const viewWallet = useSelector((state) => state.viewWallet);
+  const walletBalance = useSelector((state) => state.walletBalance);
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
@@ -17,13 +18,12 @@ const Navbar = () => {
 
   // console.log('ViewWallet is ', viewWallet)
 
-  const amount = "69.69";
   return (
     <nav className="nav">
       <img src={logo} alt="" className="logo-img" />
 
       <div className="nav-wallet" >
-        <h4 className="wallet-Amount"> ₹ {amount}</h4>
+        <h4 className="wallet-Amount"> ₹ {walletBalance}</h4>
         <img src={bitCoinImg} alt="" className="bitcoin-img" />
         <h4 className="wallet" onClick={viewWalletOnClick}>Wallet</h4>
       </div>

@@ -156,7 +156,7 @@
   background-color: #02d102;
 }
 
-.loader-div{
+.loader-div, .loader-div-set{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,10 +167,12 @@
   cursor: pointer;
   transition: 0.3s ease-in;
   border-radius: 6px;
-
   color: whitesmoke;
 }
 
+.loader-div-set{
+  background-color: #1475E1;
+}
 
 .upi-img{
   width: 100px;
