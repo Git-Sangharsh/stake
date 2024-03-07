@@ -166,6 +166,10 @@ li {
   background-color: #19d019;
 }
 
+.cashout-btn{
+  background-color: #19d019;
+}
+
 .show-profit-text{
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -178,11 +182,13 @@ li {
   background-color: #2F4553;
   padding: 14px 10px;
   border-radius: 3px;
-  margin: 10px 0px;
+  margin: 0px 0px;
   color: #fffff2;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
+  box-shadow: 0px 4px 5px  rgba(0, 0, 0, 0.31);
+
 }
 

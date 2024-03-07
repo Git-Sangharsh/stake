@@ -7,6 +7,7 @@ const initialState = {
   walletBalance: 0.0,
   betAmount: 0.0,
   betActive: false,
+  mineEncounter: false
 };
 
 const Reducer = (state = initialState, action) => {
@@ -18,12 +19,11 @@ const Reducer = (state = initialState, action) => {
     case "SET_BET_AMOUNT":
       const newWalletBalance = state.walletBalance - action.payload;
       return {
-        ...state,
-        betAmount: action.payload,
-        walletBalance: newWalletBalance,
-      };
+        ...state, betAmount: action.payload, walletBalance: newWalletBalance,};
     case "SET_BET_ACTIVE":
       return { ...state, betActive: action.payload };
+    case "SET_MINE_ENCOUNTER":
+      return {...state, mineEncounter: action.payload};
     default:
       return state;
   }

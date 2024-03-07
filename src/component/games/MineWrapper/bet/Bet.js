@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Bet = () => {
   const dispatch = useDispatch();
-  const walletBalance = useSelector((state) => state.walletBalance);
-  const reduxBetAmount = useSelector((state) => state.betAmount);
-
-  console.log('reduxBetAmount is', reduxBetAmount);
-  console.log("walletBalance is ", walletBalance);
+  // const walletBalance = useSelector((state) => state.walletBalance);
+  // const reduxBetAmount = useSelector((state) => state.betAmount);
+  const reduxBetActive = useSelector((state) => state.betActive);
+  // console.log(reduxBetActive, "active is")
+  // console.log("reduxBetAmount is", reduxBetAmount);
+  // console.log("walletBalance is ", walletBalance);
 
   const [betAmount, setBetAmount] = useState("0.00");
 
@@ -19,11 +20,8 @@ const Bet = () => {
   // ];
   const selectMineNumb = Array.from({ length: 20 }, (_, index) => index + 1);
 
-  console.log("bet Amount is", betAmount);
   const handleBetAmount = (e) => {
     const input = e.target.value;
-
-    // If the input is a valid number or an empty string, update the state
     if (!isNaN(input) || input === "") {
       setBetAmount(input);
     }
@@ -33,8 +31,16 @@ const Bet = () => {
     setBetAmount("");
   };
 
+  // console.log("bet amount is ", betAmount);
+
   const handleBet = () => {
-    dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
+    if (betAmount.startsWith(0)) {
+      console.log("bet starting with zero value");
+      dispatch({ type: "SET_BET_ACTIVE", payload: false });
+    } else {
+      dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
+      dispatch({ type: "SET_BET_ACTIVE", payload: true });
+    }
   };
 
   return (
@@ -70,7 +76,16 @@ const Bet = () => {
           </option>
         ))}
       </select>
-      <h1 className="bet-btn" onClick={handleBet}>Bet</h1>
+      {reduxBetActive ? (
+        <h1 className="bet-btn cashout-btn" onClick={handleBet}>
+          Cashout
+        </h1>
+      ) : (
+        <h1 className="bet-btn" onClick={handleBet}>
+          Bet
+        </h1>
+      )}
+
       <div className="show-profit-percent">
         <h6 className="show-profit-text">Total profit (1.00x)</h6>
         <h6 className="show-profit-text">0.0000000 BTC</h6>

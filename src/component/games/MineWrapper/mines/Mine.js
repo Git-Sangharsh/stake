@@ -6,8 +6,19 @@ import gemSoundEffect from "../../../audio/gemCollect1.mp3";
 import explosionSoundEffect from "../../../audio/crash.mp3";
 import mineEffect from "../../../assets/mineEffect.webp";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
 
 const Mine = () => {
+
+  const dispatch = useDispatch();
+  const reduxBetActive = useSelector((state) => state.betActive);
+  const mineEncounter = useSelector((state) => state.mineEncounter);
+  console.log('mineEncounter is ', mineEncounter)
+  // const reduxBetAmount = useSelector((state) => state.betAmount);
+
+  // console.log( "active is" , reduxBetActive)
+  // console.log( "bet amount is " , reduxBetAmount)
+
   const rows = 5;
   const columns = 5;
 
@@ -16,7 +27,9 @@ const Mine = () => {
   const [revealedBoxIds, setRevealedBoxIds] = useState([]);
   const [shuffledBoxIds, setShuffledBoxIds] = useState([]);
   const [viewBoxIds, setViewBoxIds] = useState([]);
-  // const [mineImage, setMineImage] = useState(null);
+
+  console.log('viewBoxIds', viewBoxIds);
+  console.log('revealedBoxIds', revealedBoxIds);
 
   const fisherYatesShuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -36,25 +49,30 @@ useEffect(() => {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
-
   const handleBoxClick = (boxId) => {
-    if (!viewBoxIds.includes(boxId)) {
-      setViewBoxIds((prevIds) => [...prevIds, boxId]);
+    if(reduxBetActive ){
+      if (!viewBoxIds.includes(boxId)) {
+        setViewBoxIds((prevIds) => [...prevIds, boxId]);
 
-      if (shuffledBoxIds.includes(boxId)) {
-        // console.log("handleBoxClick found shuffled boxId!!");
-        const audio = new Audio(gemSoundEffect);
-        audio.play();
-      } else if (revealedBoxIds.includes(boxId)) {
-        const audioData = new Audio(explosionSoundEffect);
-        audioData.play();
+        if (shuffledBoxIds.includes(boxId)) {
+          // console.log("handleBoxClick found shuffled boxId!!");
+          const audio = new Audio(gemSoundEffect);
+          audio.play();
+        } else if (revealedBoxIds.includes(boxId)) {
+          const audioData = new Audio(explosionSoundEffect);
+          audioData.play();
+        }
       }
+    }
+    else{
+      console.log('pls place a bet first')
     }
   };
 
   // console.log("shuffleBox id is ", shuffledBoxIds);
   // console.log("revealBox id is ", revealedBoxIds);
   // console.log("viewBox id is ", viewBoxIds);
+
 
 
   const renderRow = (rowIndex) => {
@@ -67,6 +85,13 @@ useEffect(() => {
         viewBoxIds.includes(boxId) && revealedBoxIds.includes(boxId);
       const isClickedAndNotRevealed =
         viewBoxIds.includes(boxId) && !revealedBoxIds.includes(boxId);
+
+        // console.log('mine image are ', isClickedAndNotRevealed);
+
+        if(isClickedAndNotRevealedMine){
+          console.log('mine found 2sec ageo')
+          dispatch({ type: "SET_MINE_ENCOUNTER", payload: true});
+        }
 
       boxes.push(
         <div
