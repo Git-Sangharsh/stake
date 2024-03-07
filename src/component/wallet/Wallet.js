@@ -10,7 +10,7 @@ import { MoonLoader } from "react-spinners";
 const Wallet = () => {
   const dispatch = useDispatch();
   const viewWallet = useSelector((state) => state.viewWallet);
-  const walletBalance = useSelector((state) => state.walletBalance);
+  // const walletBalance = useSelector((state) => state.walletBalance);
   // console.log('walletBalance', walletBalance)
 
   const [depositOrWithdraw, setDepositOrWithdraw] = useState(false);
@@ -50,7 +50,7 @@ const Wallet = () => {
     }, 2000);
   };
 
-  console.log('setShowLoader is', showLoaderWhileSetAmount)
+  // console.log('setShowLoader is', showLoaderWhileSetAmount)
 
   const [selectedAmount, setSelectedAmount] = useState(0);
 
