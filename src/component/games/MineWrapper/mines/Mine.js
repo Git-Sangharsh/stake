@@ -9,27 +9,29 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
 const Mine = () => {
-
   const dispatch = useDispatch();
   const reduxBetActive = useSelector((state) => state.betActive);
   const mineEncounter = useSelector((state) => state.mineEncounter);
-  console.log('mineEncounter is ', mineEncounter)
-  // const reduxBetAmount = useSelector((state) => state.betAmount);
 
+  useEffect(() => {
+    if (mineEncounter) {
+      dispatch({ type: "SET_BET_ACTIVE", payload: false });
+    }
+  }, [dispatch, mineEncounter]);
+
+  console.log("betActive is ", reduxBetActive);
+  // console.log('mineEncounter is ', mineEncounter)
+  // const reduxBetAmount = useSelector((state) => state.betAmount);
   // console.log( "active is" , reduxBetActive)
   // console.log( "bet amount is " , reduxBetAmount)
 
   const rows = 5;
   const columns = 5;
-
   const allBoxIds = Array.from({ length: rows * columns }, (_, index) => index);
 
   const [revealedBoxIds, setRevealedBoxIds] = useState([]);
   const [shuffledBoxIds, setShuffledBoxIds] = useState([]);
   const [viewBoxIds, setViewBoxIds] = useState([]);
-
-  console.log('viewBoxIds', viewBoxIds);
-  console.log('revealedBoxIds', revealedBoxIds);
 
   const fisherYatesShuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -39,59 +41,71 @@ const Mine = () => {
     return array;
   };
 
-useEffect(() => {
-  const shuffledIds = fisherYatesShuffle([...allBoxIds]);
-  const selectedIds = shuffledIds.slice(0, 5);
-  const remainingShuffledIds = shuffledIds.slice(5);
+  useEffect(() => {
+    const shuffledIds = fisherYatesShuffle([...allBoxIds]);
+    const selectedIds = shuffledIds.slice(0, 5);
+    const remainingShuffledIds = shuffledIds.slice(5);
 
-  setShuffledBoxIds(remainingShuffledIds);
-  setRevealedBoxIds(selectedIds);
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+    setShuffledBoxIds(remainingShuffledIds);
+    setRevealedBoxIds(selectedIds);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const resetGame = () => {
+    const shuffledIds = fisherYatesShuffle([...allBoxIds]);
+    const selectedIds = shuffledIds.slice(0, 5);
+    const remainingShuffledIds = shuffledIds.slice(5);
+
+    setShuffledBoxIds(remainingShuffledIds);
+    setRevealedBoxIds(selectedIds);
+    setViewBoxIds([]);
+  };
+
+  useEffect(() => {
+    if (reduxBetActive) {
+      resetGame();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduxBetActive]);
 
   const handleBoxClick = (boxId) => {
-    if(reduxBetActive ){
+    if (reduxBetActive) {
       if (!viewBoxIds.includes(boxId)) {
         setViewBoxIds((prevIds) => [...prevIds, boxId]);
 
         if (shuffledBoxIds.includes(boxId)) {
-          // console.log("handleBoxClick found shuffled boxId!!");
           const audio = new Audio(gemSoundEffect);
+          audio.volume = 0.5;
+
           audio.play();
         } else if (revealedBoxIds.includes(boxId)) {
-          const audioData = new Audio(explosionSoundEffect);
-          audioData.play();
+          const audio = new Audio(explosionSoundEffect);
+          audio.volume = 0.5;
+          audio.play();
         }
       }
-    }
-    else{
-      console.log('pls place a bet first')
+    } else {
+      console.log("pls place a bet first");
     }
   };
 
-  // console.log("shuffleBox id is ", shuffledBoxIds);
-  // console.log("revealBox id is ", revealedBoxIds);
-  // console.log("viewBox id is ", viewBoxIds);
-
-
+  useEffect(() => {
+    const hasCommonElements = viewBoxIds.some((id) =>
+      revealedBoxIds.includes(id)
+    );
+    dispatch({ type: "SET_MINE_ENCOUNTER", payload: hasCommonElements });
+  }, [viewBoxIds, revealedBoxIds, dispatch]);
 
   const renderRow = (rowIndex) => {
     const boxes = [];
     for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
       const boxId = rowIndex * columns + columnIndex;
       // const isRevealed = revealedBoxIds.includes(boxId);
-
       const isClickedAndNotRevealedMine =
         viewBoxIds.includes(boxId) && revealedBoxIds.includes(boxId);
       const isClickedAndNotRevealed =
         viewBoxIds.includes(boxId) && !revealedBoxIds.includes(boxId);
-
-        // console.log('mine image are ', isClickedAndNotRevealed);
-
-        if(isClickedAndNotRevealedMine){
-          console.log('mine found 2sec ageo')
-          dispatch({ type: "SET_MINE_ENCOUNTER", payload: true});
-        }
+      // console.log('mine image are ', isClickedAndNotRevealed);
 
       boxes.push(
         <div

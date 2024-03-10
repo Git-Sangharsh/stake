@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import "./Bet.css";
 import rupeesSvg from "../../../assets/rs.svg";
 import { useDispatch, useSelector } from "react-redux";
+import betSoundEffect from "../../../audio/betSoundEffect.mp3";
+import cashoutSoundEffect from "../../../audio/cashoutSoundEffect.mp3";
 
 const Bet = () => {
   const dispatch = useDispatch();
   // const walletBalance = useSelector((state) => state.walletBalance);
   // const reduxBetAmount = useSelector((state) => state.betAmount);
   const reduxBetActive = useSelector((state) => state.betActive);
+  // const mineEncounter = useSelector((state) =>  state.mineEncounter);
+  // console.log('bet mine', mineEncounter)
   // console.log(reduxBetActive, "active is")
   // console.log("reduxBetAmount is", reduxBetAmount);
   // console.log("walletBalance is ", walletBalance);
@@ -38,11 +42,20 @@ const Bet = () => {
       console.log("bet starting with zero value");
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
     } else {
+      const audio = new Audio(betSoundEffect);
+      audio.volume = 0.5;
+      audio.play();
       dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
       dispatch({ type: "SET_BET_ACTIVE", payload: true });
     }
   };
 
+  const handleCashout = () => {
+    dispatch({ type: "SET_BET_ACTIVE", payload: false });
+    const audio = new Audio(cashoutSoundEffect);
+    audio.volume = 0.5;
+    audio.play();
+  };
   return (
     <div className="bet">
       <div className="parent-manual">
@@ -77,7 +90,7 @@ const Bet = () => {
         ))}
       </select>
       {reduxBetActive ? (
-        <h1 className="bet-btn cashout-btn" onClick={handleBet}>
+        <h1 className="bet-btn cashout-btn" onClick={handleCashout}>
           Cashout
         </h1>
       ) : (
