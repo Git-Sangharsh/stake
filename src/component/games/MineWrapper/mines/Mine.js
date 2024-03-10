@@ -13,7 +13,6 @@ const Mine = () => {
   const reduxBetActive = useSelector((state) => state.betActive);
   const mineEncounter = useSelector((state) => state.mineEncounter);
   const mineCounter = useSelector((state) => state.mineCounter);
-  console.log('mineCounter', mineCounter)
 
   useEffect(() => {
     if (mineEncounter) {
@@ -69,6 +68,17 @@ const Mine = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduxBetActive]);
+
+  useEffect(() => {
+    if (mineEncounter) {
+      dispatch({ type: "SET_BET_ACTIVE", payload: false });
+      revealAllBoxes();
+    }
+  }, [dispatch, mineEncounter])
+
+  const revealAllBoxes = () => {
+    setViewBoxIds(allBoxIds);
+  };
 
   const handleBoxClick = (boxId) => {
     if (reduxBetActive) {

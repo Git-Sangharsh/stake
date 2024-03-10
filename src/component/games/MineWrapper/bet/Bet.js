@@ -17,7 +17,8 @@ const Bet = () => {
   // console.log("walletBalance is ", walletBalance);
 
   const [betAmount, setBetAmount] = useState("0.00");
-  const [stateMineSet, setStateMineSet] = useState("");
+  const [stateMineSet, setStateMineSet] = useState(1);
+
 
   // const rewardValue = [
   //   1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 6.14, 8.5, 12.04, 17.52, 26.17, 40.87,
@@ -61,8 +62,11 @@ const Bet = () => {
     audio.play();
   };
 
+
   const handleSetMines = (e) => {
-    setStateMineSet(e.target.value);
+    const selectedValue = parseInt(e.target.value, 10); // Ensure it's an integer
+    setStateMineSet(selectedValue);
+    dispatch({ type: "SET_MINE_COUNTER", payload: selectedValue });
   };
 
   return (
@@ -91,7 +95,7 @@ const Bet = () => {
         </div>
       </div>
       <h4 className="select-mines">Mines</h4>
-      <select className="numberSelect" onChange={handleSetMines}>
+      <select className="numberSelect" onChange={handleSetMines} value={stateMineSet}>
         {selectMineNumb.map((number) => (
           <option key={number} value={number} className="numbs">
             {number}
