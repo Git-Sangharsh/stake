@@ -10,6 +10,7 @@ const Bet = () => {
   // const walletBalance = useSelector((state) => state.walletBalance);
   // const reduxBetAmount = useSelector((state) => state.betAmount);
   const reduxBetActive = useSelector((state) => state.betActive);
+  const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   // const mineEncounter = useSelector((state) =>  state.mineEncounter);
   // console.log('bet mine', mineEncounter)
   // console.log(reduxBetActive, "active is")
@@ -52,11 +53,13 @@ const Bet = () => {
       dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
       dispatch({ type: "SET_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_MINE_COUNTER", payload: stateMineSet });
+      dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0});
     }
   };
 
   const handleCashout = () => {
     dispatch({ type: "SET_BET_ACTIVE", payload: false });
+    dispatch({ type: "SET_CASH_OUT_AMOUNT" });
     const audio = new Audio(cashoutSoundEffect);
     audio.volume = 0.5;
     audio.play();
@@ -114,7 +117,7 @@ const Bet = () => {
 
       <div className="show-profit-percent">
         <h6 className="show-profit-text">Total profit (1.00x)</h6>
-        <h6 className="show-profit-text">0.0000000 BTC</h6>
+        <h6 className="show-profit-text">{betProfit} BTC</h6>
       </div>
       <div className="profit-amount-div">
         <h4>0.00</h4>

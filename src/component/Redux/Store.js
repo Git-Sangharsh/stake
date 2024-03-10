@@ -7,8 +7,10 @@ const initialState = {
   walletBalance: 0.0,
   betAmount: 0.0,
   betActive: false,
+  profitFromBet: 0,
   mineEncounter: false,
-  mineCounter: 5
+  mineCounter: 5,
+  cashOutAmount: 0.0,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -16,17 +18,29 @@ const Reducer = (state = initialState, action) => {
     case "SET_VIEW_WALLET":
       return { ...state, viewWallet: action.payload };
     case "SET_WALLET_BALANCE":
-      return { ...state, walletBalance: state.walletBalance + action.payload };
+      return { ...state, walletBalance: (state.walletBalance + action.payload) };
     case "SET_BET_AMOUNT":
       const newWalletBalance = state.walletBalance - action.payload;
       return {
-        ...state, betAmount: action.payload, walletBalance: newWalletBalance,};
+        ...state,
+        betAmount: action.payload,
+        walletBalance: newWalletBalance,
+      };
     case "SET_BET_ACTIVE":
       return { ...state, betActive: action.payload };
+    case "SET_PROFIT_FROM_BET":
+      return { ...state, profitFromBet: action.payload };
     case "SET_MINE_ENCOUNTER":
-      return {...state, mineEncounter: action.payload};
+      return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":
-      return {...state, mineCounter: action.payload};
+      return { ...state, mineCounter: action.payload };
+    case "SET_CASH_OUT_AMOUNT":
+      const updatedWalletBalance = state.walletBalance + state.profitFromBet;
+      return {
+        ...state,
+        walletBalance: updatedWalletBalance,
+        profitFromBet: 0
+      };
     default:
       return state;
   }

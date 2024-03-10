@@ -22,7 +22,7 @@ const Mine = () => {
 
   // console.log("betActive is ", reduxBetActive);
   // console.log('mineEncounter is ', mineEncounter)
-  // const reduxBetAmount = useSelector((state) => state.betAmount);
+  const reduxBetAmount = useSelector((state) => state.betAmount);
   // console.log( "active is" , reduxBetActive)
   // console.log( "bet amount is " , reduxBetAmount)
 
@@ -72,13 +72,16 @@ const Mine = () => {
   useEffect(() => {
     if (mineEncounter) {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
+      dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0});
       revealAllBoxes();
     }
-  }, [dispatch, mineEncounter])
+  }, [dispatch, mineEncounter]);
 
   const revealAllBoxes = () => {
     setViewBoxIds(allBoxIds);
   };
+
+  console.log('revealBoxId is ', revealedBoxIds);
 
   const handleBoxClick = (boxId) => {
     if (reduxBetActive) {
@@ -88,8 +91,10 @@ const Mine = () => {
         if (shuffledBoxIds.includes(boxId)) {
           const audio = new Audio(gemSoundEffect);
           audio.volume = 0.5;
-
           audio.play();
+          const gemMultiplier = getGemMultiplier(boxId); // Step 3
+          const multipliedValue = reduxBetAmount * gemMultiplier; // Step 3
+          dispatch({ type: "SET_PROFIT_FROM_BET", payload: multipliedValue});
         } else if (revealedBoxIds.includes(boxId)) {
           const audio = new Audio(explosionSoundEffect);
           audio.volume = 0.5;
@@ -101,6 +106,20 @@ const Mine = () => {
     }
   };
 
+  const getGemMultiplier = (boxId) => {
+    const multipliers = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,7.50,8.34,9.01,13.6,19.5,40.87
+      // 1.55,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+    ];
+
+    // Ensure that boxId is within a valid range
+    const validBoxId = viewBoxIds.length % multipliers.length;
+    console.log(validBoxId);
+    return multipliers[validBoxId];
+  };
+
+  const betProfit = useSelector((state) => state.profitFromBet);
+  console.log('betprofit', betProfit);
   useEffect(() => {
     const hasCommonElements = viewBoxIds.some((id) =>
       revealedBoxIds.includes(id)
