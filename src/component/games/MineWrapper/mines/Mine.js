@@ -12,6 +12,8 @@ const Mine = () => {
   const dispatch = useDispatch();
   const reduxBetActive = useSelector((state) => state.betActive);
   const mineEncounter = useSelector((state) => state.mineEncounter);
+  const mineCounter = useSelector((state) => state.mineCounter);
+  console.log('mineCounter', mineCounter)
 
   useEffect(() => {
     if (mineEncounter) {
@@ -19,7 +21,7 @@ const Mine = () => {
     }
   }, [dispatch, mineEncounter]);
 
-  console.log("betActive is ", reduxBetActive);
+  // console.log("betActive is ", reduxBetActive);
   // console.log('mineEncounter is ', mineEncounter)
   // const reduxBetAmount = useSelector((state) => state.betAmount);
   // console.log( "active is" , reduxBetActive)
@@ -43,8 +45,8 @@ const Mine = () => {
 
   useEffect(() => {
     const shuffledIds = fisherYatesShuffle([...allBoxIds]);
-    const selectedIds = shuffledIds.slice(0, 5);
-    const remainingShuffledIds = shuffledIds.slice(5);
+    const selectedIds = shuffledIds.slice(0, mineCounter);
+    const remainingShuffledIds = shuffledIds.slice(mineCounter);
 
     setShuffledBoxIds(remainingShuffledIds);
     setRevealedBoxIds(selectedIds);
@@ -53,8 +55,8 @@ const Mine = () => {
 
   const resetGame = () => {
     const shuffledIds = fisherYatesShuffle([...allBoxIds]);
-    const selectedIds = shuffledIds.slice(0, 5);
-    const remainingShuffledIds = shuffledIds.slice(5);
+    const selectedIds = shuffledIds.slice(0, mineCounter);
+    const remainingShuffledIds = shuffledIds.slice(mineCounter);
 
     setShuffledBoxIds(remainingShuffledIds);
     setRevealedBoxIds(selectedIds);
