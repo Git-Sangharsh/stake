@@ -81,7 +81,7 @@ const Mine = () => {
     setViewBoxIds(allBoxIds);
   };
 
-  console.log("revealBoxId is ", revealedBoxIds);
+  // console.log("revealBoxId is ", revealedBoxIds);
 
   const handleBoxClick = (boxId) => {
     if (reduxBetActive) {
@@ -108,51 +108,206 @@ const Mine = () => {
   };
 
   const getGemMultiplier = (boxId) => {
-
-    const REWARD_ONE_MINE = [
-      3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    const REWARD_1_MINE = [
+      1.03, 1.08, 1.12, 1.18, 1.24, 1.37, 1.46, 1.55, 1.65, 1.77, 1.9, 2.06,
+      2.25, 2.47, 2.75, 3.09, 3.54, 4.13, 4.95, 6.19, 8.25, 12.38, 24.75,
     ];
-    const REWARD_TWO_MINE = [
-      4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    const REWARD_2_MINE = [
+      1.08, 1.17, 1.29, 1.41, 1.56, 1.74, 1.94, 2.18, 2.48, 2.83, 3.26, 3.81,
+      4.5, 5.4, 6.6, 8.25, 10.61, 14.14, 20.22, 29.7, 49.5, 99.31, 297.0,
     ];
-    const REWARD_THREE_MINE = [
-      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    ];
-
-    const REWARD_FOUR_MINE = [
-      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    const REWARD_3_MINE = [
+      1.1, 1.17, 1.29, 1.41, 1.56, 1.74, 1.94, 2.18, 2.48, 2.83, 3.26, 3.81,
+      4.5, 5.4, 6.6, 8.25, 10.61, 20.22, 29.7, 49.5, 99.31, 350.45,
     ];
 
-    const REWARD_FIVE_MINE = [
+    const REWARD_4_MINE = [
+      1.14, 1.25, 1.45, 1.7, 2.06, 2.6, 3.18, 4.26, 4.99, 5.67, 7.56, 9.25,
+      14.7, 22.12, 28.23, 35, 40.12, 45.2, 60.24, 136.37, 438,
+    ];
+
+    const REWARD_5_MINE = [
+      1.18, 1.45, 2.0, 2.14, 2.48, 3.35, 3.9, 4.26, 4.99, 5.67, 7.56, 9.25,
+      14.7, 22.12, 28.23, 35.36, 50.12, 60.2, 140, 460,
+    ];
+
+    const REWARD_6_MINE = [
+      1.22, 1.55, 2.14, 2.48, 3.35, 4.02, 4.99, 5.2, 5.69, 6.34, 7.02, 7.59,
+      8.2, 8.89, 9.35, 25.12, 70.12, 150, 503.69,
+    ];
+
+    //!!!!!!!!!!!!!!!! completed till here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const REWARD_7_MINE = [
+      1.45, 1.8, 2.14, 2.8, 3.5, 4.89, 5.12, 5.59, 6.5, 7.34, 7.99, 10.59,
+      14.48, 21.15, 49.35, 80.56, 190.12, 580.56,
+    ];
+    //!!!!!!!!!!!!!!!! completed till here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    const REWARD_8_MINE = [
+      1.56, 3.12, 4.68, 6.24, 7.8, 9.36, 10.92, 12.48, 18.04, 25.6, 32.16,
+      44.12, 54.12, 86.45, 198.03, 620.69
+    ];
+
+
+
+
+
+    const REWARD_9_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+    const REWARD_10_MINE = [
       1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
       7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
     ];
 
+    const REWARD_11_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_12_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_13_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_14_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_15_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_16_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_17_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_18_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+    const REWARD_19_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_20_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+    const REWARD_21_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_22_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    const REWARD_23_MINE = [12.14, 24.12];
+
+    const REWARD_24_MINE = [24.12];
+
     let MULTIPLIER_BASED_ON_MINE;
     switch (mineCounter) {
       case 1:
-        MULTIPLIER_BASED_ON_MINE = REWARD_ONE_MINE;
+        MULTIPLIER_BASED_ON_MINE = REWARD_1_MINE;
         break;
       case 2:
-        MULTIPLIER_BASED_ON_MINE = REWARD_TWO_MINE;
+        MULTIPLIER_BASED_ON_MINE = REWARD_2_MINE;
         break;
       case 3:
-        MULTIPLIER_BASED_ON_MINE = REWARD_THREE_MINE;
+        MULTIPLIER_BASED_ON_MINE = REWARD_3_MINE;
         break;
       case 4:
-        MULTIPLIER_BASED_ON_MINE = REWARD_FOUR_MINE;
+        MULTIPLIER_BASED_ON_MINE = REWARD_4_MINE;
         break;
       case 5:
-        MULTIPLIER_BASED_ON_MINE = REWARD_FIVE_MINE;
+        MULTIPLIER_BASED_ON_MINE = REWARD_5_MINE;
+        break;
+      case 6:
+        MULTIPLIER_BASED_ON_MINE = REWARD_6_MINE;
+        break;
+      case 7:
+        MULTIPLIER_BASED_ON_MINE = REWARD_7_MINE;
+        break;
+      case 8:
+        MULTIPLIER_BASED_ON_MINE = REWARD_8_MINE;
+        break;
+      case 9:
+        MULTIPLIER_BASED_ON_MINE = REWARD_9_MINE;
+        break;
+      case 10:
+        MULTIPLIER_BASED_ON_MINE = REWARD_10_MINE;
+        break;
+      case 11:
+        MULTIPLIER_BASED_ON_MINE = REWARD_11_MINE;
+        break;
+      case 12:
+        MULTIPLIER_BASED_ON_MINE = REWARD_12_MINE;
+        break;
+      case 13:
+        MULTIPLIER_BASED_ON_MINE = REWARD_13_MINE;
+        break;
+      case 14:
+        MULTIPLIER_BASED_ON_MINE = REWARD_14_MINE;
+        break;
+      case 15:
+        MULTIPLIER_BASED_ON_MINE = REWARD_15_MINE;
+        break;
+      case 16:
+        MULTIPLIER_BASED_ON_MINE = REWARD_16_MINE;
+        break;
+      case 17:
+        MULTIPLIER_BASED_ON_MINE = REWARD_17_MINE;
+        break;
+      case 18:
+        MULTIPLIER_BASED_ON_MINE = REWARD_18_MINE;
+        break;
+      case 19:
+        MULTIPLIER_BASED_ON_MINE = REWARD_19_MINE;
+        break;
+      case 20:
+        MULTIPLIER_BASED_ON_MINE = REWARD_20_MINE;
+        break;
+      case 21:
+        MULTIPLIER_BASED_ON_MINE = REWARD_21_MINE;
+        break;
+      case 22:
+        MULTIPLIER_BASED_ON_MINE = REWARD_22_MINE;
+        break;
+      case 23:
+        MULTIPLIER_BASED_ON_MINE = REWARD_23_MINE;
+        break;
+      case 24:
+        MULTIPLIER_BASED_ON_MINE = REWARD_24_MINE;
         break;
       default:
-        MULTIPLIER_BASED_ON_MINE = REWARD_FIVE_MINE;
+        MULTIPLIER_BASED_ON_MINE = REWARD_1_MINE;
         break;
     }
 
     // Ensure that boxId is within a valid range
     const validBoxId = viewBoxIds.length % MULTIPLIER_BASED_ON_MINE.length;
     console.log(validBoxId);
+    console.log("helllllllllllll ooooooooo", REWARD_6_MINE.length);
+    console.log("helllllllllllll ooooooooo", revealedBoxIds.length);
+    console.log("helllllllllllll ooooooooo", shuffledBoxIds.length);
 
     return MULTIPLIER_BASED_ON_MINE[validBoxId];
   };
