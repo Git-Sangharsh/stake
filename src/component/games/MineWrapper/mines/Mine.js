@@ -72,7 +72,7 @@ const Mine = () => {
   useEffect(() => {
     if (mineEncounter) {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
-      dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0});
+      dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0 });
       revealAllBoxes();
     }
   }, [dispatch, mineEncounter]);
@@ -81,7 +81,7 @@ const Mine = () => {
     setViewBoxIds(allBoxIds);
   };
 
-  console.log('revealBoxId is ', revealedBoxIds);
+  console.log("revealBoxId is ", revealedBoxIds);
 
   const handleBoxClick = (boxId) => {
     if (reduxBetActive) {
@@ -94,7 +94,8 @@ const Mine = () => {
           audio.play();
           const gemMultiplier = getGemMultiplier(boxId); // Step 3
           const multipliedValue = reduxBetAmount * gemMultiplier; // Step 3
-          dispatch({ type: "SET_PROFIT_FROM_BET", payload: multipliedValue});
+          console.log("multipliedValue value is ", multipliedValue);
+          dispatch({ type: "SET_PROFIT_FROM_BET", payload: multipliedValue });
         } else if (revealedBoxIds.includes(boxId)) {
           const audio = new Audio(explosionSoundEffect);
           audio.volume = 0.5;
@@ -107,19 +108,54 @@ const Mine = () => {
   };
 
   const getGemMultiplier = (boxId) => {
-    const multipliers = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,7.50,8.34,9.01,13.6,19.5,40.87
-      // 1.55,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+
+    const REWARD_ONE_MINE = [
+      3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    ];
+    const REWARD_TWO_MINE = [
+      4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    ];
+    const REWARD_THREE_MINE = [
+      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
 
-    // Ensure that boxId is within a valid range
-    const validBoxId = viewBoxIds.length % multipliers.length;
-    console.log(validBoxId);
-    return multipliers[validBoxId];
-  };
+    const REWARD_FOUR_MINE = [
+      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    ];
 
-  const betProfit = useSelector((state) => state.profitFromBet);
-  console.log('betprofit', betProfit);
+    const REWARD_FIVE_MINE = [
+      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
+      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+    ];
+
+    let MULTIPLIER_BASED_ON_MINE;
+    switch (mineCounter) {
+      case 1:
+        MULTIPLIER_BASED_ON_MINE = REWARD_ONE_MINE;
+        break;
+      case 2:
+        MULTIPLIER_BASED_ON_MINE = REWARD_TWO_MINE;
+        break;
+      case 3:
+        MULTIPLIER_BASED_ON_MINE = REWARD_THREE_MINE;
+        break;
+      case 4:
+        MULTIPLIER_BASED_ON_MINE = REWARD_FOUR_MINE;
+        break;
+      case 5:
+        MULTIPLIER_BASED_ON_MINE = REWARD_FIVE_MINE;
+        break;
+      default:
+        MULTIPLIER_BASED_ON_MINE = REWARD_FIVE_MINE;
+        break;
+    }
+
+    // Ensure that boxId is within a valid range
+    const validBoxId = viewBoxIds.length % MULTIPLIER_BASED_ON_MINE.length;
+    console.log(validBoxId);
+
+    return MULTIPLIER_BASED_ON_MINE[validBoxId];
+  };
   useEffect(() => {
     const hasCommonElements = viewBoxIds.some((id) =>
       revealedBoxIds.includes(id)

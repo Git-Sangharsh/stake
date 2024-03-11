@@ -10,7 +10,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const viewWallet = useSelector((state) => state.viewWallet);
-  const walletBalance = useSelector((state) => state.walletBalance);
+  const walletBalance = useSelector((state) => state.walletBalance).toFixed(2)
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });

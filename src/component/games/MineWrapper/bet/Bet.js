@@ -11,7 +11,9 @@ const Bet = () => {
   // const reduxBetAmount = useSelector((state) => state.betAmount);
   const reduxBetActive = useSelector((state) => state.betActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
+  const mineCounter = useSelector((state) =>  state.mineCounter);
   // const mineEncounter = useSelector((state) =>  state.mineEncounter);
+  // console.log('mineCounter', mineCounter);
   // console.log('bet mine', mineEncounter)
   // console.log(reduxBetActive, "active is")
   // console.log("reduxBetAmount is", reduxBetAmount);
@@ -98,7 +100,7 @@ const Bet = () => {
         </div>
       </div>
       <h4 className="select-mines">Mines</h4>
-      <select className="numberSelect" onChange={handleSetMines} value={stateMineSet}>
+      <select className="numberSelect" onChange={handleSetMines} value={mineCounter}>
         {selectMineNumb.map((number) => (
           <option key={number} value={number} className="numbs">
             {number}

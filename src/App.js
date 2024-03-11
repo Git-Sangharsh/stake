@@ -1,5 +1,5 @@
 import React from 'react'
-import MineWrapper from './component/games/MineWrapper/MineWrapper'
+import MineWrapper from './component/games/MineWrapper/mineWrapper/MineWrapper'
 import Navbar from './component/navbar/Navbar'
 import Wallet from './component/wallet/Wallet'
 
