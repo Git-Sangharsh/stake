@@ -7,11 +7,11 @@ import cashoutSoundEffect from "../../../audio/cashoutSoundEffect.mp3";
 
 const Bet = () => {
   const dispatch = useDispatch();
-  // const walletBalance = useSelector((state) => state.walletBalance);
-  const reduxBetAmount = useSelector((state) => state.betAmount);
+  const walletBalance = useSelector((state) => state.walletBalance);
+  // const reduxBetAmount = useSelector((state) => state.betAmount);
   const reduxBetActive = useSelector((state) => state.betActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
-  const mineCounter = useSelector((state) =>  state.mineCounter);
+  const mineCounter = useSelector((state) => state.mineCounter);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   // const mineEncounter = useSelector((state) =>  state.mineEncounter);
   // console.log('mineCounter', mineCounter);
@@ -22,7 +22,6 @@ const Bet = () => {
 
   const [betAmount, setBetAmount] = useState("0.00");
   const [stateMineSet, setStateMineSet] = useState(1);
-
 
   // const rewardValue = [
   //   1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 6.14, 8.5, 12.04, 17.52, 26.17, 40.87,
@@ -46,9 +45,11 @@ const Bet = () => {
   // console.log("bet amount is ", betAmount);
 
   const handleBet = () => {
-    if (betAmount.startsWith(0)) {
+    if (betAmount.startsWith(0) || betAmount === "") {
       console.log("bet starting with zero value");
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
+    } else if (betAmount > walletBalance) {
+      console.log("not enough balance in wallet");
     } else {
       const audio = new Audio(betSoundEffect);
       audio.volume = 0.5;
@@ -56,7 +57,7 @@ const Bet = () => {
       dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
       dispatch({ type: "SET_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_MINE_COUNTER", payload: stateMineSet });
-      dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0});
+      dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0 });
     }
   };
 
@@ -68,13 +69,11 @@ const Bet = () => {
     audio.play();
   };
 
-
   const handleSetMines = (e) => {
     const selectedValue = parseInt(e.target.value, 10); // Ensure it's an integer
     setStateMineSet(selectedValue);
     dispatch({ type: "SET_MINE_COUNTER", payload: selectedValue });
   };
-
 
   return (
     <div className="bet">
@@ -93,6 +92,7 @@ const Bet = () => {
             onChange={handleBetAmount}
             onClick={handleBetClick}
             className="bet-amount-input"
+            disabled={reduxBetActive}
           />
           <img src={rupeesSvg} alt="" className="rupeesSvg" />
         </div>
@@ -102,7 +102,12 @@ const Bet = () => {
         </div>
       </div>
       <h4 className="select-mines">Mines</h4>
-      <select className="numberSelect" onChange={handleSetMines} value={mineCounter}>
+      <select
+        className="numberSelect"
+        onChange={handleSetMines}
+        value={mineCounter}
+        disabled={reduxBetActive}
+      >
         {selectMineNumb.map((number) => (
           <option key={number} value={number} className="numbs">
             {number}

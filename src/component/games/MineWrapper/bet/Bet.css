@@ -112,11 +112,13 @@ li {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
+  cursor: pointer;
 }
 
 .left-border {
   border-left: 3px solid #0f212e;
   height: 70%;
+  cursor: pointer;
 }
 
 .select-mines {

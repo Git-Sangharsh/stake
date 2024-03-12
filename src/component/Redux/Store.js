@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 const initialState = {
   viewWallet: false,
-  walletBalance: 0.0,
+  walletBalance: 0,
   betActive: false,
   betAmount: 0.0,
   profitFromBet: 0,
@@ -18,8 +18,9 @@ const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_VIEW_WALLET":
       return { ...state, viewWallet: action.payload };
-    case "SET_WALLET_BALANCE":
-      return { ...state, walletBalance: (state.walletBalance + action.payload) };
+      case "SET_WALLET_BALANCE":
+        const newBalance = +state.walletBalance + action.payload;
+        return { ...state, walletBalance: newBalance };
     case "SET_BET_AMOUNT":
       const newWalletBalance = state.walletBalance - action.payload;
       return {
@@ -32,7 +33,7 @@ const Reducer = (state = initialState, action) => {
     case "SET_PROFIT_FROM_BET":
       return { ...state, profitFromBet: action.payload };
     case "SET_PROFIT_MULTIPLIER":
-      return {...state, profitMultiplier: action.payload };
+      return { ...state, profitMultiplier: action.payload };
     case "SET_MINE_ENCOUNTER":
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":
@@ -42,7 +43,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         walletBalance: updatedWalletBalance,
-        profitFromBet: 0
+        profitFromBet: 0,
       };
     default:
       return state;

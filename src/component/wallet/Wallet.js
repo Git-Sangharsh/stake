@@ -45,7 +45,8 @@ const Wallet = () => {
     setTimeout(() => {
       setshowLoaderWhileSetAmount(false);
       setTimeout(() => {
-        dispatch({ type: "SET_WALLET_BALANCE", payload: selectedAmount });
+        const amountToAdd = parseFloat(selectedAmount);
+        dispatch({ type: "SET_WALLET_BALANCE", payload: amountToAdd });
       },0);
     }, 2000);
   };
