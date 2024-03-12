@@ -73,6 +73,7 @@ const Mine = () => {
     if (mineEncounter) {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
       dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0 });
+      dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.00})
       revealAllBoxes();
     }
   }, [dispatch, mineEncounter]);
@@ -94,7 +95,7 @@ const Mine = () => {
           audio.play();
           const gemMultiplier = getGemMultiplier(boxId); // Step 3
           const multipliedValue = reduxBetAmount * gemMultiplier; // Step 3
-          console.log("multipliedValue value is ", multipliedValue);
+          dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: gemMultiplier})
           dispatch({ type: "SET_PROFIT_FROM_BET", payload: multipliedValue });
         } else if (revealedBoxIds.includes(boxId)) {
           const audio = new Audio(explosionSoundEffect);
@@ -109,8 +110,8 @@ const Mine = () => {
 
   const getGemMultiplier = (boxId) => {
     const REWARD_1_MINE = [
-      1.03, 1.08, 1.12, 1.18, 1.24, 1.37, 1.46, 1.55, 1.65, 1.77, 1.9, 2.06,
-      2.25, 2.47, 2.75, 3.09, 3.54, 4.13, 4.95, 6.19, 8.25, 12.38, 24.75,
+      1.03, 1.08, 1.12, 1.18, 1.24, 1.37, 1.46, 1.55, 1.65, 1.77, 1.96, 2.06,
+      2.25, 2.47, 2.75, 3.09, 3.54, 4.13, 4.45, 4.95, 6.19, 8.25, 12.38, 24.75,
     ];
     const REWARD_2_MINE = [
       1.08, 1.17, 1.29, 1.41, 1.56, 1.74, 1.94, 2.18, 2.48, 2.83, 3.26, 3.81,
@@ -141,86 +142,53 @@ const Mine = () => {
       1.45, 1.8, 2.14, 2.8, 3.5, 4.89, 5.12, 5.59, 6.5, 7.34, 7.99, 10.59,
       14.48, 21.15, 49.35, 80.56, 190.12, 580.56,
     ];
-    //!!!!!!!!!!!!!!!! completed till here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     const REWARD_8_MINE = [
-      1.56, 3.12, 4.68, 6.24, 7.8, 9.36, 10.92, 12.48, 18.04, 25.6, 32.16,
-      44.12, 54.12, 86.45, 198.03, 620.69
+      1.56, 3.12, 4.68, 6.24, 7.8, 8.8, 9.36, 10.92, 12.48, 18.04, 25.6, 32.16,
+      44.12, 54.12, 86.45, 198.03, 620.69,
     ];
-
-
-
-
 
     const REWARD_9_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-    const REWARD_10_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      1.62, 1.99, 2.25, 2.68, 3.08, 3.36, 3.99, 4.92, 8.48, 12.04, 18.6, 25.16,
+      120.16, 166.12, 250.45, 680.15,
     ];
 
+    const REWARD_10_MINE = [
+      1.68, 2.25, 2.68, 3.08, 3.36, 4.92, 8.48, 12.04, 18.6, 25.16, 37.64,
+      120.16, 166.12, 250.45, 723.55,
+    ];
+
+    //!!!!!!!!!!!!!!!! completed till here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const REWARD_11_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      1.72, 2.34, 3.08, 4.92, 6.46, 8.48, 12.04, 18.6, 25.16, 37.64, 120.16,
+      166.12, 250.45, 756.55,
     ];
 
     const REWARD_12_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      1.72, 2.34, 3.08, 4.92, 6.46, 8.48, 12.04, 18.6, 25.16, 37.64, 120.16,
+      166.12, 770.45,
     ];
 
     const REWARD_13_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      1.72, 2.34, 3.36, 4.92, 6.46, 8.48, 12.04, 18.6, 25.16, 37.64, 120.16,
+      800.12,
     ];
-
     const REWARD_14_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      1.72, 2.34, 3.08, 4.92, 6.46, 8.48, 12.04, 18.6, 25.16, 37.64, 650.69,
     ];
-
     const REWARD_15_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      2.34, 3.08, 3.36, 4.92, 6.46, 8.48, 12.04, 18.6, 25.16, 540.69,
     ];
-
     const REWARD_16_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
+      2.34, 3.08, 3.36, 4.92, 6.46, 8.48, 12.04, 18.6, 490.69,
     ];
-
-    const REWARD_17_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-
-    const REWARD_18_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-    const REWARD_19_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-
-    const REWARD_20_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-    const REWARD_21_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-
-    const REWARD_22_MINE = [
-      1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 4.96, 5.14, 5.56, 5.96, 6.23, 6.87,
-      7.5, 8.34, 9.01, 13.6, 19.5, 40.87,
-    ];
-
-    const REWARD_23_MINE = [12.14, 24.12];
-
+    const REWARD_17_MINE = [3.08, 3.36, 4.92, 6.46, 8.48, 12.04, 99.15, 220.69];
+    const REWARD_18_MINE = [3.36, 4.92, 6.46, 8.48, 12.04, 99.15, 150.69];
+    const REWARD_19_MINE = [3.36, 4.92, 6.46, 12.04, 99.15, 136.69];
+    const REWARD_20_MINE = [3.08, 3.36, 4.92, 6.46, 99.15];
+    const REWARD_21_MINE = [3.36, 4.92, 6.46, 106.15];
+    const REWARD_22_MINE = [4.92, 60.46, 130.15];
+    const REWARD_23_MINE = [8.165, 97.21];
     const REWARD_24_MINE = [24.12];
 
     let MULTIPLIER_BASED_ON_MINE;
@@ -304,11 +272,6 @@ const Mine = () => {
 
     // Ensure that boxId is within a valid range
     const validBoxId = viewBoxIds.length % MULTIPLIER_BASED_ON_MINE.length;
-    console.log(validBoxId);
-    console.log("helllllllllllll ooooooooo", REWARD_6_MINE.length);
-    console.log("helllllllllllll ooooooooo", revealedBoxIds.length);
-    console.log("helllllllllllll ooooooooo", shuffledBoxIds.length);
-
     return MULTIPLIER_BASED_ON_MINE[validBoxId];
   };
   useEffect(() => {
@@ -322,12 +285,10 @@ const Mine = () => {
     const boxes = [];
     for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
       const boxId = rowIndex * columns + columnIndex;
-      // const isRevealed = revealedBoxIds.includes(boxId);
       const isClickedAndNotRevealedMine =
         viewBoxIds.includes(boxId) && revealedBoxIds.includes(boxId);
       const isClickedAndNotRevealed =
         viewBoxIds.includes(boxId) && !revealedBoxIds.includes(boxId);
-      // console.log('mine image are ', isClickedAndNotRevealed);
 
       boxes.push(
         <div

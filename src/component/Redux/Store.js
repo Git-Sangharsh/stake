@@ -5,9 +5,10 @@ import storage from "redux-persist/lib/storage";
 const initialState = {
   viewWallet: false,
   walletBalance: 0.0,
-  betAmount: 0.0,
   betActive: false,
+  betAmount: 0.0,
   profitFromBet: 0,
+  profitMultiplier: 0.0,
   mineEncounter: false,
   mineCounter: 5,
   cashOutAmount: 0.0,
@@ -30,6 +31,8 @@ const Reducer = (state = initialState, action) => {
       return { ...state, betActive: action.payload };
     case "SET_PROFIT_FROM_BET":
       return { ...state, profitFromBet: action.payload };
+    case "SET_PROFIT_MULTIPLIER":
+      return {...state, profitMultiplier: action.payload };
     case "SET_MINE_ENCOUNTER":
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":

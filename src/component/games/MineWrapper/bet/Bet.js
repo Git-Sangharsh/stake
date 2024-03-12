@@ -8,10 +8,11 @@ import cashoutSoundEffect from "../../../audio/cashoutSoundEffect.mp3";
 const Bet = () => {
   const dispatch = useDispatch();
   // const walletBalance = useSelector((state) => state.walletBalance);
-  // const reduxBetAmount = useSelector((state) => state.betAmount);
+  const reduxBetAmount = useSelector((state) => state.betAmount);
   const reduxBetActive = useSelector((state) => state.betActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const mineCounter = useSelector((state) =>  state.mineCounter);
+  const profitMultiplier = useSelector((state) => state.profitMultiplier);
   // const mineEncounter = useSelector((state) =>  state.mineEncounter);
   // console.log('mineCounter', mineCounter);
   // console.log('bet mine', mineEncounter)
@@ -74,6 +75,7 @@ const Bet = () => {
     dispatch({ type: "SET_MINE_COUNTER", payload: selectedValue });
   };
 
+
   return (
     <div className="bet">
       <div className="parent-manual">
@@ -118,11 +120,11 @@ const Bet = () => {
       )}
 
       <div className="show-profit-percent">
-        <h6 className="show-profit-text">Total profit (1.00x)</h6>
+        <h6 className="show-profit-text">Total profit ({profitMultiplier})x</h6>
         <h6 className="show-profit-text">{betProfit} BTC</h6>
       </div>
       <div className="profit-amount-div">
-        <h4>0.00</h4>
+        <h4>{betProfit}</h4>
         <img src={rupeesSvg} alt="" className="rupeesSvg" />
       </div>
     </div>
