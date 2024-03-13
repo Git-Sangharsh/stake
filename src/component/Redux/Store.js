@@ -12,15 +12,16 @@ const initialState = {
   mineEncounter: false,
   mineCounter: 5,
   cashOutAmount: 0.0,
+  notEnoughBalance: false,
 };
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_VIEW_WALLET":
       return { ...state, viewWallet: action.payload };
-      case "SET_WALLET_BALANCE":
-        const newBalance = +state.walletBalance + action.payload;
-        return { ...state, walletBalance: newBalance };
+    case "SET_WALLET_BALANCE":
+      const newBalance = +state.walletBalance + action.payload;
+      return { ...state, walletBalance: newBalance };
     case "SET_BET_AMOUNT":
       const newWalletBalance = state.walletBalance - action.payload;
       return {
@@ -39,12 +40,16 @@ const Reducer = (state = initialState, action) => {
     case "SET_MINE_COUNTER":
       return { ...state, mineCounter: action.payload };
     case "SET_CASH_OUT_AMOUNT":
-      const updatedWalletBalance = state.walletBalance + state.profitFromBet;
+      const updatedWalletBalance = (
+        state.walletBalance + state.profitFromBet
+      ).toFixed(2);
       return {
         ...state,
         walletBalance: updatedWalletBalance,
         profitFromBet: 0,
       };
+    case "SET_NOT_ENOUGH_BALANCE":
+      return { ...state, notEnoughBalance: action.payload };
     default:
       return state;
   }

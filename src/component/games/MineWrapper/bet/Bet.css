@@ -9,6 +9,8 @@
   padding: 30px 10px;
   height: 900px;
   box-sizing: border-box;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 
 .parent-manual {
@@ -82,6 +84,7 @@ li {
   background-color: #2f4553;
 }
 
+
 .bet-amount-input {
   padding: 8px;
   outline: none;
@@ -96,6 +99,11 @@ li {
   box-sizing: border-box;
 }
 
+.bet-amount-input-notEnoughBalance{
+  color: red;
+  transition: 0.3s ease-in;
+
+}
 .rupeesSvg {
   width: 15px;
   padding: 5px;

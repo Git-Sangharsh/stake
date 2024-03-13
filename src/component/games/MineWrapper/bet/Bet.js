@@ -13,6 +13,7 @@ const Bet = () => {
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const mineCounter = useSelector((state) => state.mineCounter);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
+  const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
   // const mineEncounter = useSelector((state) =>  state.mineEncounter);
   // console.log('mineCounter', mineCounter);
   // console.log('bet mine', mineEncounter)
@@ -45,26 +46,28 @@ const Bet = () => {
   };
 
   const handleIncreaseByOneTwoX = () => {
-    const multipliedAmount = parseFloat(betAmount) * 1.5;
-    if (multipliedAmount > walletBalance) {
-      console.log("not enough balance in wallet");
-      setBetAmount(walletBalance);
-    } else {
-      setBetAmount(multipliedAmount.toFixed(2));
+    if (!reduxBetActive) {
+      const multipliedAmount = parseFloat(betAmount) * 1.5;
+      if (multipliedAmount > walletBalance) {
+        console.log("not enough balance in wallet");
+        setBetAmount(walletBalance);
+      } else {
+        setBetAmount(multipliedAmount.toFixed(2));
+      }
     }
   };
 
   const handleIncreaseByTwoX = () => {
-    const multipliedAmount = parseFloat(betAmount) * 2;
-    if (multipliedAmount > walletBalance) {
-      console.log("not enough balance in wallet");
-      setBetAmount(walletBalance);
-    } else {
-      setBetAmount(multipliedAmount.toFixed(2));
+    if (!reduxBetActive) {
+      const multipliedAmount = parseFloat(betAmount) * 2;
+      if (multipliedAmount > walletBalance) {
+        console.log("not enough balance in wallet");
+        setBetAmount(walletBalance);
+      } else {
+        setBetAmount(multipliedAmount.toFixed(2));
+      }
     }
   };
-
-  console.log("bet amount is ", betAmount);
 
   const convertToBitcoin = (amountInRupees) => {
     const conversionRate = 0.000000182311;
@@ -77,6 +80,7 @@ const Bet = () => {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
     } else if (betAmount > walletBalance) {
       console.log("not enough balance in wallet");
+      dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: true });
     } else {
       const audio = new Audio(betSoundEffect);
       audio.volume = 0.5;
@@ -85,26 +89,26 @@ const Bet = () => {
       dispatch({ type: "SET_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_MINE_COUNTER", payload: stateMineSet });
       dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0 });
+      dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
     }
   };
 
   const handleCashout = () => {
     dispatch({ type: "SET_BET_ACTIVE", payload: false });
     dispatch({ type: "SET_CASH_OUT_AMOUNT" });
+    dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.0 });
     const audio = new Audio(cashoutSoundEffect);
     audio.volume = 0.5;
     audio.play();
   };
 
   const handleSetMines = (e) => {
-    const selectedValue = parseInt(e.target.value, 10); // Ensure it's an integer
+    const selectedValue = parseInt(e.target.value, 10);
     setStateMineSet(selectedValue);
     dispatch({ type: "SET_MINE_COUNTER", payload: selectedValue });
   };
 
-
   useEffect(() => {
-    // Store bet amount in local storage whenever it changes
     localStorage.setItem("betAmount", betAmount);
   }, [betAmount]);
 
@@ -124,14 +128,25 @@ const Bet = () => {
             value={betAmount}
             onChange={handleBetAmount}
             onClick={handleBetClick}
-            className="bet-amount-input"
+            className={
+              notEnoughBalance
+                ? "bet-amount-input-notEnoughBalance bet-amount-input"
+                : "bet-amount-input"
+            }
             disabled={reduxBetActive}
           />
           <img src={rupeesSvg} alt="" className="rupeesSvg" />
         </div>
         <div className="bet-amount-row-2">
-          <button className="bet-amount-btn" onClick={handleIncreaseByOneTwoX}>1/2x</button>
-          <button className="bet-amount-btn left-border" onClick={handleIncreaseByTwoX}>2x</button>
+          <button className="bet-amount-btn" onClick={handleIncreaseByOneTwoX}>
+            1/2x
+          </button>
+          <button
+            className="bet-amount-btn left-border"
+            onClick={handleIncreaseByTwoX}
+          >
+            2x
+          </button>
         </div>
       </div>
       <h4 className="select-mines">Mines</h4>

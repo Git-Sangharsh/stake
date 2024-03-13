@@ -63,3 +63,13 @@
 .user-icon{
     color: white;
 }
+
+.notEnoughBalance{
+    background-color: white;
+    position: fixed;
+}
+
+.wallet-amount-notEnoughBalance{
+    color: rgb(255, 0, 0);
+    transition: 0.3s ease-in;
+}
