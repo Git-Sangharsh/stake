@@ -32,7 +32,9 @@ li {
   list-style: none;
 }
 
-.bet-title, .show-profit-percent, .profit-amount-div {
+.bet-title,
+.show-profit-percent,
+.profit-amount-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,8 +56,8 @@ li {
   background-color: #557086;
   background-color: #2f4553;
   padding: 5px;
-  margin: 10px 0px ;
-  box-shadow: 0px 2px 5px  rgba(0, 0, 0, 0.31);
+  margin: 10px 0px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.31);
 }
 
 .bet-amount-row-1,
@@ -113,12 +115,24 @@ li {
   font-weight: 500;
   font-style: normal;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: 0.2s ease-in;
 }
 
 .left-border {
+  border: none;
   border-left: 3px solid #0f212e;
-  height: 70%;
+  width: 100% !important;
+  height: 100% !important;
   cursor: pointer;
+  background-color: transparent;
+  transition: 0.2s ease-in;
+}
+
+.bet-amount-btn:hover,
+.left-border:hover {
+  background-color: #557086;
 }
 
 .select-mines {
@@ -129,54 +143,53 @@ li {
   font-size: 18px;
 }
 
-.numberSelect{
-    height: 45px;
-    color: white;
-    background-color: #0F212E;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 20px;
-    padding: 8px;
-    box-sizing: border-box;
-    overflow: hidden; /* or overflow: auto; depending on your requirements */
-
+.numberSelect {
+  height: 45px;
+  color: white;
+  background-color: #0f212e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: hidden; /* or overflow: auto; depending on your requirements */
 }
 
-.numbs{
-    background-color: #0F212E;
-    box-sizing: border-box;
-    font-size: 15px;
-    overflow-y: auto; /* or overflow-y: hidden; depending on your requirements */
+.numbs {
+  background-color: #0f212e;
+  box-sizing: border-box;
+  font-size: 15px;
+  overflow-y: auto; /* or overflow-y: hidden; depending on your requirements */
 }
 
-.bet-btn{
+.bet-btn {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
   padding: 18px 8px;
   text-align: center;
-  background-color: #1FFF20;
+  background-color: #1fff20;
   transition: 0.2s ease-in;
   border-radius: 6px;
-  margin: 20px 0px ;
+  margin: 20px 0px;
   cursor: pointer;
 }
 
-.bet-btn:hover{
+.bet-btn:hover {
   background-color: #19d019;
 }
 
-.cashout-btn{
-  background-color: #1FFF20;
+.cashout-btn {
+  background-color: #1fff20;
 }
 
-.cashout-btn:hover{
+.cashout-btn:hover {
   background-color: #19d019;
 }
 
-.show-profit-text{
+.show-profit-text {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -184,8 +197,8 @@ li {
   font-size: 16px;
 }
 
-.profit-amount-div{
-  background-color: #2F4553;
+.profit-amount-div {
+  background-color: #2f4553;
   padding: 14px 10px;
   border-radius: 3px;
   margin: 0px 0px;
@@ -194,7 +207,6 @@ li {
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
-  box-shadow: 0px 4px 5px  rgba(0, 0, 0, 0.31);
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.31);
   margin: 5px 0px;
 }
-

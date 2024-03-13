@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Bet.css";
 import rupeesSvg from "../../../assets/rs.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,9 @@ const Bet = () => {
   // console.log("reduxBetAmount is", reduxBetAmount);
   // console.log("walletBalance is ", walletBalance);
 
-  const [betAmount, setBetAmount] = useState("0.00");
+  const [betAmount, setBetAmount] = useState(() => {
+    return localStorage.getItem("betAmount") || "0.00";
+  });
   const [stateMineSet, setStateMineSet] = useState(1);
 
   // const rewardValue = [
@@ -42,7 +44,32 @@ const Bet = () => {
     setBetAmount("");
   };
 
-  // console.log("bet amount is ", betAmount);
+  const handleIncreaseByOneTwoX = () => {
+    const multipliedAmount = parseFloat(betAmount) * 1.5;
+    if (multipliedAmount > walletBalance) {
+      console.log("not enough balance in wallet");
+      setBetAmount(walletBalance);
+    } else {
+      setBetAmount(multipliedAmount.toFixed(2));
+    }
+  };
+
+  const handleIncreaseByTwoX = () => {
+    const multipliedAmount = parseFloat(betAmount) * 2;
+    if (multipliedAmount > walletBalance) {
+      console.log("not enough balance in wallet");
+      setBetAmount(walletBalance);
+    } else {
+      setBetAmount(multipliedAmount.toFixed(2));
+    }
+  };
+
+  console.log("bet amount is ", betAmount);
+
+  const convertToBitcoin = (amountInRupees) => {
+    const conversionRate = 0.000000182311;
+    return (amountInRupees * conversionRate).toFixed(8);
+  };
 
   const handleBet = () => {
     if (betAmount.startsWith(0) || betAmount === "") {
@@ -75,6 +102,12 @@ const Bet = () => {
     dispatch({ type: "SET_MINE_COUNTER", payload: selectedValue });
   };
 
+
+  useEffect(() => {
+    // Store bet amount in local storage whenever it changes
+    localStorage.setItem("betAmount", betAmount);
+  }, [betAmount]);
+
   return (
     <div className="bet">
       <div className="parent-manual">
@@ -82,7 +115,7 @@ const Bet = () => {
       </div>
       <div className="bet-title">
         <li className="bet-title-child">Bet Amount</li>
-        <li className="bet-title-child">0.000BTC</li>
+        <li className="bet-title-child">{convertToBitcoin(betAmount)} BTC</li>
       </div>
       <div className="bet-amount">
         <div className="bet-amount-row-1">
@@ -97,8 +130,8 @@ const Bet = () => {
           <img src={rupeesSvg} alt="" className="rupeesSvg" />
         </div>
         <div className="bet-amount-row-2">
-          <h4 className="bet-amount-btn">1/2x</h4>
-          <h4 className="bet-amount-btn left-border">2x</h4>
+          <button className="bet-amount-btn" onClick={handleIncreaseByOneTwoX}>1/2x</button>
+          <button className="bet-amount-btn left-border" onClick={handleIncreaseByTwoX}>2x</button>
         </div>
       </div>
       <h4 className="select-mines">Mines</h4>
