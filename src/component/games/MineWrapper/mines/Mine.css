@@ -1,20 +1,25 @@
-.mines{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #0F212E;
-    gap: 5px;
-    user-select: none;
-    padding: 30px 120px;
-    height: 900px;
-    box-sizing: border-box;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
+.mines {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #0f212e;
+  gap: 5px;
+  user-select: none;
+  padding: 30px 120px;
+  height: 900px;
+  box-sizing: border-box;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
-.bg-mines{
-    background-color: rgba(0, 0, 0, 0.1); /* Adjust the alpha value (last parameter) for desired opacity */
+.bg-mines {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Adjust the alpha value (last parameter) for desired opacity */
 }
 
 .row-0,
@@ -25,98 +30,114 @@
   display: flex;
 }
 
-.open-boxes{
-    height: 120px;
-    width: 120px;
-    background-color: #071824;
-    background-color: #2F4553;
-    margin: 5px;
-    border-radius: 9px;
-    cursor: pointer;
-    transition: 0.1s ease-in;
-    box-shadow: 0px 5px 0px  #213743;
-    background-color: red;
+.open-boxes {
+  height: 120px;
+  width: 120px;
+  background-color: #071824;
+  background-color: #2f4553;
+  margin: 5px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: 0.1s ease-in;
+  box-shadow: 0px 5px 0px #213743;
+  background-color: red;
 }
 
-.boxes{
-    height: 140px;
-    width: 140px;
-    background-color: #071824;
-    background-color: #2F4553;
-    margin: 5px;
-    border-radius: 9px;
-    cursor: pointer;
-    transition: 0.1s ease-in;
-    box-shadow: 0px 5px 0px  #213743;
-    user-select: none;
-
+.boxes {
+  height: 140px;
+  width: 140px;
+  background-color: #071824;
+  background-color: #2f4553;
+  margin: 5px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: 0.1s ease-in;
+  box-shadow: 0px 5px 0px #213743;
+  user-select: none;
 }
 
 .boxes:hover:not(.boxes-reveal) {
-    scale: 1.04;
-    background-color: #557086;
+  scale: 1.04;
+  background-color: #557086;
 }
-.boxes-reveal{
-    background-color: #071824;
-    box-shadow: 0px 5px 0px  #071824;
-    /* background-color: #2F4553;
+.boxes-reveal {
+  background-color: #071824;
+  box-shadow: 0px 5px 0px #071824;
+  /* background-color: #2F4553;
     box-shadow: 0px 5px 0px  #213743; */
 }
 
-.box0, .box1, .box2, .box3, .box4{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.box0,
+.box1,
+.box2,
+.box3,
+.box4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.gem-img, .mine-img{
-    width: 80px;
-    position: relative;
-    z-index: 0;
-    user-select: none;
-    }
+.gem-img,
+.mine-img {
+  width: 80px;
+  position: relative;
+  z-index: 0;
+  user-select: none;
+}
 
-
-.mine-effect{
-    width: 120px;
-    position: absolute;
-    z-index: -1;
+.mine-effect {
+  width: 120px;
+  position: absolute;
+  z-index: -1;
 }
 
 .boxes-clicked {
-    background-color: #ccc; /* Add your desired background color for clicked boxes */
-  }
-
-
-.none{
-    display: none;
+  background-color: #ccc; /* Add your desired background color for clicked boxes */
 }
 
+.none {
+  display: none;
+}
 
+.profit-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 5px solid #00e701;
+  background-color: #1a2c38;
+  color: #00e701;
+  border-radius: 12px;
+  padding: 20px 50px;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+}
 
+.brdr {
+  width: 40px;
+  margin: 10px 0px;
+  height: 2px;
+  background-color: #2f4553;
+}
 
+@media (max-width: 1024px) {
 
-
-
-  .profit-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border: 5px solid #00e701;
-    background-color: #1a2c38;
-    color: #00e701;
-    border-radius: 12px;
-    padding: 20px 50px;
-    top: 50%;
-    left: 58%;
-    transform: translate(-50%, -50%);
-    position: fixed;
+  .mines {
+    gap: 5px;
+    padding: 30px 120px;
+    height: 600px;
   }
 
-  .brdr {
-    width: 40px;
-    margin: 10px 0px;
-    height: 2px;
-      background-color: #2F4553;
+  .boxes {
+    height: 80px;
+    width: 80px;
   }
+
+  .gem-img,
+  .mine-img {
+    width: 50px;
+  }
+
+}

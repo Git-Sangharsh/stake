@@ -8,3 +8,12 @@
     position: relative;
     height: 100vh;
 }
+
+
+@media (max-width: 1024px) {
+    .mine-wrapper{
+        padding-top:100px;
+        overflow: hidden;
+    }
+
+}

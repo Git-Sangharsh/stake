@@ -84,7 +84,6 @@ li {
   background-color: #2f4553;
 }
 
-
 .bet-amount-input {
   padding: 8px;
   outline: none;
@@ -99,10 +98,9 @@ li {
   box-sizing: border-box;
 }
 
-.bet-amount-input-notEnoughBalance{
+.bet-amount-input-notEnoughBalance {
   color: red;
   transition: 0.3s ease-in;
-
 }
 .rupeesSvg {
   width: 15px;
@@ -217,4 +215,73 @@ li {
   font-size: 20px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.31);
   margin: 5px 0px;
+}
+
+@media (max-width: 1024px) {
+  .bet {
+    width: 300px;
+    padding: 30px 20px;
+    padding: 30px 10px;
+    height: 600px;
+  }
+
+  .manual {
+    padding: 10px 8px;
+    font-size: 15px;
+  }
+
+  .bet-title-child {
+    font-size: 12px;
+  }
+
+  .bet-amount {
+    height: 35px;
+    padding: 2px 4px;
+    margin: 5px 0px 10px 0px;
+  }
+
+  .bet-amount-row-1,
+  .bet-amount-row-2 {
+    height: 32px;
+  }
+
+  .bet-amount-input,
+  .bet-amount-input-notEnoughBalance {
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  .rupeesSvg {
+    width: 10px;
+  }
+
+  .bet-amount-btn,
+  .left-border {
+    font-size: 12px;
+  }
+
+  .select-mines {
+    font-size: 15px;
+  }
+  .numberSelect {
+    height: 32px;
+    font-size: 15px;
+    padding: 0px 4px;
+  }
+
+  .bet-btn {
+    font-size: 18px;
+    padding: 8px 8px;
+    margin: 10px 0px;
+  }
+
+  .show-profit-text {
+    font-size: 12px;
+  }
+
+  .profit-amount-div {
+    padding: 6px 6px;
+    font-size: 15px;
+  }
+
 }
