@@ -1,0 +1,36 @@
+.profit-box-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
+  z-index: 1001;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+}
+
+.profit-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 5px solid #00e701;
+  background-color: #1a2c38;
+  color: #00e701;
+  border-radius: 12px;
+  padding: 20px 50px;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+}
+
+.brdr {
+  width: 40px;
+  margin: 10px 0px;
+  height: 2px;
+    background-color: #2F4553;
+}

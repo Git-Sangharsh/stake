@@ -13,12 +13,26 @@ const Mine = () => {
   const reduxBetActive = useSelector((state) => state.betActive);
   const mineEncounter = useSelector((state) => state.mineEncounter);
   const mineCounter = useSelector((state) => state.mineCounter);
+  const profitBox = useSelector((state) =>  state.profitBox);
+  const profitMultiplier = useSelector((state) => state.profitMultiplier);
 
   useEffect(() => {
     if (mineEncounter) {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
     }
   }, [dispatch, mineEncounter]);
+
+
+  useEffect(() => {
+
+    if (profitBox) {
+      const timer = setTimeout(() => {
+        dispatch({ type: "SET_PROFIT_BOX", payload: false });
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [dispatch, profitBox]); // D
 
   // console.log("betActive is ", reduxBetActive);
   // console.log('mineEncounter is ', mineEncounter)
@@ -338,7 +352,19 @@ const Mine = () => {
     return rowsArray;
   };
 
-  return <div className="mines">{renderRows()}</div>;
+  return (
+    <div className={profitBox ? "mines bg-mines" : "mines"}>
+      {renderRows()}
+      {profitBox && (
+        <div className="profit-box">
+          <h1>{profitMultiplier}x</h1>
+          <div className="brdr"></div>
+          <h1>₹{(profitMultiplier * reduxBetAmount).toFixed(2)}</h1>
+        </div>
+      )}
+    </div>
+  );
+
 };
 
 export default Mine;

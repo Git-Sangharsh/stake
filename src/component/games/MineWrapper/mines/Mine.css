@@ -13,6 +13,10 @@
     border-bottom-right-radius: 6px;
 }
 
+.bg-mines{
+    background-color: rgba(0, 0, 0, 0.1); /* Adjust the alpha value (last parameter) for desired opacity */
+}
+
 .row-0,
 .row-1,
 .row-2,
@@ -68,7 +72,7 @@
 .gem-img, .mine-img{
     width: 80px;
     position: relative;
-    z-index: 998;
+    z-index: 0;
     user-select: none;
     }
 
@@ -76,7 +80,7 @@
 .mine-effect{
     width: 120px;
     position: absolute;
-    z-index: 997;
+    z-index: -1;
 }
 
 .boxes-clicked {
@@ -91,3 +95,28 @@
 
 
 
+
+
+
+  .profit-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 5px solid #00e701;
+    background-color: #1a2c38;
+    color: #00e701;
+    border-radius: 12px;
+    padding: 20px 50px;
+    top: 50%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+  }
+
+  .brdr {
+    width: 40px;
+    margin: 10px 0px;
+    height: 2px;
+      background-color: #2F4553;
+  }

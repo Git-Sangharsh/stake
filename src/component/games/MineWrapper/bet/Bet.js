@@ -8,16 +8,20 @@ import cashoutSoundEffect from "../../../audio/cashoutSoundEffect.mp3";
 const Bet = () => {
   const dispatch = useDispatch();
   const walletBalance = useSelector((state) => state.walletBalance);
-  // const reduxBetAmount = useSelector((state) => state.betAmount);
   const reduxBetActive = useSelector((state) => state.betActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const mineCounter = useSelector((state) => state.mineCounter);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
-  // const mineEncounter = useSelector((state) =>  state.mineEncounter);
+  const mineEncounter = useSelector((state) =>  state.mineEncounter);
+  // console.log("mineEncouter is ", mineEncounter);
+  // console.log("active is", reduxBetActive);
+  // console.log("profitFrom bet is", betProfit);
+  // const reduxBetAmount = useSelector((state) => state.betAmount);
+  // const profitBox = useSelector((state) =>  state.profitBox);
+  // console.log("profitBox is", profitBox)
   // console.log('mineCounter', mineCounter);
   // console.log('bet mine', mineEncounter)
-  // console.log(reduxBetActive, "active is")
   // console.log("reduxBetAmount is", reduxBetAmount);
   // console.log("walletBalance is ", walletBalance);
 
@@ -75,7 +79,7 @@ const Bet = () => {
   };
 
   const handleBet = () => {
-    if (betAmount.startsWith(0) || betAmount === "") {
+    if (betAmount.toString().startsWith("0") || betAmount === "") {
       console.log("bet starting with zero value");
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
     } else if (betAmount > walletBalance) {
@@ -85,22 +89,30 @@ const Bet = () => {
       const audio = new Audio(betSoundEffect);
       audio.volume = 0.5;
       audio.play();
+    dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.0 });
       dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
       dispatch({ type: "SET_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_MINE_COUNTER", payload: stateMineSet });
       dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0 });
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
+      dispatch({ type: "SET_PROFIT_BOX", payload: false});
     }
   };
 
   const handleCashout = () => {
     dispatch({ type: "SET_BET_ACTIVE", payload: false });
     dispatch({ type: "SET_CASH_OUT_AMOUNT" });
-    dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.0 });
+    // dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.0 });
     const audio = new Audio(cashoutSoundEffect);
     audio.volume = 0.5;
     audio.play();
+    if(!mineEncounter && reduxBetActive){
+      dispatch({ type: "SET_PROFIT_BOX", payload: true });
+    }else{
+      dispatch({ type: "SET_PROFIT_BOX", payload: false});
+    }
   };
+
 
   const handleSetMines = (e) => {
     const selectedValue = parseInt(e.target.value, 10);
