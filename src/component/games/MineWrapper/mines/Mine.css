@@ -123,7 +123,6 @@
 }
 
 @media (max-width: 1024px) {
-
   .mines {
     gap: 5px;
     padding: 30px 120px;
@@ -140,4 +139,85 @@
     width: 50px;
   }
 
+  .profit-box {
+    padding: 20px 30px;
+    transform: translate(-0%, -10%);
+    position: fixed;
+  }
+
+  .profit-box > h1 {
+    font-size: 15px;
+  }
+  .brdr {
+    width: 40px;
+    margin: 10px 0px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mines {
+    gap: 5px;
+    padding: 10px 10px;
+    height: 100%;
+    border-radius: 9px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+@media (max-width: 500px) {
+  .mines {
+    gap: 5px;
+    padding: 5px 5px;
+    padding-bottom: 10px;
+  }
+  .boxes {
+    height: 65px;
+    width: 65px;
+  }
+}
+
+@media (max-width: 410px) {
+  .mines {
+    width: 95%;
+    height: 100%;
+  }
+  .boxes {
+    height: 64.36px;
+    width: 55px;
+    width: 100%;
+  }
+
+  .row-0,
+  .row-1,
+  .row-2,
+  .row-3,
+  .row-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 345px) {
+  .boxes {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@media (max-width: 320px) {
+  .boxes {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+@media (max-width: 295px) {
+  .boxes {
+    height: 40px;
+    width: 40px;
+  }
 }

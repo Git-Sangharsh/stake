@@ -23,6 +23,7 @@ const Mine = () => {
   }, [dispatch, mineEncounter]);
 
 
+  // !
   useEffect(() => {
 
     if (profitBox) {

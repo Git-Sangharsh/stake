@@ -285,3 +285,84 @@ li {
   }
 
 }
+
+
+@media (max-width: 768px) {
+  .bet {
+    width: 470px;
+    padding: 0px 10px;
+    padding-bottom: 30px;
+    height: 100%;
+    margin: 0;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .bet {
+    width: 395px;
+    padding: 0px 10px;
+    padding-bottom: 30px;
+    height: 100%;
+    margin: 0;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+}
+
+@media (max-width: 410px) {
+  .bet {
+    width: 335px;
+    padding: 0px 10px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    width: 95%;
+  }
+
+  .parent-manual {
+    margin: 0px 0px;
+  }
+}
+
+
+@media (max-width: 345px) {
+  .bet {
+    /* width: 310px; */
+    padding: 0px 10px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  .parent-manual {
+    margin: 0px 0px;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .bet {
+    /* width: 285px; */
+    padding: 0px 10px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  .parent-manual {
+    margin: 0px 0px;
+  }
+}
+
+@media (max-width: 295px) {
+  .bet {
+    /* width: 260px; */
+    padding: 0px 10px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  .parent-manual {
+    margin: 0px 0px;
+  }
+}
