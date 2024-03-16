@@ -93,7 +93,7 @@ const Wallet = () => {
   // console.log("amount btn is ", AmountBtn)
   // console.log('selectedAmount length is ', selectedAmount.length);
 
-  console.log("routeDeposit is", routeDeposit);
+  // console.log("routeDeposit is", routeDeposit);
 
   return (
     <>
