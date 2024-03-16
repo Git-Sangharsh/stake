@@ -22,15 +22,15 @@ const Mine = () => {
     }
   }, [dispatch, mineEncounter]);
 
-  useEffect(() => {
-    if (profitBox) {
-      const timer = setTimeout(() => {
-        dispatch({ type: "SET_PROFIT_BOX", payload: false });
-      }, 3000);
+  // useEffect(() => {
+  //   if (profitBox) {
+  //     const timer = setTimeout(() => {
+  //       dispatch({ type: "SET_PROFIT_BOX", payload: false });
+  //     }, 3000);
 
-      return () => clearTimeout(timer);
-    }
-  }, [dispatch, profitBox]); // D
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [dispatch, profitBox]); // D
 
   // console.log("betActive is ", reduxBetActive);
   // console.log('mineEncounter is ', mineEncounter)
