@@ -311,7 +311,7 @@
   background-color: rgba(0, 0, 0, 0.599);
 }
 
-.paragraph-none{
+.paragraph-none {
   display: none;
 }
 
@@ -326,7 +326,7 @@
     overflow-y: scroll; /* Change to 'scroll' if you always want a scrollbar */
   }
 
-  .paragraph{
+  .paragraph {
     /* display: none; */
     text-align: center;
   }
@@ -339,12 +339,15 @@
   .wallet-wrapper {
     width: 80%;
   }
-}
+  .wallet-header {
+    margin-bottom: 20px;
+  }
 
-@media (max-width: 410px) {
-  .wallet-wrapper {
-    width: 80%;
-    margin-top: 0px;
+  .upi-img {
+    width: 60px;
+  }
+  .upi-title {
+    font-size: 20px;
   }
 }
 
@@ -353,9 +356,47 @@
     width: 80%;
     margin-top: 0px;
   }
-  .paragraph {
+  .wallet-icon,
+  .close-icon {
+    font-size: 30px;
+    color: #fffff2;
+  }
+
+  .wallet-header{
+    margin-bottom: 5px;
+  }
+
+  .wallet-title {
+    color: #fffff2;
+    font-size: 18px;
+  }
+
+  .default-amount {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+
+  .default,
+  .click,
+  .inr {
+    font-size: 12px;
+  }
+
+  .set-amount {
     text-align: center;
+    margin: 10px 0px;
+    padding: 10px;
+    font-size: 20px;
   }
+
+  .minimum-text{
+    margin: 0;
+    font-size: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
 }
 
 @media (max-width: 375px) {
@@ -370,7 +411,7 @@
     margin: 10px 0px;
   }
 
-  .parent-amount-conversion{
+  .parent-amount-conversion {
     margin: 10px 0px;
   }
   .paragraph {
