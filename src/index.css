@@ -25,6 +25,10 @@ html, body{
   box-sizing: border-box;
 }
 
+body{
+  background-color: #1A2C38 ;
+}
+
 .walletOpen {
   overflow: hidden !important;
 }
