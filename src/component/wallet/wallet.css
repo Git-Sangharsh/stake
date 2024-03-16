@@ -133,6 +133,7 @@
   padding: 8px;
   margin: 10px 0px;
   background-color: #0f212e;
+  text-align: center;
 }
 
 .deposit-btn {
@@ -310,6 +311,10 @@
   background-color: rgba(0, 0, 0, 0.599);
 }
 
+.paragraph-none{
+  display: none;
+}
+
 @media (max-width: 768px) {
   .wallet-blur-wrapper {
     background-color: rgba(0, 0, 0, 0.599);
@@ -322,7 +327,8 @@
   }
 
   .paragraph{
-    display: none;
+    /* display: none; */
+    text-align: center;
   }
 }
 

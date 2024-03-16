@@ -21,13 +21,13 @@ const Wallet = () => {
   const [showLoaderWhileSetAmount, setshowLoaderWhileSetAmount] =
     useState(false);
 
-    useEffect(() => {
-      if (viewWallet) {
-        document.body.classList.add("walletOpen");
-      } else {
-        document.body.classList.remove("walletOpen");
-      }
-    }, [viewWallet]);
+  useEffect(() => {
+    if (viewWallet) {
+      document.body.classList.add("walletOpen");
+    } else {
+      document.body.classList.remove("walletOpen");
+    }
+  }, [viewWallet]);
   const handleDepositOrWithdraw = () => {
     setDepositOrWithdraw(!depositOrWithdraw);
   };
@@ -90,6 +90,8 @@ const Wallet = () => {
   // console.log("amount btn is ", AmountBtn)
   // console.log('selectedAmount length is ', selectedAmount.length);
 
+  console.log("routeDeposit is", routeDeposit)
+
   return (
     <>
       {viewWallet && (
@@ -124,7 +126,7 @@ const Wallet = () => {
                 <h4 className="inr">INR</h4>
               </div>
             </div>
-            <p className="paragraph">
+            <p className={routeDeposit ? "paragraph-none" : "paragraph"}>
               Stake will require you to enter and verify your Aadhaar number
               before transacting with INR. For INR withdrawals, you must use a
               bank account in your personal name. Attempting to withdraw through
