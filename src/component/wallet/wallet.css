@@ -24,14 +24,15 @@
   box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.222);
 }
 
-.wallet-header, .upi-style
-,.final-amount {
+.wallet-header,
+.upi-style,
+.final-amount {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.upi-style{
+.upi-style {
   margin: 20px 0px;
 }
 .wallet-header-left,
@@ -96,24 +97,24 @@
   transition: 0.3s ease-in;
 }
 
-.parent-amount-conversion{
+.parent-amount-conversion {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 20px 0px;
 }
 
-.amount-conversion{
+.amount-conversion {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0F212E;
+  background-color: #0f212e;
   padding: 8px 20px;
   border-radius: 6px;
   width: max-content;
 }
 
-.inr{
+.inr {
   color: #fffff2;
   font-size: 22px;
   font-family: "Poppins", sans-serif;
@@ -121,7 +122,7 @@
   font-style: normal;
 }
 
-.paragraph{
+.paragraph {
   color: #fffff2;
   font-size: 16px;
   font-family: "Poppins", sans-serif;
@@ -131,13 +132,13 @@
   border-radius: 6px;
   padding: 8px;
   margin: 10px 0px;
-  background-color: #0F212E;
+  background-color: #0f212e;
 }
 
 .deposit-btn {
   text-align: center;
   width: 100%;
-  background-color: #00E701;
+  background-color: #00e701;
   margin: 20px 0px;
   padding: 20px;
   box-sizing: border-box;
@@ -150,15 +151,16 @@
   color: whitesmoke;
 }
 
-.deposit-btn:hover{
+.deposit-btn:hover {
   background-color: #02d102;
 }
 
-.loader-div, .loader-div-set{
+.loader-div,
+.loader-div-set {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #00E701;
+  background-color: #00e701;
   margin: 20px 0px;
   padding: 20px;
   box-sizing: border-box;
@@ -168,26 +170,26 @@
   color: whitesmoke;
 }
 
-.loader-div-set{
-  background-color: #1475E1;
+.loader-div-set {
+  background-color: #1475e1;
 }
 
-.upi-img{
+.upi-img {
   width: 100px;
 }
 
-.upi-title{
+.upi-title {
   color: #fffff2;
   font-size: 22px;
 }
 
-.default-amount-div{
+.default-amount-div {
   display: flex;
   margin: 20px 0px;
   gap: 3px;
 }
 
-.default-amount{
+.default-amount {
   width: 100%;
   padding: 15px;
   text-align: center;
@@ -199,37 +201,36 @@
   font-weight: 600;
   font-style: normal;
   border-radius: 3px;
-  transition: 0.1s ;
+  transition: 0.1s;
   box-sizing: border-box;
 }
 
-.default-amount:hover{
+.default-amount:hover {
   background-color: #2d4351;
-
 }
 
-.default-amount-click.default-amount{
-  background-color: #1475E1;
+.default-amount-click.default-amount {
+  background-color: #1475e1;
   box-sizing: border-box;
 }
 
-.amount-input-div{
-  background-color: #071D2A;
+.amount-input-div {
+  background-color: #071d2a;
   box-sizing: border-box;
   padding: 5px;
   padding-left: 10px;
 }
 
 .amount-input-header {
-  color: #AAB0B5;
+  color: #aab0b5;
 }
 
-.amount-input{
+.amount-input {
   width: 100%;
-  background-color: #071D2A;
+  background-color: #071d2a;
   border: none;
   outline: none;
-  color: #AAB0B5;
+  color: #aab0b5;
   font-size: 22px;
   margin: 5px 0px 0px 0px;
   font-family: "Poppins", sans-serif;
@@ -237,16 +238,16 @@
   font-style: normal;
 }
 
-.minimum-text{
+.minimum-text {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
-  color: #AAB0B5;
+  color: #aab0b5;
   margin: 20px 0px;
   font-size: 15px;
 }
 
-.set-amount{
+.set-amount {
   text-align: center;
   width: 100%;
   margin: 20px 0px;
@@ -270,7 +271,7 @@
   transition: 0.3s ease-in;
 }
 
-.before-set-amount{
+.before-set-amount {
   text-align: center;
   width: 100%;
   margin: 20px 0px;
@@ -288,16 +289,16 @@
   font-style: normal;
   border: none;
   outline: none;
-  background-color: #1475E1;
+  background-color: #1475e1;
   scale: 1;
   transition: 0.3s ease-in;
 }
 
-.before-set-amount:hover{
+.before-set-amount:hover {
   background-color: #0f59ad;
 }
 
-.final-amount-header{
+.final-amount-header {
   color: whitesmoke;
   font-size: 22px;
   font-family: "Poppins", sans-serif;
@@ -305,4 +306,140 @@
   font-style: normal;
 }
 
+.wallet-blur-wrapper {
+  background-color: rgba(0, 0, 0, 0.599);
+}
 
+@media (max-width: 768px) {
+  .wallet-blur-wrapper {
+    background-color: rgba(0, 0, 0, 0.599);
+  }
+  .wallet-wrapper {
+    width: 60%;
+    padding: 20px;
+    margin-top: 30px;
+    overflow-y: scroll; /* Change to 'scroll' if you always want a scrollbar */
+  }
+
+  .paragraph{
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .wallet-blur-wrapper {
+    background-color: rgba(0, 0, 0, 0.599);
+  }
+  .wallet-wrapper {
+    width: 80%;
+  }
+}
+
+@media (max-width: 410px) {
+  .wallet-wrapper {
+    width: 80%;
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 410px) {
+  .wallet-wrapper {
+    width: 80%;
+    margin-top: 0px;
+  }
+  .paragraph {
+    text-align: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .wallet-wrapper {
+    width: 80%;
+    margin-top: 0px;
+  }
+  .wallet-title {
+    font-size: 15px;
+  }
+  .deposit-or-withdraw {
+    margin: 10px 0px;
+  }
+
+  .parent-amount-conversion{
+    margin: 10px 0px;
+  }
+  .paragraph {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .default,
+  .click,
+  .inr {
+    font-size: 12px;
+  }
+
+  .deposit-btn {
+    margin: 20px 0px;
+    padding: 10px;
+    font-size: 20px;
+    margin: 10px 0px;
+  }
+}
+
+@media (max-width: 320px) {
+  .wallet-wrapper {
+    width: 80%;
+    margin-top: 0px;
+  }
+  .wallet-title {
+    font-size: 15px;
+  }
+  .deposit-or-withdraw {
+    margin: 10px 0px;
+  }
+  .paragraph {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .default,
+  .click,
+  .inr {
+    font-size: 12px;
+  }
+
+  .deposit-btn {
+    margin: 10px 0px;
+  }
+}
+
+@media (max-width: 295px) {
+  .wallet-wrapper {
+    width: 80%;
+    margin-top: 0px;
+  }
+  .wallet-title {
+    font-size: 15px;
+  }
+  .deposit-or-withdraw {
+    margin: 10px 0px;
+  }
+
+  .parent-amount-conversion {
+    margin: 5px 0px;
+  }
+  .paragraph {
+    font-size: 12px;
+    margin: 10px 0px;
+  }
+
+  .default,
+  .click,
+  .inr {
+    font-size: 12px;
+  }
+
+  .deposit-btn {
+    margin: 10px 0px;
+  }
+}

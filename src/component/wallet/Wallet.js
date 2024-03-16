@@ -10,6 +10,7 @@ import { MoonLoader } from "react-spinners";
 const Wallet = () => {
   const dispatch = useDispatch();
   const viewWallet = useSelector((state) => state.viewWallet);
+  console.log("viewWallet is ", viewWallet);
   // const walletBalance = useSelector((state) => state.walletBalance);
   // console.log('walletBalance', walletBalance)
 
@@ -20,6 +21,13 @@ const Wallet = () => {
   const [showLoaderWhileSetAmount, setshowLoaderWhileSetAmount] =
     useState(false);
 
+    useEffect(() => {
+      if (viewWallet) {
+        document.body.classList.add("walletOpen");
+      } else {
+        document.body.classList.remove("walletOpen");
+      }
+    }, [viewWallet]);
   const handleDepositOrWithdraw = () => {
     setDepositOrWithdraw(!depositOrWithdraw);
   };
@@ -47,7 +55,7 @@ const Wallet = () => {
       setTimeout(() => {
         const amountToAdd = parseFloat(selectedAmount);
         dispatch({ type: "SET_WALLET_BALANCE", payload: amountToAdd });
-      },0);
+      }, 0);
     }, 2000);
   };
 
