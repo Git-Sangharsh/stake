@@ -13,7 +13,7 @@ const Mine = () => {
   const reduxBetActive = useSelector((state) => state.betActive);
   const mineEncounter = useSelector((state) => state.mineEncounter);
   const mineCounter = useSelector((state) => state.mineCounter);
-  const profitBox = useSelector((state) =>  state.profitBox);
+  const profitBox = useSelector((state) => state.profitBox);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
 
   useEffect(() => {
@@ -22,10 +22,7 @@ const Mine = () => {
     }
   }, [dispatch, mineEncounter]);
 
-
-  // !
   useEffect(() => {
-
     if (profitBox) {
       const timer = setTimeout(() => {
         dispatch({ type: "SET_PROFIT_BOX", payload: false });
@@ -88,7 +85,7 @@ const Mine = () => {
     if (mineEncounter) {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
       dispatch({ type: "SET_PROFIT_FROM_BET", payload: 0 });
-      dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.00})
+      dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.0 });
       revealAllBoxes();
     }
   }, [dispatch, mineEncounter]);
@@ -110,7 +107,7 @@ const Mine = () => {
           audio.play();
           const gemMultiplier = getGemMultiplier(boxId); // Step 3
           const multipliedValue = reduxBetAmount * gemMultiplier; // Step 3
-          dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: gemMultiplier})
+          dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: gemMultiplier });
           dispatch({ type: "SET_PROFIT_FROM_BET", payload: multipliedValue });
         } else if (revealedBoxIds.includes(boxId)) {
           const audio = new Audio(explosionSoundEffect);
@@ -356,16 +353,17 @@ const Mine = () => {
   return (
     <div className={profitBox ? "mines bg-mines" : "mines"}>
       {renderRows()}
-      {profitBox && (
-        <div className="profit-box">
-          <h1>{profitMultiplier}x</h1>
-          <div className="brdr"></div>
-          <h1>₹{(profitMultiplier * reduxBetAmount).toFixed(2)}</h1>
-        </div>
-      )}
+      <div className={profitBox ?"parent-profit-box" : ""}>
+        {profitBox && (
+          <div className="profit-box">
+            <h1>{profitMultiplier}x</h1>
+            <div className="brdr"></div>
+            <h1>₹{(profitMultiplier * reduxBetAmount).toFixed(2)}</h1>
+          </div>
+        )}
+      </div>
     </div>
   );
-
 };
 
 export default Mine;

@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #0f212e;
   gap: 5px;
   user-select: none;
   padding: 30px 120px;
@@ -11,8 +10,16 @@
   box-sizing: border-box;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
+  position: relative; /* Add this line */
+  background-color: #0f212e;
 }
 
+.parent-profit-box {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+}
 .bg-mines {
   background-color: rgba(
     0,
@@ -122,6 +129,10 @@
   background-color: #2f4553;
 }
 
+.mines {
+  background-color: #0f212e;
+}
+
 @media (max-width: 1024px) {
   .mines {
     gap: 5px;
@@ -147,6 +158,9 @@
 
   .profit-box > h1 {
     font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
   }
   .brdr {
     width: 40px;
@@ -163,6 +177,14 @@
     border-radius: 9px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+    position: relative;
+  }
+
+  .profit-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -176,12 +198,38 @@
     height: 65px;
     width: 65px;
   }
+
+  .gem-img,
+  .mine-img {
+    width: 45px;
+  }
+
+  .profit-box {
+    padding: 10px 20px;
+  }
+
+  .profit-box > h1 {
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  .brdr {
+    width: 40px;
+    margin: 10px 0px;
+    height: 2px;
+  }
 }
 
 @media (max-width: 410px) {
   .mines {
     width: 95%;
     height: 100%;
+  }
+
+  .gem-img,
+  .mine-img {
+    width: 40px;
   }
   .boxes {
     height: 64.36px;
@@ -199,12 +247,20 @@
     justify-content: center;
     width: 100%;
   }
+
+  .profit-box {
+    border: 3px solid #00e701;
+  }
 }
 
 @media (max-width: 345px) {
   .boxes {
     height: 50px;
     width: 50px;
+  }
+  .gem-img,
+  .mine-img {
+    width: 35px;
   }
 }
 
@@ -213,11 +269,20 @@
     height: 45px;
     width: 45px;
   }
+  .gem-img,
+  .mine-img {
+    width: 30px;
+  }
 }
 
 @media (max-width: 295px) {
   .boxes {
     height: 40px;
     width: 40px;
+  }
+
+  .gem-img,
+  .mine-img {
+    width: 25px;
   }
 }
