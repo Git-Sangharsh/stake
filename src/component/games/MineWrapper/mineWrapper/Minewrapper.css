@@ -17,6 +17,15 @@
   }
 }
 
+@media (max-width: 1980px) {
+  .mine-wrapper {
+    padding-top: 130px;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+
 @media (max-width: 1440px) {
   .mine-wrapper {
     padding-top: 130px;
