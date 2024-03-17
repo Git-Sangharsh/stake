@@ -94,7 +94,6 @@ const Mine = () => {
     setViewBoxIds(allBoxIds);
   };
 
-  console.log("revealBoxId is ", revealedBoxIds);
 
   const handleBoxClick = (boxId) => {
     if (reduxBetActive) {
