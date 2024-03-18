@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.limbo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #0f212e;
+  width: 1200px;
+  height: 900px;
+}
+
+.limbo-number-header {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #ffffff;
+  font-size: 125px;
+  text-align: center;
+}
+
+.target-multiplier {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.target-multiplier-input {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 30px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #0f212e;
+  border: 1px solid #acb5ce;
+  border-radius: 3px;
+  width: 100%;
+}
+
+/*
+.multiplier-result{
+    display: flex;
+} */
