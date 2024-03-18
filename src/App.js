@@ -10,6 +10,8 @@ const App = () => {
     <Router>
       <div className="App">
         <Navbar />
+        <Wallet />
+
         <Routes>
           <Route
             path="/"
