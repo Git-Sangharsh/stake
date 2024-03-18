@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Limbo = () => {
   const betActive = useSelector((state) => state.betActive);
-  const wallet = useSelector((state) => state.viewWallet);
   const dispatch = useDispatch();
 
   const [randomNum, setRandomNum] = useState(null);
   const [displayedNum, setDisplayedNum] = useState(1.0);
+  const [targetMultiplier, setTargetMultiplier] = useState("2.00");
+  const [betWin, setBetWin] = useState(false);
 
   const generateRandomNumber = () => {
     setDisplayedNum(1.0);
@@ -42,52 +43,91 @@ const Limbo = () => {
     newRandomNum = parseFloat(newRandomNum.toFixed(2));
 
     setRandomNum(newRandomNum);
-    dispatch({ type: "SET_BET_ACTIVE", payload: false }); // Set betActive to false
+    // dispatch({ type: "SET_BET_ACTIVE", payload: false }); // Set betActive to false
   };
 
   useEffect(() => {
     if (betActive) {
       generateRandomNumber();
     }
-  }, [betActive]);
+  }, [betActive, displayedNum, randomNum]);
 
   useEffect(() => {
     if (randomNum !== null) {
+      const animationDuration = 500; // 1.5 seconds in milliseconds
+      const framesPerSecond = 60; // Assuming 60 frames per second
+      const numberOfFrames = animationDuration / (1000 / framesPerSecond);
+
       const incrementInterval = setInterval(() => {
         setDisplayedNum((prevNum) => {
-          const step = 0.01;
-          const diff = randomNum - prevNum;
-          if (diff <= step) {
+          const step = (randomNum - prevNum) / numberOfFrames;
+          const newNum = prevNum + step;
+          if (Math.abs(newNum - randomNum) < Math.abs(step)) {
             clearInterval(incrementInterval);
             return randomNum;
           } else {
-            return prevNum + step;
+            return newNum;
           }
         });
-      }, 10);
+      }, animationDuration / numberOfFrames);
 
       return () => clearInterval(incrementInterval);
     }
   }, [randomNum]);
 
+  useEffect(() => {
+    const tolerance = 0.0001; // Define a small tolerance
+
+    if (Math.abs(displayedNum - randomNum) < tolerance) {
+      dispatch({ type: "SET_BET_ACTIVE", payload: false });
+    }
+  }, [displayedNum, randomNum, dispatch]);
+
+  const handleTargetMultiplierChange = (e) => {
+    setTargetMultiplier(e.target.value);
+  };
+
+  useEffect(() => {
+    if (displayedNum !== null && randomNum !== null) {
+      if (displayedNum - randomNum > 0.0001) {
+        setBetWin(true);
+      } else {
+        setBetWin(false);
+      }
+
+      if (displayedNum > parseFloat(targetMultiplier)) {
+        setBetWin(true);
+      } else {
+        setBetWin(false);
+      }
+    }
+  }, [displayedNum, randomNum, targetMultiplier]);
+
   return (
     <div className="limbo">
       <div className="parent-target-multiplier-numb">
-        <h1 className="limbo-number-header">{displayedNum.toFixed(2)}x</h1>
+        <h1
+          className={
+            betWin
+              ? "limbo-number-header limbo-number-green"
+              : "limbo-number-header"
+          }
+        >
+          {displayedNum.toFixed(2)}x
+        </h1>
       </div>
 
-      {/* <button onClick={generateRandomNumber}>Generate Random Number</button> */}
       <div className="parent-target-multiplier">
         <div className="target-multiplier">
           <h4 className="target-multiplier-header">Target Multiplier</h4>
           <input
             type="number"
             className="target-multiplier-input"
-            title="Please enter a number with decimals"
             step="0.01"
             min="2.00"
             max="100"
-            defaultValue="1.01"
+            onChange={handleTargetMultiplierChange}
+            value={targetMultiplier}
           />
         </div>
       </div>

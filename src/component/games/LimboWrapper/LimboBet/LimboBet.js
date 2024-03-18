@@ -107,9 +107,13 @@ const LimboBet = () => {
         </div>
       </div>
 
-      <h1 className="bet-btn" onClick={handleBet}>
-        Bet
-      </h1>
+      {reduxBetActive ? (
+        <h1 className="bet-btn cashout-btn">Cashout</h1>
+      ) : (
+        <h1 className="bet-btn" onClick={handleBet}>
+          Bet
+        </h1>
+      )}
 
       <div className="show-profit-percent">
         <h6 className="show-profit-text">Total profit ({profitMultiplier})x</h6>
