@@ -20,6 +20,12 @@
 }
 
 .limbo-number-green{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #ffffff;
+  font-size: 125px;
+  text-align: center;
   color: #00E701;
 }
 .parent-target-multiplier-numb {

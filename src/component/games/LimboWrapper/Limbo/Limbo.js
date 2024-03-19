@@ -8,6 +8,7 @@ const Limbo = () => {
 
   const [displayedNum, setDisplayedNum] = useState(1.0);
   const [targetMultiplier, setTargetMultiplier] = useState(2);
+  const [betWin, setBetWin] = useState(false);
 
   const ranges = [
     { range: [1.0, 1.99], probability: 90.0 },
@@ -59,16 +60,31 @@ const Limbo = () => {
       if (step >= steps || startNumber >= endNumber) {
         clearInterval(animationInterval);
         dispatch({ type: "SET_BET_ACTIVE", payload: false });
+
+        // Check if the targetMultiplier is less than startNumber
+        if (parseFloat(targetMultiplier) < parseFloat(startNumber)) {
+          console.log("Winning bet");
+          setBetWin(true);
+        } else if (parseFloat(targetMultiplier) > parseFloat(startNumber)) {
+          setBetWin(false);
+        }
       }
     }, increment);
   };
 
   console.log("betActive is ", betActive);
+  console.log("betWin is ", betWin);
 
   return (
     <div className="limbo">
       <div className="parent-target-multiplier-numb">
-        <h1 className="limbo-number-header">{displayedNum}x</h1>
+        <h1
+          className={
+            betWin ? "limbo-number-green" : "limbo-number-header  "
+          }
+        >
+          {displayedNum}x
+        </h1>
       </div>
 
       <div className="parent-target-multiplier">
