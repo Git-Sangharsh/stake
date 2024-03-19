@@ -51,6 +51,9 @@ const LimboBet = () => {
     }
   };
 
+  // console.log("betAmount: ", betAmount)
+  // console.log("walletBalance: ", walletBalance)
+
   const handleBet = () => {
     if (betAmount.toString().startsWith("0") || betAmount === "") {
       console.log("bet starting with zero value");
@@ -108,7 +111,7 @@ const LimboBet = () => {
       </div>
 
       {reduxBetActive ? (
-        <h1 className="bet-btn cashout-btn">Cashout</h1>
+        <h1 className="disabled-bet-btn">Bet</h1>
       ) : (
         <h1 className="bet-btn" onClick={handleBet}>
           Bet

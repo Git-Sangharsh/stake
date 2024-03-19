@@ -53,7 +53,10 @@ const Reducer = (state = initialState, action) => {
       };
     case "SET_NOT_ENOUGH_BALANCE":
       return { ...state, notEnoughBalance: action.payload };
-    default:
+      case "SET_PROFIT_FROM_LIMBO":
+        const newWalletBalanceFromLimbo = state.walletBalance + action.payload;
+        return { ...state, walletBalance: newWalletBalanceFromLimbo };
+          default:
       return state;
   }
 };
