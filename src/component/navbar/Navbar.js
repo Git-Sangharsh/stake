@@ -4,9 +4,11 @@ import logo from "../assets/mines.png";
 import PersonIcon from "@mui/icons-material/Person";
 import bitCoinImg from "../assets/bitcoin.png";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const viewWallet = useSelector((state) => state.viewWallet);
   const walletBalance = useSelector((state) => state.walletBalance);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
@@ -23,9 +25,13 @@ const Navbar = () => {
     }
   }, [notEnoughBalance, dispatch]);
 
+  const handleRouteLimbo = () => {
+    navigate("/limbo");
+  }
+
   return (
     <nav className="nav">
-      <img src={logo} alt="" className="logo-img" />
+      <img src={logo} alt="" className="logo-img" onClick={handleRouteLimbo}/>
       <div className="nav-wallet">
         <h4 className={notEnoughBalance ? "wallet-Amount wallet-amount-notEnoughBalance" :"wallet-Amount"}> ₹ {walletBalance}</h4>
         <img src={bitCoinImg} alt="" className="bitcoin-img" />
