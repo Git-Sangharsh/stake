@@ -41,7 +41,6 @@ const Limbo = () => {
       }
     }
   };
-
   const getRandomInRange = (min, max) => {
     return Math.random() * (max - min) + min;
   };
@@ -59,11 +58,9 @@ const Limbo = () => {
       setDisplayedNum(startNumber.toFixed(2));
       // console.log("startNumber is ", startNumber);
       // console.log("endNumber is ", endNumber);
-
       if (step >= steps || startNumber >= endNumber) {
         clearInterval(animationInterval);
         dispatch({ type: "SET_BET_ACTIVE", payload: false });
-
         // Check if the targetMultiplier is less than startNumber
         if (parseFloat(targetMultiplier) < parseFloat(startNumber)) {
           // console.log("betAmount is ", betAmount);
