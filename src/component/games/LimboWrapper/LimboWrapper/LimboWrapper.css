@@ -11,6 +11,31 @@
   margin-top: 00px;
 }
 
+
+@media (max-width: 2560px) {
+  .limbo-wrapper {
+    padding-top: 130px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 1980px) {
+  .limbo-wrapper {
+    padding-top: 130px;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+
+@media (max-width: 1440px) {
+  .limbo-wrapper {
+    padding-top: 130px;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
 @media (max-width: 1024px) {
   .limbo-wrapper {
     padding-top: 100px;
