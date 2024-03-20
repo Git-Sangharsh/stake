@@ -14,8 +14,8 @@ const Limbo = () => {
   const [betWin, setBetWin] = useState(false);
 
   const ranges = [
-    { range: [1.0, 1.99], probability: 10.0 },
-    { range: [2.0, 100], probability: 90.0 },
+    { range: [1.0, 1.99], probability: 90.0 },
+    { range: [2.0, 100], probability: 10.0 },
   ];
 
   const handleTargetMultiplierChange = (e) => {
