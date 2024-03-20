@@ -6,7 +6,7 @@ const Limbo = () => {
   const betActive = useSelector((state) => state.betActive);
   const betAmount = useSelector((state) => state.betAmount);
   const walletBalance = useSelector((state) => state.walletBalance);
-  console.log("walletBalance", walletBalance);
+  // console.log("walletBalance", walletBalance);
   const dispatch = useDispatch();
 
   const [displayedNum, setDisplayedNum] = useState(1.0);
@@ -75,7 +75,7 @@ const Limbo = () => {
     }, increment);
   };
 
-  console.log("betActive is ", betActive);
+  // console.log("betActive is ", betActive);
   // console.log("betWin is ", betWin);
 
   return (
