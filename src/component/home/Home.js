@@ -3,8 +3,14 @@ import "./Home.css";
 import poster1 from "../assets/home-casino-poster.avif";
 import poster2 from "../assets/home-casino-poster-2.avif";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleTemporaryRoute = () => {
+    navigate('/mines');
+  }
   return (
     <div className="home">
       <div className="home-wrapper">
@@ -30,7 +36,7 @@ const Home = () => {
               games right from your browser, including your favourite Stake
               Originals.
             </p>
-            <h1 className="casino-btn">Go To Casino</h1>
+            <h1 className="casino-btn" onClick={handleTemporaryRoute}>Go To Casino</h1>
           </div>
           <div className="poster-child">
             <motion.img
