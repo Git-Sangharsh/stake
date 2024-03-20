@@ -23,6 +23,7 @@
   font-style: normal;
   padding: 20px 8px;
   background-color: #1a2c38;
+  margin-bottom: 20px;
 }
 
 .poster-child {
@@ -67,4 +68,112 @@
 .casino-btn:hover {
   background-color: #105eb4;
   cursor: pointer;
+}
+
+@media (max-width: 1903px) {
+  .poster-img {
+    width: 600px;
+  }
+  .casino-btn {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1440px) {
+  .poster-img {
+    width: 400px;
+  }
+  .poster-child-header,
+  .poster-child-p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home {
+    padding-top: 100px;
+  }
+
+  .poster-img {
+    width: 400px;
+  }
+  .poster-child-header,
+  .poster-child-p {
+    text-align: center;
+  }
+
+  .poster-div {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding-top: 90px;
+    height: 100%;
+  }
+  .poster-child {
+    width: 100%;
+  }
+
+  .poster-img {
+    width: 100%;
+  }
+  .poster-child-header,
+  .poster-child-p {
+    text-align: center;
+  }
+
+  .poster-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 18px;
+    border-radius: 0px;
+  }
+}
+
+
+@media (max-width: 500px){
+  .poster-div {
+    padding: 10px 10px;
+  }
+
+  .poster-child-header{
+    font-size: 16px;
+  }
+
+  .poster-child-p{
+    font-size: 12px;
+  }
+
+
+.casino-btn {
+  padding: 10px;
+}
+}
+
+@media (max-width: 320px){
+  .home{
+    padding-top: 80px;
+  }
+  .poster-div {
+    padding: 10px 10px;
+    margin-bottom: 10px;
+  }
+
+  .poster-child-header{
+    font-size: 16px;
+  }
+
+  .poster-child-p{
+    font-size: 10px;
+  }
+
+
+.casino-btn {
+  padding: 8px;
+}
 }
