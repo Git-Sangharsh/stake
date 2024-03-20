@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Limbo = () => {
   const betActive = useSelector((state) => state.betActive);
+  const betAmount = useSelector((state) => state.betAmount);
+  const walletBalance = useSelector((state) => state.walletBalance);
+  console.log("walletBalance", walletBalance);
   const dispatch = useDispatch();
 
   const [displayedNum, setDisplayedNum] = useState(1.0);
@@ -11,8 +14,8 @@ const Limbo = () => {
   const [betWin, setBetWin] = useState(false);
 
   const ranges = [
-    { range: [1.0, 1.99], probability: 90.0 },
-    { range: [2.0, 100], probability: 10.0 },
+    { range: [1.0, 1.99], probability: 10.0 },
+    { range: [2.0, 100], probability: 90.0 },
   ];
 
   const handleTargetMultiplierChange = (e) => {
@@ -54,8 +57,8 @@ const Limbo = () => {
       step++;
       startNumber += increment;
       setDisplayedNum(startNumber.toFixed(2));
-      console.log("startNumber is ", startNumber);
-      console.log("endNumber is ", endNumber);
+      // console.log("startNumber is ", startNumber);
+      // console.log("endNumber is ", endNumber);
 
       if (step >= steps || startNumber >= endNumber) {
         clearInterval(animationInterval);
@@ -63,9 +66,12 @@ const Limbo = () => {
 
         // Check if the targetMultiplier is less than startNumber
         if (parseFloat(targetMultiplier) < parseFloat(startNumber)) {
-          console.log("Winning bet");
+          // console.log("betAmount is ", betAmount);
+          // console.log("target is ", targetMultiplier);
+          // console.log("Final Profit is ", betAmount * targetMultiplier );
+          dispatch({ type: "SET_PROFIT_FROM_LIMBO", payload: betAmount * targetMultiplier});
           setBetWin(true);
-        } else if (parseFloat(targetMultiplier) > parseFloat(startNumber)) {
+        } else {
           setBetWin(false);
         }
       }
@@ -73,16 +79,12 @@ const Limbo = () => {
   };
 
   console.log("betActive is ", betActive);
-  console.log("betWin is ", betWin);
+  // console.log("betWin is ", betWin);
 
   return (
     <div className="limbo">
       <div className="parent-target-multiplier-numb">
-        <h1
-          className={
-            betWin ? "limbo-number-green" : "limbo-number-header  "
-          }
-        >
+        <h1 className={betWin ? "limbo-number-green" : "limbo-number-header  "}>
           {displayedNum}x
         </h1>
       </div>
