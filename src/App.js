@@ -4,6 +4,7 @@ import Navbar from "./component/navbar/Navbar";
 import Wallet from "./component/wallet/Wallet";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LimboWrapper from "./component/games/LimboWrapper/LimboWrapper/LimboWrapper";
+import Home from "./component/home/Home";
 
 const App = () => {
   return (
@@ -11,10 +12,18 @@ const App = () => {
       <div className="App">
         <Navbar />
         <Wallet />
-
         <Routes>
-          <Route
+
+        <Route
             path="/"
+            element={
+              <div>
+                <Home />
+              </div>
+            }
+          />
+          <Route
+            path="/mines"
             element={
               <div>
                 <MineWrapper />

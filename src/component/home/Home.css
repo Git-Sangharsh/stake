@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.home {
+  padding-top: 130px;
+  width: 100%;
+  height: 100vh;
+  background-color: #0f212e;
+}
+
+.home-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  width: 65%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  padding: 20px 8px;
+  background-color: #1a2c38;
+}
+
+.poster-child {
+  width: min-content;
+  box-sizing: border-box;
+}
+
+.poster-img {
+  width: 800px;
+  border-radius: 6px;
+}
+
+.poster-child-header {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.poster-child-p {
+  color: #b1bad3;
+}
+
+.casino-btn {
+  width: 100%;
+  margin: 20px 0px;
+  background-color: #1475e1;
+  padding: 20px;
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  transition: 0.2s ease-in;
+  text-align: center;
+  width: 95%;
+}
+
+.casino-btn:hover {
+  background-color: #105eb4;
+  cursor: pointer;
+}
