@@ -10,3 +10,20 @@
   width: 100%;
   margin-top: 00px;
 }
+
+@media (max-width: 1024px) {
+  .limbo-wrapper {
+    padding-top: 100px;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .limbo-wrapper {
+    flex-direction: column-reverse;
+    padding-top: 100px;
+    height: 100%;
+    padding-top: 80px;
+  }
+}

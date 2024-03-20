@@ -19,14 +19,14 @@
   text-align: center;
 }
 
-.limbo-number-green{
+.limbo-number-green {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
   color: #ffffff;
   font-size: 125px;
   text-align: center;
-  color: #00E701;
+  color: #00e701;
 }
 .parent-target-multiplier-numb {
   display: flex;
@@ -92,3 +92,48 @@
 .multiplier-result{
     display: flex;
 } */
+
+@media (max-width: 1024px) {
+  .limbo {
+    height: 600px;
+  }
+  .target-multiplier {
+    padding: 0px 10px;
+    background-color: #213743;
+    border-radius: 3px;
+    height: 120px;
+  }
+
+  .target-multiplier-input {
+    font-size: 25px;
+    padding: 8px 10px;
+  }
+
+  .target-multiplier-header {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .limbo {
+    height: 100%;
+    width: 95%;
+  }
+
+  .limbo-bet {
+    width: 95%;
+  }
+
+  .target-multiplier {
+    height: 80px;
+  }
+
+  .target-multiplier-input {
+    font-size: 20px;
+    padding: 4px 10px;
+  }
+
+  .parent-target-multiplier {
+    margin-bottom: 10px;
+  }
+}

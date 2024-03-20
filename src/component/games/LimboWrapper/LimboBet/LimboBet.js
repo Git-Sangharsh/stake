@@ -73,7 +73,7 @@ const LimboBet = () => {
   };
 
   return (
-    <div className="bet">
+    <div className="bet limbo-bet">
       <div className="parent-manual">
         <h4 className="manual">Manual</h4>
       </div>
