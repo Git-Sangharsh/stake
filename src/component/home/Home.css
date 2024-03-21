@@ -105,7 +105,16 @@
   margin: 0px 5px;
 }
 
-@media (max-width: 1903px) {
+@media (min-width: 1904px)  {
+  .poster-img {
+    width: 600px;
+  }
+  .casino-btn {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+@media (max-width: 1903px)  {
   .poster-img {
     width: 600px;
   }
@@ -115,8 +124,20 @@
   }
 }
 
-@media (max-width: 1440px) {
-  .poster-img {
+  /* @media (max-width: 1876px) {
+    .poster-img {
+      width: 400px;
+    }
+    .poster-child-header,
+    .poster-child-p {
+      text-align: center;
+    }
+  } */
+
+
+
+  @media (min-width: 1440px) and (max-width: 1903px) {
+    .poster-img {
     width: 400px;
   }
   .poster-child-header,
@@ -125,6 +146,15 @@
   }
 }
 
+@media (max-width: 1439px)  {
+  .poster-img {
+  width: 400px;
+}
+.poster-child-header,
+.poster-child-p {
+  text-align: center;
+}
+}
 @media (max-width: 1024px) {
   .home {
     padding-top: 100px;
@@ -147,6 +177,45 @@
   }
 }
 
+
+@media (max-width: 907px){
+  .home {
+    padding-top: 90px;
+    height: 100%;
+  }
+  .poster-child {
+    width: 100%;
+  }
+
+  .poster-img {
+    width: 100%;
+  }
+  .poster-child-header,
+  .poster-child-p {
+    text-align: center;
+  }
+
+  .poster-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 18px;
+    border-radius: 0px;
+  }
+.home-footer{
+  width: 90%;
+  padding: 10px 18px;
+
+}
+  .home-footer-header {
+    display: none;
+  }
+
+  .buy-crypto{
+    margin: 0;
+  }
+}
 @media (max-width: 768px) {
   .home {
     padding-top: 90px;
