@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import poster1 from "../assets/home-casino-poster.avif";
 import poster2 from "../assets/home-casino-poster-2.avif";
@@ -6,12 +6,20 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import gpaySvg from "../assets/gpay.svg";
 import mastercardSvg from "../assets/mastercard.svg";
+import { BarLoader } from "react-spinners";
 
 const Home = () => {
   const navigate = useNavigate();
 
+  const [loader, setLoader] = useState(false);
+
   const handleTemporaryRoute = () => {
-    navigate("/mines");
+    setLoader(true);
+    setTimeout(() => {
+      navigate("/casino");
+
+      setLoader(false);
+    }, 2000);
   };
   return (
     <div className="home">
@@ -75,6 +83,11 @@ const Home = () => {
 
           <h1 className="buy-crypto">Buy Crypto</h1>
         </div>
+        {loader && (
+          <div className="route-loader">
+            <BarLoader color="#ffffff" height={4} width={200} />
+          </div>
+        )}
       </div>
     </div>
   );

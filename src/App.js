@@ -5,6 +5,7 @@ import Wallet from "./component/wallet/Wallet";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LimboWrapper from "./component/games/LimboWrapper/LimboWrapper/LimboWrapper";
 import Home from "./component/home/Home";
+import Casino from "./component/casino/Casino";
 
 const App = () => {
   return (
@@ -13,8 +14,7 @@ const App = () => {
         <Navbar />
         <Wallet />
         <Routes>
-
-        <Route
+          <Route
             path="/"
             element={
               <div>
@@ -22,8 +22,9 @@ const App = () => {
               </div>
             }
           />
+          <Route path="/casino" element={<Casino />} />
           <Route
-            path="/mines"
+            path="/casino/mines"
             element={
               <div>
                 <MineWrapper />
@@ -31,7 +32,7 @@ const App = () => {
               </div>
             }
           />
-          <Route path="/limbo" element={<LimboWrapper />} />
+          <Route path="/casino/limbo" element={<LimboWrapper />} />
         </Routes>
       </div>
     </Router>
