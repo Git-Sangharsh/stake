@@ -50,18 +50,7 @@
 .stake-originals-img {
   border-radius: 9px;
   cursor: pointer;
-}
-
-.coming{
-    width: 100%;
-    background-color: rgb(0, 0, 0);
-    color: #ffffff;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
 }
 
 .route-loader {
@@ -76,3 +65,92 @@
   left: 0;
 }
 
+@media (max-width: 1440px) {
+  .casino-wrapper {
+    width: 80%;
+  }
+
+  .game-8 {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .casino {
+    margin-top: 80px;
+  }
+  .casino-wrapper {
+    width: 100%;
+  }
+
+  .game-7 {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .game-5,
+  .game-6 {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .lobby-nav,
+  .stake-originals {
+    width: 90%;
+  }
+  /* .game-3 {
+    display: none;
+  } */
+}
+
+@media (max-width: 500px) {
+  .stake-originals-img {
+    width: 150px;
+  }
+
+  .game-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 440px) {
+  .casino {
+    margin-top: 80px;
+  }
+  .lobby-nav {
+    width: 90%;
+    padding: 10px;
+  }
+  .stake-originals {
+    width: 90%;
+    padding: 10px;
+  }
+  .lobby-nav-header {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+  .stake-originals-img {
+    width: 120px;
+  }
+
+  .game-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .stake-originals-img {
+    width: 100px;
+  }
+
+  .game-4 {
+    display: none;
+  }
+}
