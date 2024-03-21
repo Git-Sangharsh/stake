@@ -4,13 +4,15 @@ import poster1 from "../assets/home-casino-poster.avif";
 import poster2 from "../assets/home-casino-poster-2.avif";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import gpaySvg from "../assets/gpay.svg";
+import mastercardSvg from "../assets/mastercard.svg";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const handleTemporaryRoute = () => {
-    navigate('/mines');
-  }
+    navigate("/mines");
+  };
   return (
     <div className="home">
       <div className="home-wrapper">
@@ -36,7 +38,9 @@ const Home = () => {
               games right from your browser, including your favourite Stake
               Originals.
             </p>
-            <h1 className="casino-btn" onClick={handleTemporaryRoute}>Go To Casino</h1>
+            <h1 className="casino-btn" onClick={handleTemporaryRoute}>
+              Go To Casino
+            </h1>
           </div>
           <div className="poster-child">
             <motion.img
@@ -60,6 +64,16 @@ const Home = () => {
             </p>
             <h1 className="casino-btn">Comming Soon!!!</h1>
           </div>
+        </div>
+        <div className="home-footer">
+          <h1 className="home-footer-header">No Crypto? No problem.</h1>
+
+          <div className="footer-svg">
+            <img src={gpaySvg} className="footer-svg-img" alt="" />
+            <img src={mastercardSvg} className="footer-svg-img" alt="" />
+          </div>
+
+          <h1 className="buy-crypto">Buy Crypto</h1>
         </div>
       </div>
     </div>
