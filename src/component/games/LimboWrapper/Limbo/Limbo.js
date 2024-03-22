@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Limbo.css";
 import { useSelector, useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 
 const Limbo = () => {
   const betActive = useSelector((state) => state.betActive);
   const betAmount = useSelector((state) => state.betAmount);
-  const walletBalance = useSelector((state) => state.walletBalance);
   const dispatch = useDispatch();
 
   const [displayedNum, setDisplayedNum] = useState(1.0);
@@ -108,12 +108,18 @@ const Limbo = () => {
 
       <h3 className="prev-result-map">
         {endNumbers.map((number, index) => (
-          <h3 key={index} className="prev-result-limbo">
-            {number}
-          </h3>
+          <motion.h3
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeIn" }}
+            key={index}
+            className="prev-result-limbo"
+          >
+            {number}x
+          </motion.h3>
         ))}
       </h3>
-      {console.log("endNumbers:", endNumbers)}
+      {/* {console.log("endNumbers:", endNumbers)} */}
     </div>
   );
 };
