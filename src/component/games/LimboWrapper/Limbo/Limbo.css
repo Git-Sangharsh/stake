@@ -89,8 +89,7 @@
   width: 100%;
 }
 
-
-.prev-result-map{
+.prev-result-map {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,19 +97,18 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 999;
+  z-index: 100;
 }
-.prev-result-limbo{
+.prev-result-limbo {
   box-sizing: border-box;
   font-style: normal;
-  background-color: #1FFF20;
+  background-color: #1fff20;
   padding: 6px 20px;
   border-radius: 30px;
   font-size: 16px;
   text-align: center;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-
 }
 
 /*
@@ -143,6 +141,12 @@
   .limbo {
     height: 100%;
     width: 95%;
+    padding-top: 60px;
+  }
+
+  .prev-result-limbo {
+    padding: 6px 20px;
+    font-size: 12px;
   }
 
   .limbo-bet {
@@ -163,19 +167,30 @@
   }
 }
 
-
 @media (max-width: 500px) {
-  .limbo-number-header, .limbo-number-green {
+  .limbo{
+    padding-top: 20px;
+  }
+  .limbo-number-header,
+  .limbo-number-green {
     font-size: 80px;
     padding-top: 20px;
-
+  }
+  .prev-result-limbo {
+    padding: 5px 15px;
+    font-size: 10px;
   }
 }
 
-
-@media (max-width:320px) {
-  .limbo-number-header, .limbo-number-green {
+@media (max-width: 320px) {
+  .limbo-number-header,
+  .limbo-number-green {
     font-size: 60px;
     padding-top: 20px;
+  }
+
+  .prev-result-limbo {
+    padding: 5px 10px;
+    font-size: 8px;
   }
 }
