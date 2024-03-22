@@ -6,12 +6,12 @@ const Limbo = () => {
   const betActive = useSelector((state) => state.betActive);
   const betAmount = useSelector((state) => state.betAmount);
   const walletBalance = useSelector((state) => state.walletBalance);
-  // console.log("walletBalance", walletBalance);
   const dispatch = useDispatch();
 
   const [displayedNum, setDisplayedNum] = useState(1.0);
   const [targetMultiplier, setTargetMultiplier] = useState(2);
   const [betWin, setBetWin] = useState(false);
+  const [endNumbers, setEndNumbers] = useState([]);
 
   const ranges = [
     { range: [1.0, 1.99], probability: 90.0 },
@@ -41,6 +41,7 @@ const Limbo = () => {
       }
     }
   };
+
   const getRandomInRange = (min, max) => {
     return Math.random() * (max - min) + min;
   };
@@ -56,27 +57,31 @@ const Limbo = () => {
       step++;
       startNumber += increment;
       setDisplayedNum(startNumber.toFixed(2));
-      // console.log("startNumber is ", startNumber);
-      // console.log("endNumber is ", endNumber);
       if (step >= steps || startNumber >= endNumber) {
         clearInterval(animationInterval);
         dispatch({ type: "SET_BET_ACTIVE", payload: false });
-        // Check if the targetMultiplier is less than startNumber
         if (parseFloat(targetMultiplier) < parseFloat(startNumber)) {
-          // console.log("betAmount is ", betAmount);
-          // console.log("target is ", targetMultiplier);
-          // console.log("Final Profit is ", betAmount * targetMultiplier );
-          dispatch({ type: "SET_PROFIT_FROM_LIMBO", payload: betAmount * targetMultiplier});
+          dispatch({
+            type: "SET_PROFIT_FROM_LIMBO",
+            payload: betAmount * targetMultiplier,
+          });
           setBetWin(true);
         } else {
           setBetWin(false);
         }
+        updateEndNumbers(endNumber);
       }
     }, increment);
   };
 
-  // console.log("betActive is ", betActive);
-  // console.log("betWin is ", betWin);
+  const updateEndNumbers = (endNumber) => {
+    setEndNumbers((prevEndNumbers) => {
+      if (prevEndNumbers.length === 4) {
+        prevEndNumbers.shift();
+      }
+      return [...prevEndNumbers, Number(endNumber.toFixed(2))];
+    });
+  };
 
   return (
     <div className="limbo">
@@ -100,6 +105,15 @@ const Limbo = () => {
           />
         </div>
       </div>
+
+      <h3 className="prev-result-map">
+        {endNumbers.map((number, index) => (
+          <h3 key={index} className="prev-result-limbo">
+            {number}
+          </h3>
+        ))}
+      </h3>
+      {console.log("endNumbers:", endNumbers)}
     </div>
   );
 };

@@ -8,6 +8,7 @@
   background-color: #0f212e;
   width: 1200px;
   height: 900px;
+  position: relative;
 }
 
 .limbo-number-header {
@@ -86,6 +87,31 @@
   border: 1px solid #acb5ce;
   border-radius: 3px;
   width: 100%;
+}
+
+
+.prev-result-map{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+.prev-result-limbo{
+  font-weight: 700;
+  box-sizing: border-box;
+  font-style: normal;
+  background-color: #1FFF20;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 16px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+
 }
 
 /*
