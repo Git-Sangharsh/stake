@@ -3,48 +3,56 @@ import "./Crash.css";
 import { LineChart } from "@mui/x-charts";
 
 const Crash = () => {
-  const uData = [0, 10, 20, 21, 80];
   const [randomNumber, setRandomNumber] = useState(null);
-  const [displayedNumber, setDisplayedNumber] = useState(null);
+  const [displayedNumber, setDisplayedNumber] = useState(1);
+  const [chartData, setChartData] = useState([]);
 
-
-const ranges = [
-    { range: [1.0, 1.99], probability: 90.0 },
-    { range: [2.0, 99.99], probability: 8.0 },
-    { range: [100.0, 150.0], probability: 2.0 },
+  const ranges = [
+    { range: [1.0, 1.99], probability: 20.0 },
+    { range: [2.0, 99.99], probability: 80.0 },
+    // { range: [100.0, 150.0], probability: 2.0 },
   ];
 
   const generateRandomNumber = () => {
-    // Generate a random number based on probability ranges
+    setChartData([]);
+
     const rand = Math.random() * 100;
     let sum = 0;
     for (const range of ranges) {
       sum += range.probability;
       if (rand < sum) {
-        setRandomNumber(
-          Math.random() * (range.range[1] - range.range[0]) + range.range[0]
-        );
+        const newRandomNumber =
+          Math.random() * (range.range[1] - range.range[0]) + range.range[0];
+        setRandomNumber(newRandomNumber);
+        animateRandomNumber(newRandomNumber);
         break;
       }
     }
   };
 
   const animateRandomNumber = (endNumber) => {
-    let startNumber = 1.0;
-    const increment = 0.01;
-    const animationDuration = 500; // in milliseconds
-    const steps = Math.ceil(animationDuration / increment);
-
-    let step = 0;
+    const animationDuration = 2000; // in milliseconds
     const animationInterval = setInterval(() => {
-      step++;
-      startNumber += increment;
-      setDisplayedNumber(startNumber.toFixed(2));
-      if (step >= steps || startNumber >= endNumber) {
-        clearInterval(animationInterval);
-        setDisplayedNumber(endNumber.toFixed(2));
-      }
-    }, increment);
+      setDisplayedNumber((displayedNumber) => {
+        const newValue = displayedNumber + 1;
+        if (newValue > endNumber) {
+          clearInterval(animationInterval);
+          return endNumber;
+        }
+        updateChartData(newValue, endNumber);
+        return newValue;
+      });
+    }, animationDuration / (endNumber - 0)); // Adjust speed based on endNumber
+  };
+
+  const updateChartData = (newValue, endNumber) => {
+    const newData = [];
+    const increment = endNumber / 60; // Number of steps
+    for (let i = 0; i <= newValue; i++) {
+      // Generate quadratic curve data
+      newData.push(Math.pow(i * increment, 2) * 0.01);
+    }
+    setChartData(newData);
   };
 
   return (
@@ -54,29 +62,30 @@ const ranges = [
         width={1000}
         height={300}
         series={[
-          { data: uData, label: "uv", area: true, showMark: false }
+          {
+            data: chartData,
+            label: "uv",
+            area: true,
+            showMark: false
+          }
         ]}
         className="area-chart"
         sx={{
           ".MuiLineElement-root": {
             stroke: "#FFFFFF",
-            strokeWidth: 10,
+            strokeWidth: 10
           },
           ".MuiAreaElement-root": {
-            fill: "#FF9D00", // Color for the area
-          },
+            fill: "#FF9D00" 
+          }
         }}
       />
-      <button onClick={() => {
-        generateRandomNumber();
-        if(randomNumber !== null) animateRandomNumber(randomNumber);
-      }}>Generate Random Number</button>
+      <button onClick={generateRandomNumber}>Generate Random Number</button>
       {displayedNumber !== null && (
         <p>Random Number: {displayedNumber}</p>
       )}
     </div>
   );
 };
-
 
 export default Crash;
