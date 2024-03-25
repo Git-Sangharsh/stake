@@ -60,23 +60,22 @@ const Crash = () => {
       <h1 className="hello">Hello World</h1>
       <LineChart
         width={1000}
-        height={300}
+        height={500}
         series={[
           {
             data: chartData,
-            label: "uv",
             area: true,
             showMark: false
           }
         ]}
-        className="area-chart"
+        className="area-chart  "
         sx={{
           ".MuiLineElement-root": {
             stroke: "#FFFFFF",
             strokeWidth: 10
           },
           ".MuiAreaElement-root": {
-            fill: "#FF9D00" 
+            fill: "#FF9D00"
           }
         }}
       />
