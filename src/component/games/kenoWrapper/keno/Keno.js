@@ -3,9 +3,9 @@ import "./Keno.css";
 import kenoClickEffect from "../../../audio/kenoClick2.mp3";
 
 const Keno = () => {
-
   const [selectedBoxes, setSelectedBoxes] = useState([]);
   const [selectionLimitReached, setSelectionLimitReached] = useState(false);
+  const [generatedNumbers, setGeneratedNumbers] = useState([]);
 
   const boxes = Array.from({ length: 40 }, (_, index) => index + 1);
 
@@ -18,7 +18,7 @@ const Keno = () => {
   }, [selectedBoxes]);
 
   const handleSelectedKenoBoxes = (box) => {
-    console.log("Clicked box id:", box);
+    // console.log("Clicked box id:", box);
     setSelectedBoxes((prevSelectedBoxes) => {
       if (prevSelectedBoxes.includes(box)) {
         return prevSelectedBoxes.filter((selectedBox) => selectedBox !== box);
@@ -36,8 +36,21 @@ const Keno = () => {
     });
   };
 
+  const handleGeneratedNumbers = () => {
+    const randomNumbers = [];
+    while (randomNumbers.length < 11) {
+      const randomNumber = Math.floor(Math.random() * 40) + 1;
+      if (!randomNumbers.includes(randomNumber)) {
+        randomNumbers.push(randomNumber);
+      }
+    }
+    setGeneratedNumbers(randomNumbers);
+  };
+
+  // console.log("genrated Numbers are : ", generatedNumbers);
+
   // console.log(selcetedBoxes);
-  console.log(selectionLimitReached);
+  // console.log(selectionLimitReached);
 
   return (
     <div className="keno">
@@ -63,6 +76,7 @@ const Keno = () => {
           </div>
         ))}
       </div>
+      <button onClick={handleGeneratedNumbers}>Create Number</button>
     </div>
   );
 };
