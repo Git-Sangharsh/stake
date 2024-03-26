@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Keno.css";
 import kenoClickEffect from "../../../audio/kenoClick2.mp3";
 import kenoAppearEffect from "../../../audio/appearEffect.mp3";
-import kenoGem from "../../../assets/kenoGem.svg";
+// import kenoGem from "../../../assets/kenoGem.svg";
 import { motion } from "framer-motion";
 
 const Keno = () => {
@@ -73,7 +73,33 @@ const Keno = () => {
     setSelectionLimitReached(false);
   };
 
-  const handleSingleClearTabel = (box) => {
+  // const handleSingleClearTabel = (box) => {
+  //   setSelectedBoxes((prevSelectedBoxes) => {
+  //     if (prevSelectedBoxes.includes(box)) {
+  //       return prevSelectedBoxes.filter((selectedBox) => selectedBox !== box);
+  //     } else {
+  //       if (selectedBoxes.length < 11) {
+  //         const audio = new Audio(kenoClickEffect);
+  //         audio.volume = 0.5;
+  //         audio.play();
+  //         return [...prevSelectedBoxes, box];
+  //       } else {
+  //         console.log("Max boxes is reached");
+  //         return prevSelectedBoxes;
+  //       }
+  //     }
+  //   });
+  //   // Remove classes from the clicked box
+  //   const clickedBox = document.getElementById(`box-${box}`);
+  //   if (clickedBox) {
+  //     clickedBox.classList.remove("selected-keno-box");
+  //     clickedBox.classList.remove("appear-keno-box");
+  //   }
+  // };
+
+  console.log("Generated Numbers are: ", generatedNumbers);
+
+  const handleAssume = (box) => {
     setSelectedBoxes((prevSelectedBoxes) => {
       if (prevSelectedBoxes.includes(box)) {
         return prevSelectedBoxes.filter((selectedBox) => selectedBox !== box);
@@ -89,15 +115,12 @@ const Keno = () => {
         }
       }
     });
-    // Remove classes from the clicked box
-    const clickedBox = document.getElementById(`box-${box}`);
-    if (clickedBox) {
-      clickedBox.classList.remove("selected-keno-box");
-      clickedBox.classList.remove("appear-keno-box");
-    }
+    // Add the clicked box to the generated numbers
+    setGeneratedNumbers((prevGeneratedNumbers) => [
+      ...prevGeneratedNumbers,
+      box,
+    ]);
   };
-
-  console.log("Generated Numbers are: ", generatedNumbers);
 
   return (
     <div className="keno">
@@ -121,35 +144,30 @@ const Keno = () => {
                 : ""
             }`}
           >
-            {selectedBoxes.includes(box) && !generatedNumbers.includes(box) ? (
-              <div
-                className="keno-box-number"
-                onClick={() => handleSelectedKenoBoxes(box)}
-              >
-                {box}
-              </div>
-            ) : selectedBoxes.includes(box) &&
-              generatedNumbers.includes(box) ? (
-              <div
+            {selectedBoxes.includes(box) && generatedNumbers.includes(box) ? (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: [2, 1] }}
+                transition={{ duration: 0.15 }}
                 className="keno-gem-img-div"
-                onClick={handleSingleClearTabel}
+                onClick={() => handleAssume(box)}
               >
                 <div className="keno-bg-dark"></div>
                 {/* <motion.img
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [2, 1] }}
-                  transition={{ duration: 0.15 }}
-                  className="keno-gem-img"
-                  src={kenoGem}
-                  alt=""
-                /> */}
+      initial={{ scale: 0 }}
+      animate={{ scale: [2, 1] }}
+      transition={{ duration: 0.15 }}
+      className="keno-gem-img"
+      src={kenoGem}
+      alt=""
+    /> */}
                 <div className="keno-gem-number">{box}</div>
-              </div>
+              </motion.div>
             ) : (
               <div
                 className={`keno-box-number ${
                   generatedNumbers.includes(box) && !selectedBoxes.includes(box)
-                    ? "appear-box-number"
+                    ? "initial-box"
                     : ""
                 }`}
                 onClick={() => handleSelectedKenoBoxes(box)}

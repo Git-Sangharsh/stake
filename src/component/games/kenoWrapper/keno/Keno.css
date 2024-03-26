@@ -44,6 +44,8 @@
   scale: 1.03;
 }
 
+
+
 .keno-box-number {
   display: flex;
   align-items: center;
@@ -57,6 +59,8 @@
   transition: 0.1s ease-in;
   font-size: 30px;
 }
+
+
 
 .selected-keno-box {
   background-color: #962eff;
@@ -91,6 +95,7 @@
   background-size: 70%; /* Adjust the size to cover the entire container */
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
 }
 
 .keno-bg-dark{
@@ -113,4 +118,11 @@
   font-weight: 600;
   font-style: normal;
   font-size: 40px;
+  font-size: 30px;
+}
+
+.initial-box{
+  background-color: #2f4553;
+  border-radius: 9px;
+  box-shadow: 0px 5px 0px #293540;
 }
