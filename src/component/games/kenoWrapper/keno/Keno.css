@@ -12,20 +12,21 @@
 .keno-grid {
   display: grid;
   grid-template-columns: repeat(8, 140px);
+  grid-gap: 25px;
   grid-gap: 20px;
   width: max-content;
   position: relative;
 }
 
-.select-limit-reached-grid-bg{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.208);
-    border-radius: 9px;
-    box-shadow: 0px 5px 0px black;
-    z-index: 0;
-    transition: 0.3s ease-in;
+.select-limit-reached-grid-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.208);
+  border-radius: 9px;
+  box-shadow: 0px 5px 0px black;
+  z-index: 0;
+  transition: 0.3s ease-in;
 }
 
 .keno-box {
@@ -61,7 +62,6 @@
   background-color: #962eff;
   box-shadow: 0px 5px 0px #7100c7;
   z-index: 2;
-
 }
 
 .selected-keno-box:hover {
@@ -69,6 +69,36 @@
   box-shadow: 0px 10px 0px #9000ff;
 }
 
-.appear-keno-box{
+.appear-keno-box {
   background-color: red;
+  background-color: #0b1c29;
+  box-shadow: 0px -10px 0px #071822;
+
+}
+
+.appear-box-number {
+  color: #7c1930;
+  color: red;
+}
+
+.keno-gem-img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.keno-gem-img {
+  width: 70%;
+  background-color: #071824;
+  padding: 10%;
+}
+
+.keno-gem-number {
+  position: absolute;
+  color: #0f9110;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 40px;
 }
