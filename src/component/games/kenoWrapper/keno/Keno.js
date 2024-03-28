@@ -122,6 +122,8 @@ const Keno = () => {
     ]);
   };
 
+  console.log("chekcing github activity graph working or not")
+
   return (
     <div className="keno">
       <div className="keno-grid">
@@ -167,7 +169,7 @@ const Keno = () => {
               <div
                 className={`keno-box-number ${
                   generatedNumbers.includes(box) && !selectedBoxes.includes(box)
-                    ? "initial-box"
+                    ? "appear-box-number "
                     : ""
                 }`}
                 onClick={() => handleSelectedKenoBoxes(box)}
