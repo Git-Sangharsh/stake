@@ -111,6 +111,10 @@
   font-weight: 700;
 }
 
+.red{
+ color: red;
+}
+
 /*
 .multiplier-result{
     display: flex;

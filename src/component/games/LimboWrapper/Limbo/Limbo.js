@@ -12,6 +12,7 @@ const Limbo = () => {
   const [targetMultiplier, setTargetMultiplier] = useState(2);
   const [betWin, setBetWin] = useState(false);
   const [endNumbers, setEndNumbers] = useState([]);
+  const [stateRed, setStateRed ] = useState(false);
 
   const ranges = [
     { range: [1.0, 1.99], probability: 90.0 },
@@ -25,12 +26,14 @@ const Limbo = () => {
   useEffect(() => {
     if (betActive) {
       generateRandomNumber();
+      setStateRed(false);
+
     }
   }, [betActive, dispatch]);
 
   const generateRandomNumber = () => {
     const randomNumber = Math.random() * 100;
-    console.log("Generated Random Number:", randomNumber);
+    // console.log("Generated Random Number:", randomNumber);
 
     let cumulativeProbability = 0;
     for (const range of ranges) {
@@ -67,6 +70,8 @@ const Limbo = () => {
           });
           setBetWin(true);
         } else {
+          console.log("Bet Failed Successfully")
+          setStateRed(true);
           setBetWin(false);
         }
         updateEndNumbers(endNumber);
@@ -83,10 +88,12 @@ const Limbo = () => {
     });
   };
 
+  // console.log('state RED is ', stateRed)
+
   return (
     <div className="limbo">
       <div className="parent-target-multiplier-numb">
-        <h1 className={betWin ? "limbo-number-green" : "limbo-number-header  "}>
+      <h1 className={`limbo-number-header ${stateRed ? "red" : ""} ${betWin ? "limbo-number-green" : ""}`}>
           {displayedNum}x
         </h1>
       </div>

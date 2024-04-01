@@ -63,7 +63,6 @@ const Keno = () => {
         }, 100);
       }
     };
-
     generateNumberWithDelay(0);
   };
 
