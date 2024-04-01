@@ -26,7 +26,7 @@ const Navbar = () => {
   }, [notEnoughBalance, dispatch]);
 
   const handleRouteLimbo = () => {
-    navigate("/limbo");
+    navigate("/");
   }
 
   return (
