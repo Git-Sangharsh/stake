@@ -22,6 +22,8 @@
   margin: 0px 10px 0px 0px;
 }
 
+
+
 .nav-wallet {
   display: flex;
   align-items: center;
@@ -60,6 +62,14 @@
 
 .user-icon {
   color: white;
+  cursor: pointer;
+}
+
+.right-nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .notEnoughBalance {
@@ -72,12 +82,18 @@
   transition: 0.3s ease-in;
 }
 
+
 .profile-dropdown{
   z-index: 1000;
   margin-top: 100px;
-  position: absolute;
-  right: 0;
-  
+  position: fixed;
+  right: 20px;
+  background-color: #ffffff;
+  border-radius: 9px;
+  padding: 5px 0px;
+  box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.233);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .profile-dropdown-li{
@@ -88,13 +104,13 @@
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  color: #ffffff;
   color: #2f4553;
   cursor: pointer;
 }
 
 .profile-dropdown-li:hover{
   background-color: #BABAD3;
+  color: black;
 }
 
 .profile-dropdown-li-icon-color{

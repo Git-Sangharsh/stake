@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import WalletIcon from "@mui/icons-material/Wallet";
 import CloseIcon from "@mui/icons-material/Close";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -42,12 +43,15 @@ const Navbar = () => {
             Wallet
           </h4>
         </div>
-        <PersonIcon className="user-icon" />
+        <div className="right-nav">
+          <PersonIcon className="user-icon" />
+          <NotificationsIcon className="user-icon"/>
+        </div>
       </nav>
-      <div className="profile-dropdown">
-        <li className="profile-dropdown-li"><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> Wallet </li>
-        <li className="profile-dropdown-li"><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> Close  </li>
-      </div>
+        <div className="profile-dropdown">
+            <li className="profile-dropdown-li"><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> Wallet </li>
+            <li className="profile-dropdown-li"><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> Close  </li>
+        </div>
     </div>
   );
 };
