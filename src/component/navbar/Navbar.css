@@ -72,6 +72,34 @@
   transition: 0.3s ease-in;
 }
 
+.profile-dropdown{
+  z-index: 1000;
+  margin-top: 100px;
+  position: absolute;
+  right: 0;
+  
+}
+
+.profile-dropdown-li{
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: #ffffff;
+  color: #2f4553;
+  cursor: pointer;
+}
+
+.profile-dropdown-li:hover{
+  background-color: #BABAD3;
+}
+
+.profile-dropdown-li-icon-color{
+  color: #2f4553 !important;
+}
 @media (max-width: 1024px) {
   .nav {
     padding: 10px 10px;
