@@ -15,6 +15,9 @@ const Navbar = () => {
   const viewWallet = useSelector((state) => state.viewWallet);
   const walletBalance = useSelector((state) => state.walletBalance);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
+  const viewProfileDropDown = useSelector((state) => state.viewProfileDropDown);
+
+  console.log("view profile is ", viewProfileDropDown);
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
@@ -32,6 +35,14 @@ const Navbar = () => {
     navigate("/");
   }
 
+  const handleProfileDropDown = () => {
+    dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: !viewProfileDropDown})
+  }
+
+  const closeProfileDropDown = () => {
+    dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false})
+  }
+
   return (
     <div className="parent-nav">
       <nav className="nav">
@@ -44,14 +55,18 @@ const Navbar = () => {
           </h4>
         </div>
         <div className="right-nav">
-          <PersonIcon className="user-icon" />
+          <PersonIcon className="user-icon" onClick={handleProfileDropDown}/>
           <NotificationsIcon className="user-icon"/>
         </div>
       </nav>
-        <div className="profile-dropdown">
+      {
+        viewProfileDropDown && (
+          <div className="profile-dropdown">
             <li className="profile-dropdown-li"><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> Wallet </li>
-            <li className="profile-dropdown-li"><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> Close  </li>
-        </div>
+            <li className="profile-dropdown-li" onClick={closeProfileDropDown}><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> Close  </li>
+          </div>
+        )
+      }
     </div>
   );
 };

@@ -14,7 +14,7 @@ const initialState = {
   mineCounter: 5,
   cashOutAmount: 0.0,
   notEnoughBalance: false,
-  viewProfile: false,
+  viewProfileDropDown: true,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -57,8 +57,8 @@ const Reducer = (state = initialState, action) => {
     case "SET_PROFIT_FROM_LIMBO":
       const newWalletBalanceFromLimbo = state.walletBalance + action.payload;
       return { ...state, walletBalance: newWalletBalanceFromLimbo };
-      case "SET_VIEW_PROFILE":
-      return { ...state, viewProfile: action.payload };
+      case "SET_VIEW_PROFILE_DROPDOWN":
+      return { ...state, viewProfileDropDown: action.payload };
     default:
       return state;
   }

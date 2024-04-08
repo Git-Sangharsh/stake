@@ -106,6 +106,7 @@
   padding: 10px 20px;
   color: #2f4553;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .profile-dropdown-li:hover{
