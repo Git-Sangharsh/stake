@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Wallet = () => {
   const dispatch = useDispatch();
   const viewWallet = useSelector((state) => state.viewWallet);
-  console.log("view Wallet is ", viewWallet);
+  // console.log("view Wallet is ", viewWallet);
   // const profitBox = useSelector((state) => state.profitBox);
   // console.log("profitBox is ", profitBox);
   // console.log("viewWallet is ", viewWallet);

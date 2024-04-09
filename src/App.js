@@ -8,6 +8,7 @@ import Home from "./component/home/Home";
 import Casino from "./component/casino/Casino";
 import Crash from "./component/games/CrashWrapper/Crash/Crash";
 import Keno from "./component/games/kenoWrapper/keno/Keno";
+import Register from "./component/authentication/register/Register";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             element={
               <div>
                 <Home />
+                <Register />
               </div>
             }
           />

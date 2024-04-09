@@ -23,6 +23,9 @@ const Navbar = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
   };
 
+  const viewRegisterOnClick = () => {
+    dispatch({ type: "SET_VIEW_REGISTER", payload: true });
+  }
   useEffect(() => {
     if (notEnoughBalance) {
       setTimeout(() => {
@@ -67,7 +70,7 @@ const Navbar = () => {
             whileHover={{scale: 1.3}}
             transition={{duration: 0.1, ease: "easeIn"}}
             >
-            <NotificationsIcon  className="user-icon"/>
+              <NotificationsIcon  className="user-icon"/>
             </motion.div>
 
         </div>
@@ -82,7 +85,7 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
           >
             <li className="profile-dropdown-li" onClick={viewWalletOnClick}><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> WALLET </li>
-            <li className="profile-dropdown-li" onClick={viewWalletOnClick}><LoginIcon className="wallet-icon profile-dropdown-li-icon-color"/> LOGIN </li>
+            <li className="profile-dropdown-li" onClick={viewRegisterOnClick}><LoginIcon className="wallet-icon profile-dropdown-li-icon-color"/> LOGIN </li>
             <li className="profile-dropdown-li" onClick={closeProfileDropDown}><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> CLOSE  </li>
           </motion.div>
         )
