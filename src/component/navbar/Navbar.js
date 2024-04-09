@@ -6,6 +6,7 @@ import bitCoinImg from "../assets/bitcoin.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import WalletIcon from "@mui/icons-material/Wallet";
+import LoginIcon from '@mui/icons-material/Login';
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { motion, AnimatePresence  } from "framer-motion";
@@ -54,8 +55,21 @@ const Navbar = () => {
           </h4>
         </div>
         <div className="right-nav">
-          <PersonIcon className="user-icon hover-scale-icon" onClick={handleProfileDropDown}/>
-          <NotificationsIcon className="user-icon hover-scale-icon"/>
+            <motion.div
+            initial={{scale: 1}}
+            whileHover={{scale: 1.3}}
+            transition={{duration: 0.2, ease: "easeIn"}}
+            >
+              <PersonIcon className="user-icon" onClick={handleProfileDropDown}/>
+            </motion.div>
+            <motion.div
+            initial={{scale: 1}}
+            whileHover={{scale: 1.3}}
+            transition={{duration: 0.1, ease: "easeIn"}}
+            >
+            <NotificationsIcon  className="user-icon"/>
+            </motion.div>
+
         </div>
       </nav>
       <AnimatePresence>
@@ -67,8 +81,9 @@ const Navbar = () => {
             transition={{duration: 0.2, ease: "easeIn"}}
             exit={{ opacity: 0 }}
           >
-            <li className="profile-dropdown-li" onClick={viewWalletOnClick}><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> Wallet </li>
-            <li className="profile-dropdown-li" onClick={closeProfileDropDown}><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> Close  </li>
+            <li className="profile-dropdown-li" onClick={viewWalletOnClick}><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> WALLET </li>
+            <li className="profile-dropdown-li" onClick={viewWalletOnClick}><LoginIcon className="wallet-icon profile-dropdown-li-icon-color"/> LOGIN </li>
+            <li className="profile-dropdown-li" onClick={closeProfileDropDown}><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> CLOSE  </li>
           </motion.div>
         )
       }
