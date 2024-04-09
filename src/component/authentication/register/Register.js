@@ -12,10 +12,12 @@ const Register = () => {
 
   const [inputEmail, setInputEmail] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
+  const [inputVerifyCode, setInputVerifyCode] = useState("");
+  const [showVerificationInput, setShowVerificationInput] = useState(false);
 
   const genrateVerificationCode = () => {
     const code = Math.floor(1000 + Math.random() * 9000); //genrating random number
-    setVerificationCode(code); 
+    setVerificationCode(code);
   };
 
   const closeRegister = () => {
@@ -28,29 +30,51 @@ const Register = () => {
   };
 
   const handleVerifyEmail = () => {
-    console.log(verificationCode);
-    emailjs
-      .send(
-        "service_kkmh1u7",
-        "template_atl8jmp",
-        { email: inputEmail, message: `Your verification code is: ${verificationCode}` },
-        "GAP3a0IvtBETeKKPw"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          alert("Email Sent");
-          setInputEmail("");
-        },
-        (error) => {
-          console.log(error, error.text);
-        }
-      );
+    if (inputEmail !== "") {
+      emailjs
+        .send(
+          "service_kkmh1u7",
+          "template_atl8jmp",
+          {
+            email: inputEmail,
+            message: `Your verification code is: ${verificationCode}`,
+          },
+          "GAP3a0IvtBETeKKPw"
+        )
+        .then(
+          (result) => {
+            if (inputEmail !== "") {
+              setShowVerificationInput(true);
+            }
+            setInputEmail("");
+          },
+          (error) => {
+            console.log(error, error.text);
+          }
+        );
+    } else {
+      console.log("showVerificationInput is true");
+      console.log(showVerificationInput);
+    }
   };
 
-  useEffect(() => {
-    console.log(verificationCode);
-  }, [verificationCode]);
+  console.log("verification code is ",  verificationCode)
+
+  const handleVerifyInput = (e) => {
+    setInputVerifyCode(parseInt(e.target.value)); // Converting input value to number
+  }
+
+
+//   console.log( typeof inputVerifyCode)
+    const handleVerifyCodeBtn = () => {
+    if(inputVerifyCode == verificationCode){
+        console.log("verification code is successfully working");
+    }else{
+        console.log("verification code is successfully not working");
+    }
+    console.log("u click on real verification code")
+}
+
   return (
     <>
       {viewRegister && (
@@ -70,15 +94,26 @@ const Register = () => {
                 id="emailForm"
                 className="register-email-input"
                 onChange={handleEmailInput}
+                disabled={showVerificationInput}
               />
             </div>
-            <div className="register-email-input-div">
-              <h3 className="register-email-input-header">Verification Code</h3>
-              <input type="text" className="register-email-input" />
-            </div>
-            <div className="deposit-btn" onClick={handleVerifyEmail}>
-              Verify
-            </div>
+            {showVerificationInput && (
+              <div className="register-email-input-div">
+                <h3 className="register-email-input-header">
+                  Verification Code
+                </h3>
+                <input type="number" className="register-email-input" onChange={handleVerifyInput}/>
+              </div>
+            )}
+            {showVerificationInput ? (
+              <div className="deposit-btn" onClick={handleVerifyCodeBtn}>
+                Verify
+              </div>
+            ) : (
+              <div className="deposit-btn" onClick={handleVerifyEmail}>
+                Verify
+              </div>
+            )}
           </div>
         </div>
       )}
