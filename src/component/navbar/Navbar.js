@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import WalletIcon from "@mui/icons-material/Wallet";
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { motion, AnimatePresence  } from "framer-motion";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,6 @@ const Navbar = () => {
   const walletBalance = useSelector((state) => state.walletBalance);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
   const viewProfileDropDown = useSelector((state) => state.viewProfileDropDown);
-
-  console.log("view profile is ", viewProfileDropDown);
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
@@ -55,18 +54,25 @@ const Navbar = () => {
           </h4>
         </div>
         <div className="right-nav">
-          <PersonIcon className="user-icon" onClick={handleProfileDropDown}/>
-          <NotificationsIcon className="user-icon"/>
+          <PersonIcon className="user-icon hover-scale-icon" onClick={handleProfileDropDown}/>
+          <NotificationsIcon className="user-icon hover-scale-icon"/>
         </div>
       </nav>
+      <AnimatePresence>
       {
         viewProfileDropDown && (
-          <div className="profile-dropdown">
-            <li className="profile-dropdown-li"><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> Wallet </li>
+          <motion.div className="profile-dropdown"
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            transition={{duration: 0.2, ease: "easeIn"}}
+            exit={{ opacity: 0 }}
+          >
+            <li className="profile-dropdown-li" onClick={viewWalletOnClick}><WalletIcon className="wallet-icon profile-dropdown-li-icon-color"/> Wallet </li>
             <li className="profile-dropdown-li" onClick={closeProfileDropDown}><CloseIcon className="wallet-icon profile-dropdown-li-icon-color"/> Close  </li>
-          </div>
+          </motion.div>
         )
       }
+      </AnimatePresence>
     </div>
   );
 };

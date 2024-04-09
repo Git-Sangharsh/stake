@@ -117,6 +117,11 @@
 .profile-dropdown-li-icon-color{
   color: #2f4553 !important;
 }
+
+.hover-scale-icon:hover{
+  transition: 0.3s ease;
+  scale: 1.3;
+}
 @media (max-width: 1024px) {
   .nav {
     padding: 10px 10px;
