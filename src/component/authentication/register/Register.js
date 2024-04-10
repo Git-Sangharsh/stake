@@ -145,6 +145,7 @@ const Register = () => {
                 ) : (
                   <div className="deposit-btn" onClick={handleVerifyCodeBtn}>
                     Verify
+                    <h1>checking contribution graph is working or not</h1>
                   </div>
                 )
               ) : (
