@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Register.css";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
+import { motion, AnimatePresence  } from "framer-motion";
+
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -67,7 +69,7 @@ const Register = () => {
 
 //   console.log( typeof inputVerifyCode)
     const handleVerifyCodeBtn = () => {
-    if(inputVerifyCode == verificationCode){
+    if(inputVerifyCode === verificationCode){
         console.log("verification code is successfully working");
     }else{
         console.log("verification code is successfully not working");
@@ -77,8 +79,15 @@ const Register = () => {
 
   return (
     <>
+    <AnimatePresence >
       {viewRegister && (
-        <div className="register-blur-wrapper">
+        <motion.div
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        transition={{duration: 0.2, ease: "easeIn"}}
+        exit={{ opacity: 0 }}
+        className="register-blur-wrapper"
+        >
           <div className="register-wrapper">
             <div className="register-header">
               <h4 className="signin-header">
@@ -115,8 +124,9 @@ const Register = () => {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       )}
+    </AnimatePresence>
     </>
   );
 };
