@@ -48,6 +48,9 @@
 .register-email-input-header{
     color: #ffffff;
     margin: 10px 0px 5px 0px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 .register-email-input{
     width: 100%;
@@ -65,4 +68,10 @@
 
 .register-email-input:focus{
     outline: none;
+}
+
+.register-wrapper-username-password{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
