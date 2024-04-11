@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
-import emailjs from "@emailjs/browser";
+// import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Register = () => {
   const dispatch = useDispatch();
-
   const viewRegister = useSelector((state) => state.viewRegister);
+  const userEmail = useSelector((state) => state.userEmail);
+  console.log("userEmail is ", userEmail);
 
   const [inputEmail, setInputEmail] = useState("");
+  const [inputUsername, setInputUsername] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [inputVerifyCode, setInputVerifyCode] = useState("");
   const [showVerificationInput, setShowVerificationInput] = useState(false);
@@ -27,38 +30,51 @@ const Register = () => {
   };
 
   const handleEmailInput = (e) => {
-    setInputEmail(e.target.value);
+    dispatch({ type:"SET_USER_EMAIL", payload: e.target.value});
     genrateVerificationCode(); // Generate the verification code
   };
 
+  const handleUsernameInput = (e) => {
+    setInputUsername(e.target.value);
+  }
+
+  const handlePasswordInput = (e) => {
+    setInputPassword(e.target.value);
+  }
+
   const handleVerifyEmail = () => {
-    if (inputEmail !== "") {
-      emailjs
-        .send(
-          "service_kkmh1u7",
-          "template_atl8jmp",
-          {
-            email: inputEmail,
-            message: `Your verification code is: ${verificationCode}`,
-          },
-          "GAP3a0IvtBETeKKPw"
-        )
-        .then(
-          (result) => {
-            if (inputEmail !== "") {
-              setShowVerificationInput(true);
-            }
-            setInputEmail("");
-          },
-          (error) => {
-            console.log(error, error.text);
-          }
-        );
+    if (userEmail !== "") {
+      // Your existing logic for sending verification code (uncomment here)
+      //   .send(
+      //     "service_kkmh1u7",
+      //     "template_atl8jmp",
+      //     {
+      //       email: userEmail,
+      //       message: `Your verification code is: ${verificationCode}`,
+      //     },
+      //     "GAP3a0IvtBETeKKPw"
+      //   )
+      //   .then(
+      //     (result) => {
+      //       if (userEmail !== "") {
+      //         setShowVerificationInput(true);
+      //       }
+      //       setInputEmail("");
+      // dispatch({ type:"SET_USER_EMAIL", payload: e.target.value});
+      //     },
+      //     (error) => {
+      //       console.log(error, error.text);
+      //     }
+      //   );
+
+      if (userEmail !== "") {
+        setShowVerificationInput(true);
+      }
     } else {
-      console.log("showVerificationInput is true");
-      console.log(showVerificationInput);
+      console.log("Please enter your email address.");
     }
   };
+
 
   console.log("verification code is ", verificationCode);
 
@@ -71,9 +87,19 @@ const Register = () => {
     if (inputVerifyCode === verificationCode) {
       setRouteToRegister(true);
     } else {
+      setRouteToRegister(false);
     }
-    console.log("u click on real verification code");
   };
+
+  const handleRegister = () => {
+    console.log("input email is ", userEmail , inputUsername, inputPassword)
+  };
+
+  // console.log("input email is ",inputEmail)
+
+  // useEffect(() => {
+  //   console.log("inputEmail has changed:", inputEmail);
+  // }, [inputEmail]);
 
   return (
     <>
@@ -100,9 +126,11 @@ const Register = () => {
                   id="emailForm"
                   className="register-email-input"
                   onChange={handleEmailInput}
-                  disabled={showVerificationInput}
+                  // disabled={showVerificationInput}
+                  style={{ pointerEvents: showVerificationInput ? "none" : "auto" }}
                 />
               </div>
+              {/* after sending verfication code on email */}
               {showVerificationInput && (
                 <div className="register-email-input-div">
                   <h3 className="register-email-input-header">
@@ -116,6 +144,7 @@ const Register = () => {
                   />
                 </div>
               )}
+              {/* after showing this after verification of otp is correct */}
               {routeToRegister && (
                 <div className="register-wrapper-username-password">
                   <div className="register-email-input-div">
@@ -123,7 +152,7 @@ const Register = () => {
                     <input
                       type="text"
                       className="register-email-input"
-                      onChange={handleVerifyInput}
+                      onChange={handleUsernameInput}
                     />
                   </div>
                   <div className="register-email-input-div">
@@ -131,7 +160,7 @@ const Register = () => {
                     <input
                       type="password"
                       className="register-email-input"
-                      onChange={handleVerifyInput}
+                      onChange={handlePasswordInput}
                     />
                   </div>
                 </div>
@@ -139,18 +168,18 @@ const Register = () => {
 
               {showVerificationInput ? (
                 routeToRegister ? (
-                  <div className="deposit-btn" onClick={handleVerifyCodeBtn}>
+                  // onClick sending email, username and password
+                  <div className="deposit-btn" onClick={handleRegister}>
                     Register
                   </div>
                 ) : (
                   <div className="deposit-btn" onClick={handleVerifyCodeBtn}>
                     Verify
-                    <h1>checking contribution graph is working or not</h1>
                   </div>
                 )
               ) : (
                 <div className="deposit-btn" onClick={handleVerifyEmail}>
-                  Verify
+                  Verify before otp
                 </div>
               )}
             </div>
