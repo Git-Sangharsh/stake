@@ -109,12 +109,12 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
           >
             <li className="profile-dropdown-li" onClick={viewWalletOnClick}>
-              <WalletIcon className="wallet-icon profile-dropdown-li-icon-color" />{" "}
+              <WalletIcon className="wallet-icon profile-dropdown-li-icon-color" />
               WALLET
             </li>
             {login ? (
               <li className="profile-dropdown-li" onClick={handleLogout}>
-                <LogoutIcon className="wallet-icon profile-dropdown-li-icon-color" />{" "}
+                <LogoutIcon className="wallet-icon profile-dropdown-li-icon-color" />
                 LOGOUT
               </li>
             ) : (

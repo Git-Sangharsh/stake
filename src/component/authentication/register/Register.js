@@ -20,6 +20,7 @@ const Register = () => {
   const [inputVerifyCode, setInputVerifyCode] = useState("");
   const [showVerificationInput, setShowVerificationInput] = useState(false);
   const [routeToRegister, setRouteToRegister] = useState(false);
+  const [seconds, setSeconds] = useState(30);
 
   const genrateVerificationCode = () => {
     const code = Math.floor(1000 + Math.random() * 9000); //genrating random number
@@ -84,16 +85,46 @@ const Register = () => {
   const handleVerifyCodeBtn = () => {
     if (inputVerifyCode === verificationCode) {
       setRouteToRegister(true);
+      console.log("this verification code is true")
+      setSeconds(true);
     } else {
       setRouteToRegister(false);
     }
   };
+
+  useEffect(() => {
+    if (routeToRegister) {
+      const timer = setTimeout(() => {
+        setSeconds(false);
+      }, 30000); // 30 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [routeToRegister]);
+
+  useEffect(() => {
+    if (seconds) {
+      const timer = setInterval(() => {
+        setSeconds(prevSeconds => prevSeconds - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [seconds]);
 
   const handleRegister = () => {
     console.log("input email is ", userEmail, inputUsername, inputPassword);
     dispatch({ type: "SET_LOG_IN", payload: true });
     console.log('login status is ', login);
   };
+
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setSeconds(prevSeconds => prevSeconds - 1);
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
     <>
@@ -130,7 +161,8 @@ const Register = () => {
               {showVerificationInput && (
                 <div className="register-email-input-div">
                   <h3 className="register-email-input-header">
-                    Verification Code
+                  {/* Verification Code {seconds > 0 ? `Timer: ${seconds} sec` : 'Time expired'} */}
+                  Verification Code {seconds > 0 ? `Timer: ${seconds} sec` : 'Time expired'}
                   </h3>
                   <input
                     type="number"
