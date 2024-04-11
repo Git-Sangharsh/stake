@@ -3,7 +3,7 @@ import "./Register.css";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Register = () => {
@@ -44,28 +44,26 @@ const Register = () => {
 
   const handleVerifyEmail = () => {
     if (userEmail !== "") {
-      // Your existing logic for sending verification code (uncomment here)
-      //   .send(
-      //     "service_kkmh1u7",
-      //     "template_atl8jmp",
-      //     {
-      //       email: userEmail,
-      //       message: `Your verification code is: ${verificationCode}`,
-      //     },
-      //     "GAP3a0IvtBETeKKPw"
-      //   )
-      //   .then(
-      //     (result) => {
-      //       if (userEmail !== "") {
-      //         setShowVerificationInput(true);
-      //       }
-      //       setInputEmail("");
-      // dispatch({ type:"SET_USER_EMAIL", payload: e.target.value});
-      //     },
-      //     (error) => {
-      //       console.log(error, error.text);
-      //     }
-      //   );
+      emailjs
+        .send(
+          "service_kkmh1u7",
+          "template_atl8jmp",
+          {
+            email: userEmail,
+            message: `Your verification code is: ${verificationCode}`,
+          },
+          "GAP3a0IvtBETeKKPw"
+        )
+        .then(
+          (result) => {
+            if (userEmail !== "") {
+              setShowVerificationInput(true);
+            }
+          },
+          (error) => {
+            console.log(error, error.text);
+          }
+        );
 
       if (userEmail !== "") {
         setShowVerificationInput(true);
@@ -74,6 +72,7 @@ const Register = () => {
       console.log("Please enter your email address.");
     }
   };
+
 
 
   console.log("verification code is ", verificationCode);
