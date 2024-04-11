@@ -16,7 +16,8 @@ const initialState = {
   notEnoughBalance: false,
   viewProfileDropDown: true,
   viewRegister: false,
-  userEmail: ""
+  userEmail: "",
+  login: false
 };
 
 const Reducer = (state = initialState, action) => {
@@ -65,6 +66,8 @@ const Reducer = (state = initialState, action) => {
       return {...state, viewRegister: action.payload};
     case "SET_USER_EMAIL":
       return {...state, userEmail: action.payload};
+    case "SET_LOG_IN":
+      return {...state, login: action.payload};
     default:
       return state;
   }

@@ -10,7 +10,8 @@ const Register = () => {
   const dispatch = useDispatch();
   const viewRegister = useSelector((state) => state.viewRegister);
   const userEmail = useSelector((state) => state.userEmail);
-  console.log("userEmail is ", userEmail);
+  const login = useSelector((state) => state.login);
+  // console.log('login status is ', login);
 
   const [inputEmail, setInputEmail] = useState("");
   const [inputUsername, setInputUsername] = useState("");
@@ -30,40 +31,40 @@ const Register = () => {
   };
 
   const handleEmailInput = (e) => {
-    dispatch({ type:"SET_USER_EMAIL", payload: e.target.value});
+    dispatch({ type: "SET_USER_EMAIL", payload: e.target.value });
     genrateVerificationCode(); // Generate the verification code
   };
 
   const handleUsernameInput = (e) => {
     setInputUsername(e.target.value);
-  }
+  };
 
   const handlePasswordInput = (e) => {
     setInputPassword(e.target.value);
-  }
+  };
 
   const handleVerifyEmail = () => {
     if (userEmail !== "") {
-      emailjs
-        .send(
-          "service_kkmh1u7",
-          "template_atl8jmp",
-          {
-            email: userEmail,
-            message: `Your verification code is: ${verificationCode}`,
-          },
-          "GAP3a0IvtBETeKKPw"
-        )
-        .then(
-          (result) => {
-            if (userEmail !== "") {
-              setShowVerificationInput(true);
-            }
-          },
-          (error) => {
-            console.log(error, error.text);
-          }
-        );
+      // emailjs
+      //   .send(
+      //     "service_kkmh1u7",
+      //     "template_atl8jmp",
+      //     {
+      //       email: userEmail,
+      //       message: `Your verification code is: ${verificationCode}`,
+      //     },
+      //     "GAP3a0IvtBETeKKPw"
+      //   )
+      //   .then(
+      //     (result) => {
+      //       if (userEmail !== "") {
+      //         setShowVerificationInput(true);
+      //       }
+      //     },
+      //     (error) => {
+      //       console.log(error, error.text);
+      //     }
+      //   );
 
       if (userEmail !== "") {
         setShowVerificationInput(true);
@@ -72,8 +73,6 @@ const Register = () => {
       console.log("Please enter your email address.");
     }
   };
-
-
 
   console.log("verification code is ", verificationCode);
 
@@ -91,14 +90,10 @@ const Register = () => {
   };
 
   const handleRegister = () => {
-    console.log("input email is ", userEmail , inputUsername, inputPassword)
+    console.log("input email is ", userEmail, inputUsername, inputPassword);
+    dispatch({ type: "SET_LOG_IN", payload: true });
+    console.log('login status is ', login);
   };
-
-  // console.log("input email is ",inputEmail)
-
-  // useEffect(() => {
-  //   console.log("inputEmail has changed:", inputEmail);
-  // }, [inputEmail]);
 
   return (
     <>
@@ -126,7 +121,9 @@ const Register = () => {
                   className="register-email-input"
                   onChange={handleEmailInput}
                   // disabled={showVerificationInput}
-                  style={{ pointerEvents: showVerificationInput ? "none" : "auto" }}
+                  style={{
+                    pointerEvents: showVerificationInput ? "none" : "auto",
+                  }}
                 />
               </div>
               {/* after sending verfication code on email */}
