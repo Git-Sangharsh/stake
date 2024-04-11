@@ -20,7 +20,10 @@ const Register = () => {
   const [inputVerifyCode, setInputVerifyCode] = useState("");
   const [showVerificationInput, setShowVerificationInput] = useState(false);
   const [routeToRegister, setRouteToRegister] = useState(false);
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(10);
+
+  console.log("showVerificationInput is ", showVerificationInput);
+  console.log("routeToRegister is ", routeToRegister);
 
   const genrateVerificationCode = () => {
     const code = Math.floor(1000 + Math.random() * 9000); //genrating random number
@@ -29,6 +32,9 @@ const Register = () => {
 
   const closeRegister = () => {
     dispatch({ type: "SET_VIEW_REGISTER", payload: false });
+    console.log("closing icon")
+    setShowVerificationInput(false);
+    setRouteToRegister(false);
   };
 
   const handleEmailInput = (e) => {
@@ -85,46 +91,41 @@ const Register = () => {
   const handleVerifyCodeBtn = () => {
     if (inputVerifyCode === verificationCode) {
       setRouteToRegister(true);
-      console.log("this verification code is true")
-      setSeconds(true);
+      console.log("this verification code is true");
     } else {
       setRouteToRegister(false);
     }
   };
 
-  useEffect(() => {
-    if (routeToRegister) {
-      const timer = setTimeout(() => {
-        setSeconds(false);
-      }, 30000); // 30 seconds
-
-      return () => clearTimeout(timer);
-    }
-  }, [routeToRegister]);
 
   useEffect(() => {
-    if (seconds) {
+    if (showVerificationInput) {
       const timer = setInterval(() => {
-        setSeconds(prevSeconds => prevSeconds - 1);
+        setSeconds(prevSeconds => {
+          if (prevSeconds > 1) {
+            return prevSeconds - 1;
+          } else {
+            clearInterval(timer); // Stopping the timer
+            setTimeout(() => {
+              setShowVerificationInput(false); // Set showVerificationInput to false after 10 seconds
+              console.log("showVerificationInput set to false after 10 seconds");
+            }, 0);
+            return 0;
+          }
+        });
       }, 1000);
 
       return () => clearInterval(timer);
     }
-  }, [seconds]);
+  }, [showVerificationInput]);
+
 
   const handleRegister = () => {
     console.log("input email is ", userEmail, inputUsername, inputPassword);
     dispatch({ type: "SET_LOG_IN", payload: true });
-    console.log('login status is ', login);
+    console.log("login status is ", login);
   };
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setSeconds(prevSeconds => prevSeconds - 1);
-  //   }, 1000);
-
-  //   return () => clearInterval(timer);
-  // }, []);
 
   return (
     <>
@@ -161,8 +162,9 @@ const Register = () => {
               {showVerificationInput && (
                 <div className="register-email-input-div">
                   <h3 className="register-email-input-header">
-                  {/* Verification Code {seconds > 0 ? `Timer: ${seconds} sec` : 'Time expired'} */}
-                  Verification Code {seconds > 0 ? `Timer: ${seconds} sec` : 'Time expired'}
+                    {/* Verification Code {seconds > 0 ? `Timer: ${seconds} sec` : 'Time expired'} */}
+                    Verification Code{" "}
+                    {seconds > 0 ? `Timer: ${seconds} sec` : "Time expired"}
                   </h3>
                   <input
                     type="number"
