@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import bcrypt from 'bcryptjs';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -84,7 +85,7 @@ const Register = () => {
   };
 
   console.log("verification code is ", verificationCode);
-  console.log("seconds left is ", seconds)
+  // console.log("seconds left is ", seconds);
 
   const handleVerifyInput = (e) => {
     setInputVerifyCode(parseInt(e.target.value)); // Converting input value to number
@@ -113,7 +114,6 @@ const Register = () => {
               console.log(
                 "showVerificationInput set to false after 10 seconds"
               );
-
             }, 0);
             return 0;
           }
@@ -124,10 +124,22 @@ const Register = () => {
     }
   }, [showVerificationInput, routeToRegister]);
 
-  const handleRegister = () => {
-    console.log("input email is ", userEmail, inputUsername, inputPassword);
+  const handleRegister = async () => {
+    // console.log("login status is ", login);
+    // gonna replace with render server domain
+    // console.log("input email is ", userEmail, inputUsername, inputPassword);
     dispatch({ type: "SET_LOG_IN", payload: true });
-    console.log("login status is ", login);
+
+    const hashedPassword = await bcrypt.hash(inputPassword, 10);
+
+    const registerData = {
+      sendRegisterEmail : userEmail,
+      sendRegisterUsername: inputUsername,
+      sendRegisterPassword: hashedPassword
+    }
+    axios.post("http://localhost:5000/register", registerData)
+    .then(res => console.log(res.data))
+    .catch(err => console.log('Error found while posting data in register endpoint', err));
   };
 
   return (
