@@ -33,7 +33,7 @@ const Navbar = () => {
     dispatch({ type: "SET_LOG_IN", payload: false });
   }
 
-  console.log("log out is ", login)
+  // console.log("log out is ", login)
   useEffect(() => {
     if (notEnoughBalance) {
       setTimeout(() => {

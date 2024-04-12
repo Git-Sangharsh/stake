@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Register = () => {
   const [inputVerifyCode, setInputVerifyCode] = useState("");
   const [showVerificationInput, setShowVerificationInput] = useState(false);
   const [routeToRegister, setRouteToRegister] = useState(false);
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(30);
 
   console.log("showVerificationInput is ", showVerificationInput);
   console.log("routeToRegister is ", routeToRegister);
@@ -77,7 +77,7 @@ const Register = () => {
       if (userEmail !== "") {
         setShowVerificationInput(true);
         setShowVerificationInput(true);
-        setSeconds(10);
+        setSeconds(30);
       }
     } else {
       console.log("Please enter your email address.");
@@ -128,20 +128,31 @@ const Register = () => {
     // console.log("login status is ", login);
     // gonna replace with render server domain
     // console.log("input email is ", userEmail, inputUsername, inputPassword);
-    dispatch({ type: "SET_LOG_IN", payload: true });
 
     const hashedPassword = await bcrypt.hash(inputPassword, 10);
 
     const registerData = {
-      sendRegisterEmail : userEmail,
+      sendRegisterEmail: userEmail,
       sendRegisterUsername: inputUsername,
-      sendRegisterPassword: hashedPassword
-    }
-    axios.post("http://localhost:5000/register", registerData)
-    .then(res => console.log(res.data))
-    .catch(err => console.log('Error found while posting data in register endpoint', err));
+      sendRegisterPassword: hashedPassword,
+    };
+    axios
+      .post("http://localhost:5000/register", registerData)
+      .then((res) => {
+        if (res.data.registerStatus === true) {
+          console.log(res.data.info);
+          dispatch({ type: "SET_LOG_IN", payload: true });
+        } else {
+          console.log("register failed");
+          dispatch({ type: "SET_LOG_IN", payload: false });
+        }
+      })
+      .catch((err) =>
+        console.log("Error found while posting data in register endpoint", err)
+      );
   };
 
+  console.log("login is ", login)
   return (
     <>
       <AnimatePresence>
