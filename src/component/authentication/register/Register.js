@@ -5,6 +5,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,6 @@ const Register = () => {
   const login = useSelector((state) => state.login);
   // console.log('login status is ', login);
 
-  const [inputEmail, setInputEmail] = useState("");
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
@@ -32,7 +32,7 @@ const Register = () => {
 
   const closeRegister = () => {
     dispatch({ type: "SET_VIEW_REGISTER", payload: false });
-    console.log("closing icon")
+    console.log("closing icon");
     setShowVerificationInput(false);
     setRouteToRegister(false);
   };
@@ -75,6 +75,8 @@ const Register = () => {
 
       if (userEmail !== "") {
         setShowVerificationInput(true);
+        setShowVerificationInput(true);
+        setSeconds(10);
       }
     } else {
       console.log("Please enter your email address.");
@@ -82,6 +84,7 @@ const Register = () => {
   };
 
   console.log("verification code is ", verificationCode);
+  console.log("seconds left is ", seconds)
 
   const handleVerifyInput = (e) => {
     setInputVerifyCode(parseInt(e.target.value)); // Converting input value to number
@@ -97,35 +100,35 @@ const Register = () => {
     }
   };
 
-
   useEffect(() => {
-    if (showVerificationInput) {
+    if (showVerificationInput && !routeToRegister) {
       const timer = setInterval(() => {
-        setSeconds(prevSeconds => {
+        setSeconds((prevSeconds) => {
           if (prevSeconds > 1) {
             return prevSeconds - 1;
           } else {
             clearInterval(timer); // Stopping the timer
             setTimeout(() => {
               setShowVerificationInput(false); // Set showVerificationInput to false after 10 seconds
-              console.log("showVerificationInput set to false after 10 seconds");
+              console.log(
+                "showVerificationInput set to false after 10 seconds"
+              );
+
             }, 0);
             return 0;
           }
         });
       }, 1000);
 
-      return () => clearInterval(timer);
+      return () => clearInterval(timer); // Cleanup function to clear interval when component unmounts
     }
-  }, [showVerificationInput]);
-
+  }, [showVerificationInput, routeToRegister]);
 
   const handleRegister = () => {
     console.log("input email is ", userEmail, inputUsername, inputPassword);
     dispatch({ type: "SET_LOG_IN", payload: true });
     console.log("login status is ", login);
   };
-
 
   return (
     <>
@@ -161,11 +164,16 @@ const Register = () => {
               {/* after sending verfication code on email */}
               {showVerificationInput && (
                 <div className="register-email-input-div">
-                  <h3 className="register-email-input-header">
-                    {/* Verification Code {seconds > 0 ? `Timer: ${seconds} sec` : 'Time expired'} */}
-                    Verification Code{" "}
-                    {seconds > 0 ? `Timer: ${seconds} sec` : "Time expired"}
-                  </h3>
+                  {!routeToRegister ? (
+                    <h3 className="register-email-input-header">
+                      Verification Code
+                      {seconds > 0 ? `Timer: ${seconds} sec` : "Time expired"}
+                    </h3>
+                  ) : (
+                    <h3 className="register-email-input-header">
+                      Verification Code
+                    </h3>
+                  )}
                   <input
                     type="number"
                     className="register-email-input"
@@ -209,7 +217,7 @@ const Register = () => {
                 )
               ) : (
                 <div className="deposit-btn" onClick={handleVerifyEmail}>
-                  Verify before otp
+                  Verify Email
                 </div>
               )}
             </div>
