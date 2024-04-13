@@ -167,9 +167,9 @@ const Register = () => {
             <div className="register-wrapper">
               <div className="register-header">
                 <h4 className="signin-header">
-                  <LoginIcon className="wallet-icon" /> Sign In
+                  <LoginIcon className="wallet-icon close-icon" /> Sign In
                 </h4>
-                <CloseIcon className="user-icon" onClick={closeRegister} />
+                <CloseIcon className="user-icon close-icon" onClick={closeRegister} />
               </div>
               <div className="register-email-input-div">
                 <h3 className="register-email-input-header">Email</h3>
@@ -231,18 +231,18 @@ const Register = () => {
                 routeToRegister ? (
                   // onClick sending email, username and password
                   <div>
-                    <div className="deposit-btn" onClick={handleRegister}>
+                    <div className="deposit-btn btn-green" onClick={handleRegister}>
                       Register
                     </div>
                     <h4 className="red">*Rememeber this website is still under construction</h4 >
                   </div>
                 ) : (
-                  <div className="deposit-btn" onClick={handleVerifyCodeBtn}>
+                  <div className="deposit-btn btn-green" onClick={handleVerifyCodeBtn}>
                     Verify
                   </div>
                 )
               ) : (
-                <div className="deposit-btn" onClick={handleVerifyEmail}>
+                <div className="deposit-btn btn-green" onClick={handleVerifyEmail}>
                   Verify Email
                 </div>
               )}

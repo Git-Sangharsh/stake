@@ -84,3 +84,67 @@
     text-align: center;
     font-size: 18px;
 }
+
+@media (max-width: 1024px){
+
+    .register-wrapper{
+        width: 450px;
+        padding-bottom: 10px;
+    }
+    .register-wrapper, .register-wrapper-username-password{
+        gap: 10px;
+    }
+
+    .register-email-input-header{
+        font-size: 12px;
+    }
+
+    .register-email-input{
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .red{
+        font-size: 8px;
+    }
+
+    .btn-green{
+        padding: 10px;
+        font-size: 12px;
+
+    }
+}
+
+
+@media (max-width: 768px){
+    .register-wrapper{
+        width: 300px;
+        margin-top: 80px;
+        gap: 0;
+    }
+}
+
+@media (max-width: 475px){
+    .register-wrapper{
+        width: 250px;
+
+    }
+}
+
+
+@media (max-width: 320px){
+    .register-wrapper{
+        width: 200px;
+    }
+    .signin-header{
+        font-size: 10px;
+        margin: 0px 0px 10px 0px;
+    }
+
+    .close-icon{
+        font-size: 14px !important;
+    }
+    .register-email-input-header{
+        margin-top: 5px;
+    }
+}

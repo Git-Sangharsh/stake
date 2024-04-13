@@ -150,13 +150,14 @@
     padding: 4px 10px;
   }
 
-  .profile-dropdown-li-icon-color{
+  .profile-dropdown-li-icon-color {
     font-size: 15px !important;
   }
+
 }
 
 @media (max-width: 768px) {
-  .right-nav{
+  .right-nav {
     gap: 0;
   }
 }

@@ -20,6 +20,8 @@ const Navbar = () => {
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
   const viewProfileDropDown = useSelector((state) => state.viewProfileDropDown);
   const login = useSelector((state) => state.login);
+  const viewRegister = useSelector((state) => state.viewRegister);
+  console.log("viewRegister is ", viewRegister);
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
@@ -57,6 +59,14 @@ const Navbar = () => {
     dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false });
   };
 
+
+  useEffect(() => {
+    if (viewRegister) {
+      document.body.classList.add("walletOpen");
+    } else {
+      document.body.classList.remove("walletOpen");
+    }
+  }, [viewRegister]);
   return (
     <div className="parent-nav">
       <nav className="nav">
