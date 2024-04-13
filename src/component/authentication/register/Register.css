@@ -119,7 +119,6 @@
 @media (max-width: 768px){
     .register-wrapper{
         width: 300px;
-        margin-top: 80px;
         gap: 0;
     }
 }
