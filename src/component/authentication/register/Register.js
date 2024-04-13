@@ -53,26 +53,26 @@ const Register = () => {
 
   const handleVerifyEmail = () => {
     if (userEmail !== "") {
-      // emailjs
-      //   .send(
-      //     "service_kkmh1u7",
-      //     "template_atl8jmp",
-      //     {
-      //       email: userEmail,
-      //       message: `Your verification code is: ${verificationCode}`,
-      //     },
-      //     "GAP3a0IvtBETeKKPw"
-      //   )
-      //   .then(
-      //     (result) => {
-      //       if (userEmail !== "") {
-      //         setShowVerificationInput(true);
-      //       }
-      //     },
-      //     (error) => {
-      //       console.log(error, error.text);
-      //     }
-      //   );
+      emailjs
+        .send(
+          "service_kkmh1u7",
+          "template_atl8jmp",
+          {
+            email: userEmail,
+            message: `Your verification code is: ${verificationCode}`,
+          },
+          "GAP3a0IvtBETeKKPw"
+        )
+        .then(
+          (result) => {
+            if (userEmail !== "") {
+              setShowVerificationInput(true);
+            }
+          },
+          (error) => {
+            console.log(error, error.text);
+          }
+        );
 
       if (userEmail !== "") {
         setShowVerificationInput(true);
@@ -137,7 +137,7 @@ const Register = () => {
       sendRegisterPassword: hashedPassword,
     };
     axios
-      .post("http://localhost:5000/register", registerData)
+      .post("https://stakeserver.onrender.com/register", registerData)
       .then((res) => {
         if (res.data.registerStatus === true) {
           console.log(res.data.info);
