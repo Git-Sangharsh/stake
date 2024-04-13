@@ -152,7 +152,7 @@ const Register = () => {
       );
   };
 
-  console.log("login is ", login)
+  console.log("login is ", login);
   return (
     <>
       <AnimatePresence>
@@ -230,8 +230,11 @@ const Register = () => {
               {showVerificationInput ? (
                 routeToRegister ? (
                   // onClick sending email, username and password
-                  <div className="deposit-btn" onClick={handleRegister}>
-                    Register
+                  <div>
+                    <div className="deposit-btn" onClick={handleRegister}>
+                      Register
+                    </div>
+                    <h4 className="red">*Rememeber this website is still under construction</h4 >
                   </div>
                 ) : (
                   <div className="deposit-btn" onClick={handleVerifyCodeBtn}>

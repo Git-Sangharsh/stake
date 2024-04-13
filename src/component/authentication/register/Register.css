@@ -75,3 +75,12 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.red{
+    color: red;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    font-size: 18px;
+}
