@@ -21,7 +21,7 @@ const Register = () => {
   const [inputVerifyCode, setInputVerifyCode] = useState("");
   const [showVerificationInput, setShowVerificationInput] = useState(false);
   const [routeToRegister, setRouteToRegister] = useState(false);
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(120);
 
   console.log("showVerificationInput is ", showVerificationInput);
   console.log("routeToRegister is ", routeToRegister);
@@ -77,7 +77,7 @@ const Register = () => {
       if (userEmail !== "") {
         setShowVerificationInput(true);
         setShowVerificationInput(true);
-        setSeconds(30);
+        setSeconds(120);
       }
     } else {
       console.log("Please enter your email address.");
