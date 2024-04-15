@@ -3,7 +3,6 @@ import "./Register.css";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
-import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import bcrypt from "bcryptjs";
@@ -51,39 +50,40 @@ const Register = () => {
     setInputPassword(e.target.value);
   };
 
-  const handleVerifyEmail = () => {
-    if (userEmail !== "") {
-      emailjs
-        .send(
-          "service_kkmh1u7",
-          "template_atl8jmp",
-          {
-            email: userEmail,
-            message: `Your verification code is: ${verificationCode}`,
-          },
-          "GAP3a0IvtBETeKKPw"
-        )
-        .then(
-          (result) => {
-            if (userEmail !== "") {
-              setShowVerificationInput(true);
-            }
-          },
-          (error) => {
-            console.log(error, error.text);
-          }
-        );
 
-      if (userEmail !== "") {
-        setShowVerificationInput(true);
-        setShowVerificationInput(true);
-        setSeconds(120);
-      }
+  const handleVerifyEmail = () => {
+
+    const registerData = {
+      sendVerifyEmail: userEmail,
+      sendVerificationCode : verificationCode
+    }
+
+    if (userEmail !== "") {
+      // Send userEmail to the backend
+      axios
+        .post("http://localhost:5000/verifyemail", {registerData})
+        .then((response) => {
+          if (response.data.success) {
+            setShowVerificationInput(true);
+            setSeconds(120);
+            console.log(response.data);
+          } else {
+            console.log(
+              "Error sending verification email:",
+              response.data.error
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "Error sending request to verifyemail endpoint:",
+            error
+          );
+        });
     } else {
       console.log("Please enter your email address.");
     }
   };
-
   console.log("verification code is ", verificationCode);
   // console.log("seconds left is ", seconds);
 
