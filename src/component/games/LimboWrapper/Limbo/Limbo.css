@@ -116,7 +116,7 @@
   font-weight: 500;
   font-style: normal;
   color: #ffffff;
-  font-size: 125px;
+  font-size: 125px !important;
   text-align: center;
   color: red;
 }
@@ -184,7 +184,7 @@
   .limbo-number-header,
   .limbo-number-green,
   .red {
-    font-size: 80px;
+    font-size: 80px !important;
     padding-top: 20px;
   }
   .prev-result-limbo {
@@ -197,7 +197,7 @@
   .limbo-number-header,
   .limbo-number-green,
   .red {
-    font-size: 60px;
+    font-size: 60px !important;
     padding-top: 20px;
   }
 
