@@ -111,8 +111,14 @@
   font-weight: 700;
 }
 
-.red{
- color: red;
+.red {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #ffffff;
+  font-size: 125px;
+  text-align: center;
+  color: red;
 }
 
 /*
@@ -172,11 +178,12 @@
 }
 
 @media (max-width: 500px) {
-  .limbo{
+  .limbo {
     padding-top: 20px;
   }
   .limbo-number-header,
-  .limbo-number-green {
+  .limbo-number-green,
+  .red {
     font-size: 80px;
     padding-top: 20px;
   }
@@ -188,7 +195,8 @@
 
 @media (max-width: 320px) {
   .limbo-number-header,
-  .limbo-number-green {
+  .limbo-number-green,
+  .red {
     font-size: 60px;
     padding-top: 20px;
   }
