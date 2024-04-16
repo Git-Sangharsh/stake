@@ -85,6 +85,16 @@
     font-size: 18px;
 }
 
+.red-warning{
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+
+}
+
 @media (max-width: 1024px){
 
     .register-wrapper{

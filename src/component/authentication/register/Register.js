@@ -234,7 +234,7 @@ const Register = () => {
                     <div className="deposit-btn btn-green" onClick={handleRegister}>
                       Register
                     </div>
-                    <h4 className="red">*Rememeber this website is still under construction</h4 >
+                    <h4 className="red-warning">*Rememeber this website is still under construction</h4 >
                   </div>
                 ) : (
                   <div className="deposit-btn btn-green" onClick={handleVerifyCodeBtn}>
