@@ -10,6 +10,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -21,7 +22,9 @@ const Navbar = () => {
   const viewProfileDropDown = useSelector((state) => state.viewProfileDropDown);
   const login = useSelector((state) => state.login);
   const viewRegister = useSelector((state) => state.viewRegister);
-  console.log("viewRegister is ", viewRegister);
+  const userEmail = useSelector((state) => state.userEmail);
+  // console.log("userEmail", userEmail);
+  // console.log("viewRegister is ", viewRegister);
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
@@ -33,7 +36,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch({ type: "SET_LOG_IN", payload: false });
-  }
+  };
 
   // console.log("log out is ", login)
   useEffect(() => {
@@ -58,7 +61,6 @@ const Navbar = () => {
   const closeProfileDropDown = () => {
     dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false });
   };
-
 
   useEffect(() => {
     if (viewRegister) {
@@ -118,6 +120,10 @@ const Navbar = () => {
             transition={{ duration: 0.2, ease: "easeIn" }}
             exit={{ opacity: 0 }}
           >
+            <li className="profile-dropdown-li">
+              <ManageAccountsIcon className="wallet-icon profile-dropdown-li-icon-color" />
+              PROFILE
+            </li>
             <li className="profile-dropdown-li" onClick={viewWalletOnClick}>
               <WalletIcon className="wallet-icon profile-dropdown-li-icon-color" />
               WALLET

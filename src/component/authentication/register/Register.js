@@ -21,6 +21,7 @@ const Register = () => {
   const [showVerificationInput, setShowVerificationInput] = useState(false);
   const [routeToRegister, setRouteToRegister] = useState(false);
   const [seconds, setSeconds] = useState(120);
+  const [loginSuccess, setLoginSuccess] = useState(true);
 
   console.log("showVerificationInput is ", showVerificationInput);
   console.log("routeToRegister is ", routeToRegister);
@@ -32,10 +33,14 @@ const Register = () => {
 
   const closeRegister = () => {
     dispatch({ type: "SET_VIEW_REGISTER", payload: false });
-    console.log("closing icon");
     setShowVerificationInput(false);
     setRouteToRegister(false);
+    setLoginSuccess(false);
   };
+
+  const closeRegisterAfterSuccessSignIn = () => {
+    dispatch({ type: "SET_VIEW_REGISTER", payload: false });
+  }
 
   const handleEmailInput = (e) => {
     dispatch({ type: "SET_USER_EMAIL", payload: e.target.value });
@@ -50,18 +55,17 @@ const Register = () => {
     setInputPassword(e.target.value);
   };
 
-
   const handleVerifyEmail = () => {
-
     const registerData = {
       sendVerifyEmail: userEmail,
-      sendVerificationCode : verificationCode
-    }
+      sendVerificationCode: verificationCode,
+    };
 
     if (userEmail !== "") {
       // Send userEmail to the backend
       axios
-        .post("https://stakeserver.onrender.com/verifyemail", {registerData})
+        // .post("https://stakeserver.onrender.com/verifyemail", {registerData})
+        .post("http://localhost:5000/verifyemail", { registerData })
         .then((response) => {
           if (response.data.success) {
             setShowVerificationInput(true);
@@ -137,14 +141,18 @@ const Register = () => {
       sendRegisterPassword: hashedPassword,
     };
     axios
-      .post("https://stakeserver.onrender.com/register", registerData)
+      .post("http://localhost:5000/register", registerData)
       .then((res) => {
-        if (res.data.registerStatus === true) {
+        if (res.data.registerStatus === "success") {
           console.log(res.data.info);
+          console.log("login success");
           dispatch({ type: "SET_LOG_IN", payload: true });
+          setLoginSuccess(true);
         } else {
+          console.log(res.data.info);
           console.log("register failed");
           dispatch({ type: "SET_LOG_IN", payload: false });
+          setLoginSuccess(false);
         }
       })
       .catch((err) =>
@@ -152,7 +160,15 @@ const Register = () => {
       );
   };
 
+  useEffect(() => {
+    if(!login){
+      setLoginSuccess(false);
+    }
+  })
+
   console.log("login is ", login);
+  console.log("loginSucess is ", loginSuccess);
+
   return (
     <>
       <AnimatePresence>
@@ -169,7 +185,10 @@ const Register = () => {
                 <h4 className="signin-header">
                   <LoginIcon className="wallet-icon close-icon" /> Sign In
                 </h4>
-                <CloseIcon className="user-icon close-icon" onClick={closeRegister} />
+                <CloseIcon
+                  className="user-icon close-icon"
+                  onClick={closeRegister}
+                />
               </div>
               <div className="register-email-input-div">
                 <h3 className="register-email-input-header">Email</h3>
@@ -214,6 +233,7 @@ const Register = () => {
                       type="text"
                       className="register-email-input"
                       onChange={handleUsernameInput}
+                      disabled={loginSuccess}
                     />
                   </div>
                   <div className="register-email-input-div">
@@ -222,6 +242,7 @@ const Register = () => {
                       type="password"
                       className="register-email-input"
                       onChange={handlePasswordInput}
+                      disabled={loginSuccess}
                     />
                   </div>
                 </div>
@@ -231,18 +252,40 @@ const Register = () => {
                 routeToRegister ? (
                   // onClick sending email, username and password
                   <div>
-                    <div className="deposit-btn btn-green" onClick={handleRegister}>
-                      Register
-                    </div>
-                    <h4 className="red-warning">*Rememeber this website is still under construction</h4 >
+                    {loginSuccess ? (
+                      <div
+                        className="deposit-btn btn-green"
+                        //  onClick={handleRegister}
+                      onClick={closeRegisterAfterSuccessSignIn}
+                      >
+                        Done
+                      </div>
+                    ) : (
+                      <div
+                        className="deposit-btn btn-green"
+                        onClick={handleRegister}
+                      >
+                        Register Account
+                      </div>
+                    )}
+
+                    <h4 className="red-warning">
+                      *Rememeber this website is still under construction
+                    </h4>
                   </div>
                 ) : (
-                  <div className="deposit-btn btn-green" onClick={handleVerifyCodeBtn}>
+                  <div
+                    className="deposit-btn btn-green"
+                    onClick={handleVerifyCodeBtn}
+                  >
                     Verify
                   </div>
                 )
               ) : (
-                <div className="deposit-btn btn-green" onClick={handleVerifyEmail}>
+                <div
+                  className="deposit-btn btn-green"
+                  onClick={handleVerifyEmail}
+                >
                   Verify Email
                 </div>
               )}

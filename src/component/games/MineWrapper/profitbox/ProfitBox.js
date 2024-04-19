@@ -6,11 +6,9 @@ const ProfitBox = () => {
   const reduxBetAmount = useSelector((state) => state.betAmount);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   const profitBox = useSelector((state) =>  state.profitBox);
-  console.log("reduxBetAmount is ", reduxBetAmount);
-  console.log("profitMultiplier is ", profitMultiplier);
-  console.log("profitBox is ", profitBox);
-
-
+  // console.log("reduxBetAmount is ", reduxBetAmount);
+  // console.log("profitMultiplier is ", profitMultiplier);
+  // console.log("profitBox is ", profitBox);
 
   return <div>
     {profitBox && (
