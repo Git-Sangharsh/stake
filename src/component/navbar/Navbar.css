@@ -40,7 +40,7 @@
 .nav-register{
   padding: 10px 20px;
   background-color: #1475e1;
-  border-radius: 6px;
+  border-radius: 3px;
   cursor: pointer;
   transition: 0.2s ease-in;
 }
@@ -167,6 +167,14 @@
     font-size: 15px;
   }
 
+  .nav-login, .nav-register{
+    font-size: 10px;
+  }
+
+  .nav-register{
+    padding: 5px 10px;
+  }
+
   .profile-dropdown {
     margin-top: 63px;
     right: 10px;
@@ -186,5 +194,12 @@
 @media (max-width: 768px) {
   .right-nav {
     gap: 0;
+  }
+  .nav-up-in-btn{
+    gap: 5px;
+  }
+
+  .nav-register{
+    padding: 4px 6px;
   }
 }
