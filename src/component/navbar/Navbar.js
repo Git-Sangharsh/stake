@@ -70,6 +70,9 @@ const Navbar = () => {
     }
   }, [viewRegister]);
 
+  const handleNavRegister = () => {
+    dispatch({ type: "SET_VIEW_REGISTER", payload: true });
+  }
   return (
     <div className="parent-nav">
       {login ? (
@@ -126,7 +129,7 @@ const Navbar = () => {
           />
           <div className="nav-up-in-btn">
             <h3 className="nav-login">Sign In</h3>
-            <h3 className="nav-register">Register</h3>
+            <h3 className="nav-register" onClick={handleNavRegister}>Register</h3>
           </div>
         </div>
       )}
