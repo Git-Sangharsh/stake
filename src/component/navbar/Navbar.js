@@ -10,7 +10,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -69,48 +69,68 @@ const Navbar = () => {
       document.body.classList.remove("walletOpen");
     }
   }, [viewRegister]);
+
   return (
     <div className="parent-nav">
-      <nav className="nav">
-        <img
-          src={logo}
-          alt=""
-          className="logo-img"
-          onClick={handleRouteLimbo}
-        />
-        <div className="nav-wallet">
-          <h4
-            className={
-              notEnoughBalance
-                ? "wallet-Amount wallet-amount-notEnoughBalance"
-                : "wallet-Amount"
-            }
-          >
-            {" "}
-            ₹ {walletBalance}
-          </h4>
-          <img src={bitCoinImg} alt="" className="bitcoin-img" />
-          <h4 className="wallet" onClick={viewWalletOnClick}>
-            Wallet
-          </h4>
+      {login ? (
+        <nav className="nav">
+          <img
+            src={logo}
+            alt=""
+            className="logo-img"
+            onClick={handleRouteLimbo}
+          />
+          <div className="nav-wallet">
+            <h4
+              className={
+                notEnoughBalance
+                  ? "wallet-Amount wallet-amount-notEnoughBalance"
+                  : "wallet-Amount"
+              }
+            >
+              ₹ {walletBalance}
+            </h4>
+            <img src={bitCoinImg} alt="" className="bitcoin-img" />
+            <h4 className="wallet" onClick={viewWalletOnClick}>
+              Wallet
+            </h4>
+          </div>
+
+          <div className="right-nav">
+            <motion.div
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.3 }}
+              transition={{ duration: 0.2, ease: "easeIn" }}
+            >
+              <PersonIcon
+                className="user-icon"
+                onClick={handleProfileDropDown}
+              />
+            </motion.div>
+            <motion.div
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.3 }}
+              transition={{ duration: 0.1, ease: "easeIn" }}
+            >
+              <NotificationsIcon className="user-icon" />
+            </motion.div>
+          </div>
+        </nav>
+      ) : (
+        <div className="nav">
+          <img
+            src={logo}
+            alt=""
+            className="logo-img"
+            onClick={handleRouteLimbo}
+          />
+          <div className="nav-up-in-btn">
+            <h3 className="nav-login">Sign In</h3>
+            <h3 className="nav-register">Register</h3>
+          </div>
         </div>
-        <div className="right-nav">
-          <motion.div
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.3 }}
-            transition={{ duration: 0.2, ease: "easeIn" }}
-          >
-            <PersonIcon className="user-icon" onClick={handleProfileDropDown} />
-          </motion.div>
-          <motion.div
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.3 }}
-            transition={{ duration: 0.1, ease: "easeIn" }}
-          >
-            <NotificationsIcon className="user-icon" />
-          </motion.div>
-        </div>
-      </nav>
+      )}
+
       <AnimatePresence>
         {viewProfileDropDown && (
           <motion.div

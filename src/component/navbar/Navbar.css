@@ -22,6 +22,33 @@
   margin: 0px 10px 0px 0px;
 }
 
+.nav-up-in-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 12px;
+  color: white;
+}
+
+.nav-login{
+  cursor: pointer;
+}
+.nav-register{
+  padding: 10px 20px;
+  background-color: #1475e1;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.nav-register:hover{
+  background-color: #1063c1;
+}
+
 .nav-wallet {
   display: flex;
   align-items: center;
