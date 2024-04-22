@@ -64,8 +64,8 @@ const Register = () => {
     if (userEmail !== "") {
       // Send userEmail to the backend
       axios
-        // .post("https://stakeserver.onrender.com/verifyemail", {registerData})
-        .post("http://localhost:5000/verifyemail", { registerData })
+        .post("https://stakeserver.onrender.com/verifyemail", {registerData})
+        // .post("http://localhost:5000/verifyemail", { registerData })
         .then((response) => {
           if (response.data.success) {
             setShowVerificationInput(true);
@@ -141,7 +141,8 @@ const Register = () => {
       sendRegisterPassword: hashedPassword,
     };
     axios
-      .post("http://localhost:5000/register", registerData)
+      .post("https://stakeserver.onrender.com/register", registerData)
+      // .post("http://localhost:5000/register", registerData)
       .then((res) => {
         if (res.data.registerStatus === "success") {
           console.log(res.data.info);
