@@ -26,6 +26,10 @@
     padding-bottom: 40px;
 }
 
+.btn-padding{
+    margin-bottom: 0px;
+    border: none;
+}
 @media (max-width: 768px){
     .register-wrapper{
         width: 300px;
