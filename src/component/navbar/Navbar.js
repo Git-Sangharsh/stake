@@ -71,8 +71,14 @@ const Navbar = () => {
   }, [viewRegister]);
 
   const handleNavRegister = () => {
-    dispatch({ type: "SET_VIEW_REGISTER", payload: true });   
+    dispatch({ type: "SET_VIEW_REGISTER", payload: true });
   }
+
+  const handleNavSignin = () => {
+    dispatch({type: "SET_VIEW_SIGNIN", payload: true  })
+    console.log("shit is clicke")
+  }
+
   return (
     <div className="parent-nav">
       {login ? (
@@ -128,7 +134,7 @@ const Navbar = () => {
             onClick={handleRouteLimbo}
           />
           <div className="nav-up-in-btn">
-            <h3 className="nav-login">Sign In</h3>
+            <h3 className="nav-login" onClick={handleNavSignin}>Sign In</h3>
             <h3 className="nav-register" onClick={handleNavRegister}>Register</h3>
           </div>
         </div>

@@ -9,6 +9,7 @@ import Casino from "./component/casino/Casino";
 import Crash from "./component/games/CrashWrapper/Crash/Crash";
 import Keno from "./component/games/kenoWrapper/keno/Keno";
 import Register from "./component/authentication/register/Register";
+import Signin from "./component/authentication/signin/Signin";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
               <div>
                 <Home />
                 <Register />
+                <Signin />
               </div>
             }
           />

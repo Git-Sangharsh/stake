@@ -40,7 +40,7 @@ const Register = () => {
 
   const closeRegisterAfterSuccessSignIn = () => {
     dispatch({ type: "SET_VIEW_REGISTER", payload: false });
-  }
+  };
 
   const handleEmailInput = (e) => {
     dispatch({ type: "SET_USER_EMAIL", payload: e.target.value });
@@ -161,10 +161,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if(!login){
+    if (!login) {
       setLoginSuccess(false);
     }
-  })
+  });
 
   console.log("login is ", login);
   console.log("loginSucess is ", loginSuccess);
@@ -256,7 +256,7 @@ const Register = () => {
                       <div
                         className="deposit-btn btn-green"
                         //  onClick={handleRegister}
-                      onClick={closeRegisterAfterSuccessSignIn}
+                        onClick={closeRegisterAfterSuccessSignIn}
                       >
                         Done
                       </div>
