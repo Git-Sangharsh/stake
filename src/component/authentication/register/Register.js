@@ -64,8 +64,8 @@ const Register = () => {
     if (userEmail !== "") {
       // Send userEmail to the backend
       axios
-        .post("https://stakeserver.onrender.com/verifyemail", {registerData})
-        // .post("http://localhost:5000/verifyemail", { registerData })
+        // .post("https://stakeserver.onrender.com/verifyemail", {registerData})
+        .post("http://localhost:5000/verifyemail", { registerData })
         .then((response) => {
           if (response.data.success) {
             setShowVerificationInput(true);
@@ -129,9 +129,6 @@ const Register = () => {
   }, [showVerificationInput, routeToRegister]);
 
   const handleRegister = async () => {
-    // console.log("login status is ", login);
-    // gonna replace with render server domain
-    // console.log("input email is ", userEmail, inputUsername, inputPassword);
 
     const hashedPassword = await bcrypt.hash(inputPassword, 10);
 
@@ -141,15 +138,17 @@ const Register = () => {
       sendRegisterPassword: hashedPassword,
     };
     axios
-      .post("https://stakeserver.onrender.com/register", registerData)
-      // .post("http://localhost:5000/register", registerData)
+      // .post("https://stakeserver.onrender.com/register", registerData)
+      .post("http://localhost:5000/register", registerData)
       .then((res) => {
+        console.log("res data is ", res.data)
         if (res.data.registerStatus === "success") {
           console.log(res.data.info);
           console.log("login success");
           dispatch({ type: "SET_LOG_IN", payload: true });
           setLoginSuccess(true);
         } else {
+          console.log("else res data", res.data)
           console.log(res.data.info);
           console.log("register failed");
           dispatch({ type: "SET_LOG_IN", payload: false });
@@ -165,7 +164,7 @@ const Register = () => {
     if (!login) {
       setLoginSuccess(false);
     }
-  });
+  },[login]);
 
   console.log("login is ", login);
   console.log("loginSucess is ", loginSuccess);
