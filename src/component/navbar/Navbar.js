@@ -71,7 +71,7 @@ const Navbar = () => {
   }, [viewRegister]);
 
   const handleNavRegister = () => {
-    dispatch({ type: "SET_VIEW_REGISTER", payload: true });
+    dispatch({ type: "SET_VIEW_REGISTER", payload: true });   
   }
   return (
     <div className="parent-nav">

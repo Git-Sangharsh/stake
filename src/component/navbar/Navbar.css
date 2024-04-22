@@ -12,13 +12,14 @@
   position: fixed;
   top: 0;
   z-index: 999;
+  height: 60px;
 }
 .logo-img {
-  width: 100px;
+  width: 60px;
 }
 
 .bitcoin-img {
-  width: 25px;
+  width: 20px;
   margin: 0px 10px 0px 0px;
 }
 
@@ -38,7 +39,7 @@
   cursor: pointer;
 }
 .nav-register{
-  padding: 10px 20px;
+  padding: 6px 20px;
   background-color: #1475e1;
   border-radius: 3px;
   cursor: pointer;
@@ -64,7 +65,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;
-  font-size: 18px;
+  font-size: 15px;
   margin: 0px 5px;
   padding: 0px 0px 0px 10px;
 }
@@ -72,13 +73,14 @@
 .wallet {
   background-color: #1475e1;
   color: #fffff2;
-  padding: 15px;
+  padding: 10px 5px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;
   transition: 0.3s ease-in;
+  font-size: 14px;
 }
 
 .wallet:hover {
@@ -109,7 +111,7 @@
 
 .profile-dropdown {
   z-index: 1000;
-  margin-top: 100px;
+  margin-top: 60px;
   position: fixed;
   right: 20px;
   background-color: #ffffff;
