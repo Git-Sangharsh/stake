@@ -36,6 +36,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch({ type: "SET_LOG_IN", payload: false });
+    dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false });
+
   };
 
   // console.log("log out is ", login)
@@ -76,7 +78,6 @@ const Navbar = () => {
 
   const handleNavSignin = () => {
     dispatch({type: "SET_VIEW_SIGNIN", payload: true  })
-    console.log("shit is clicke")
   }
 
   return (
