@@ -22,6 +22,7 @@ const Navbar = () => {
   const viewProfileDropDown = useSelector((state) => state.viewProfileDropDown);
   const login = useSelector((state) => state.login);
   const viewRegister = useSelector((state) => state.viewRegister);
+  const viewSignIn = useSelector((state) =>  state.viewSignin)
   const userEmail = useSelector((state) => state.userEmail);
   // console.log("userEmail", userEmail);
   // console.log("viewRegister is ", viewRegister);
@@ -77,7 +78,7 @@ const Navbar = () => {
   }
 
   const handleNavSignin = () => {
-    dispatch({type: "SET_VIEW_SIGNIN", payload: true  })
+    dispatch({type: "SET_VIEW_SIGNIN", payload: !viewSignIn  })
   }
 
   return (

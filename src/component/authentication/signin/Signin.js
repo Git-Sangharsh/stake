@@ -35,10 +35,17 @@ const Signin = () => {
       .post("http://localhost:5000/signin", userSignObj)
       // .post("https://stakeserver.onrender.com/signin", {userSignObj})
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        if (res.data.status === true) {
+          console.log("login succesful");
+          dispatch({ type: "SET_LOG_IN", payload: true });
+        }
       })
       .catch((err) => console.log("error found on the sign in post ", err));
   };
+
+  const login = useSelector((state) => state.login);
+  console.log("from sign in login is ", login);
   return (
     <>
       <AnimatePresence>
@@ -82,12 +89,22 @@ const Signin = () => {
                   onChange={handlePassInput}
                 />
               </div>
-              <button
-                className="deposit-btn btn-green btn-padding"
-                onClick={handleSigninBtn}
-              >
-                Sign In
-              </button>
+              {login ? (
+                <button
+                  className="deposit-btn btn-green btn-padding"
+                  onClick={closeSignIn}
+
+                >
+                  Done
+                </button>
+              ) : (
+                <button
+                  className="deposit-btn btn-green btn-padding"
+                  onClick={handleSigninBtn}
+                >
+                  Sign In
+                </button>
+              )}
             </div>
           </motion.div>
         )}
