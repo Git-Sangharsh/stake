@@ -5,6 +5,7 @@ import hexagon from "../../../assets/hexagon.svg";
 
 const Dice = () => {
   const [value, setValue] = useState(50);
+  const [diceNumber, setDiceNumber] = useState(0);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--thumb-pos", `${value / 100}`);
@@ -20,8 +21,9 @@ const Dice = () => {
 
   const genrateDiceFloat = () => {
     const diceFloat = Math.random();
-    const fitNumber = diceFloat * 100;
-    console.log(fitNumber.toFixed(2));
+    const fitNumber = (diceFloat * 100).toFixed(2);
+    console.log("diceNumber is ",fitNumber)
+    setDiceNumber(fitNumber)
   }
 
   useEffect(() => {
