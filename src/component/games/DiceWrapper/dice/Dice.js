@@ -6,8 +6,9 @@ import { motion } from "framer-motion";
 
 const Dice = () => {
   const [value, setValue] = useState(50);
-  const [diceNumber, setDiceNumber] = useState(600);
+  const [diceNumber, setDiceNumber] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
+  const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
 
   useEffect(() => {
     document.documentElement.style.setProperty("--thumb-pos", `${value / 100}`);
@@ -24,16 +25,22 @@ const Dice = () => {
   const genrateDiceFloat = () => {
     const diceFloat = Math.random();
     const fitNumber = (diceFloat * 100).toFixed(2);
-    console.log("diceNumber is ", fitNumber);
-    // setDiceNumber(fitNumber);
-    setDiceNumber("100%");
+    setDiceNumber(fitNumber);
+
+    const containerWidth = 600; // Width of the container
+    const pixels = (fitNumber / 100) * containerWidth;
+
+    // Animate the image
     setShowAnimation(true);
+    setDicePixelPosition(pixels); // Assuming you have a state to store pixel position
     setTimeout(() => {
       setShowAnimation(false);
-    }, 1000);
+    }, 2000);
   };
 
-  // console.log("animation is", showAnimation);
+  console.log("animation is", showAnimation);
+  console.log("diceNumber is", diceNumber);
+  console.log("dicePixelPosition is", dicePixelPosition);
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -69,18 +76,24 @@ const Dice = () => {
             onChange={handleInputChange}
           />
         </div>
-        {showAnimation && (
-          <div className="assume-img">
-            <motion.img
-              initial={{ opacity: 0, x: 0 }}
-              animate={{ opacity: 1, x: diceNumber }}
-              transition={{ duration: 1 }}
-              className="hexagon-img"
-              src={hexagon}
-              alt=""
-            />
-          </div>
-        )}
+        <div className="assume-img">
+          <motion.img
+            initial={{ opacity: 0, x: 0 }}
+            animate={{ opacity: 1, x: dicePixelPosition }}
+            transition={{ duration: 0.5 }}
+            className="hexagon-img"
+            src={hexagon}
+            alt=""
+          />
+          <motion.h6
+            className="dice-img-number"
+            initial={{ opacity: 0, x: 0 }}
+            animate={{ opacity: 1, x: dicePixelPosition }}
+            transition={{ duration: 0.5 }}
+          >
+            {diceNumber}
+          </motion.h6>
+        </div>
       </div>
       <h1>Selected value is {value.toFixed(2)}</h1>
       <div className="parent-hexagon-img">

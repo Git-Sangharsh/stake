@@ -14,16 +14,25 @@
   flex-direction: column;
 }
 
+.child-dice{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .parent-dice-range-numbers {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 600px;
+  box-sizing: border-box;
 }
 
 .dice-range-numbers, .dice-appear-number {
   color: white;
   padding: 5px 5px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   font-size: 16px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -113,6 +122,17 @@
   border: 1px solid red;
   width: 100%;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
+  position: relative;
+}
+
+.dice-img-number{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+
 }
