@@ -21,17 +21,24 @@
     width: 100%;
     border-radius: 5px; /* Add rounded corners */
     background-color: transparent;
+    background-color: #0F212E;
+    border-radius: 100px;
+    padding: 10px;
   }
 
   .dice-range::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 10%;
     cursor: grab;
     background-color: var(--thumb-color, #4391e7);
-    margin-top: -10px; /* Adjust thumb position */
+    margin-top: -14px; /* Adjust thumb position */
+  }
+
+  .dice-range::-webkit-slider-thumb:focus{
+    background-color: var(--thumb-color, red) !important;
   }
 
   .dice-range::-webkit-slider-runnable-track {
@@ -39,7 +46,7 @@
     appearance: none;
     background: linear-gradient(to right, red 0%, red calc(var(--thumb-pos) * 100%), green calc(var(--thumb-pos) * 100%), green 100%);
     border-radius: 100px;
-    height: 20px;
+    height: 8px;
   }
 
   .dice-range::before,
