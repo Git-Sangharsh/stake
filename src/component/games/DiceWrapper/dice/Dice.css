@@ -14,13 +14,13 @@
   flex-direction: column;
 }
 
-.dice-numbers-div {
+.parent-dice-range-numbers {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.dice-numbers {
+.dice-range-numbers, .dice-appear-number {
   color: white;
   padding: 5px 5px;
   margin-left: 10px;
@@ -31,6 +31,7 @@
 }
 
 .parent-dice-range {
+  position: relative;
   width: 600px;
   display: flex;
   align-items: center;
@@ -86,4 +87,32 @@
   content: "";
   height: 100%;
   border-radius: 5px;
+}
+
+
+.parent-hexagon-img{
+  position: relative;
+}
+
+.dice-appear-number{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.hexagon-img{
+  width: 40px;
+}
+
+.assume-img{
+  border: 1px solid red;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
