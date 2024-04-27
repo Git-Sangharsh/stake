@@ -3,6 +3,7 @@ import "./Dice.css";
 import diceAudio from "../../../audio/diceAudio.mp3";
 import hexagon from "../../../assets/hexagon.svg";
 import { motion } from "framer-motion";
+import diceBetWinEffect from "../../../audio/dicegamewin.mp3";
 
 const Dice = () => {
   const [value, setValue] = useState(50);
@@ -56,6 +57,9 @@ const Dice = () => {
   useEffect(() => {
     if(diceNumber > value){
       console.log("congrats u win the bet")
+      const audio = new Audio(diceBetWinEffect);
+      audio.volume = 0.5;
+      audio.play();
     } else{
        console.log("u loss the bet")
     }
@@ -91,7 +95,7 @@ const Dice = () => {
           <motion.img
             initial={{ opacity: 0, x: 0 }}
             animate={{ opacity: 1, x: dicePixelPosition }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.2 }}
             className="hexagon-img"
             src={hexagon}
             alt=""
@@ -100,7 +104,7 @@ const Dice = () => {
             className="dice-img-number"
             initial={{ opacity: 0, x: 0 }}
             animate={{ opacity: 1, x: dicePixelPosition }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.2 }}
           >
             {diceNumber}
           </motion.h6>
