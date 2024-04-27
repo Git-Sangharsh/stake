@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Dice = () => {
   const [value, setValue] = useState(50);
-  const [diceNumber, setDiceNumber] = useState(0);
+  const [diceNumber, setDiceNumber] = useState("0.00");
   const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
 
@@ -26,13 +26,14 @@ const Dice = () => {
     const diceFloat = Math.random();
     const fitNumber = (diceFloat * 100).toFixed(2);
     setDiceNumber(fitNumber);
+    // setDiceNumber(0)
 
     const containerWidth = 600; // Width of the container
     const pixels = (fitNumber / 100) * containerWidth;
 
     // Animate the image
     setShowAnimation(true);
-    setDicePixelPosition(pixels); // Assuming you have a state to store pixel position
+    setDicePixelPosition(pixels);
     setTimeout(() => {
       setShowAnimation(false);
     }, 2000);
@@ -58,13 +59,13 @@ const Dice = () => {
   return (
     <div className="dice">
       <div className="child-dice">
-        <div className="parent-dice-range-numbers">
+        {/* <div className="parent-dice-range-numbers">
           <h6 className="dice-range-numbers">0</h6>
           <h6 className="dice-range-numbers">25</h6>
           <h6 className="dice-range-numbers">50</h6>
           <h6 className="dice-range-numbers">75</h6>
           <h6 className="dice-range-numbers">100</h6>
-        </div>
+        </div> */}
         <div className="parent-dice-range">
           <input
             className="dice-range"
