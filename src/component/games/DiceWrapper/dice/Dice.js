@@ -40,7 +40,6 @@ const Dice = () => {
     }, 2000);
   };
 
-
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.code === "Space") {
@@ -55,20 +54,20 @@ const Dice = () => {
   }, []);
 
   useEffect(() => {
-    if(diceNumber > value){
-      console.log("congrats u win the bet")
+    if (diceNumber > value) {
+      console.log("congrats u win the bet");
       const audio = new Audio(diceBetWinEffect);
       audio.volume = 0.5;
       audio.play();
-    } else{
-       console.log("u loss the bet")
+    } else {
+      console.log("u loss the bet");
     }
-  },[diceNumber, value])
+  }, [diceNumber, value]);
 
   console.log("animation is", showAnimation);
   console.log("diceNumber is", diceNumber);
   console.log("dicePixelPosition is", dicePixelPosition);
-  console.log("selected Dice range value is ", value)
+  console.log("selected Dice range value is ", value);
 
   return (
     <div className="dice">
@@ -110,7 +109,7 @@ const Dice = () => {
           </motion.h6>
         </div>
       </div>
-      <h1>Selected value is {value.toFixed(2)}</h1>
+      <h1>Roll Over {value.toFixed(2)}</h1>
       <div className="parent-hexagon-img">
         <img src={hexagon} alt="" />
         <h1 className="dice-appear-number">{diceNumber}</h1>
