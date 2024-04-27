@@ -39,9 +39,6 @@ const Dice = () => {
     }, 2000);
   };
 
-  console.log("animation is", showAnimation);
-  console.log("diceNumber is", diceNumber);
-  console.log("dicePixelPosition is", dicePixelPosition);
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -55,6 +52,19 @@ const Dice = () => {
       };
     };
   }, []);
+
+  useEffect(() => {
+    if(diceNumber > value){
+      console.log("congrats u win the bet")
+    } else{
+       console.log("u loss the bet")
+    }
+  },[diceNumber, value])
+
+  console.log("animation is", showAnimation);
+  console.log("diceNumber is", diceNumber);
+  console.log("dicePixelPosition is", dicePixelPosition);
+  console.log("selected Dice range value is ", value)
 
   return (
     <div className="dice">

@@ -19,7 +19,6 @@
   align-items: center;
   /* justify-content: center; */
   flex-direction: column;
-  border: 1px solid red;
   position: relative;
   box-sizing: border-box;
 }
@@ -61,6 +60,7 @@
   border-radius: 5px; /* Add rounded corners */
   background-color: transparent;
   background-color: #0f212e;
+  z-index: 1;
   border-radius: 100px;
   padding: 10px;
 }
@@ -114,8 +114,10 @@
   width: 600px;
   box-sizing: border-box;
   position: absolute;
-  top: -42px;
+  top: -51px;
   left: -20px;
+  z-index: 0;
+  height: 100%;
 }
 
 
