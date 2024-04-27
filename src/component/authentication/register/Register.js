@@ -64,7 +64,7 @@ const Register = () => {
     if (userEmail !== "") {
       // Send userEmail to the backend
       axios
-        .post("https://stakeserver.onrender.com/verifyemail", {registerData})
+        .post("https://stakeserver.onrender.com/verifyemail", registerData)
         // .post("http://localhost:5000/verifyemail", { registerData })
         .then((response) => {
           if (response.data.success) {

@@ -33,7 +33,7 @@ const Signin = () => {
     };
     axios
       // .post("http://localhost:5000/signin", userSignObj)
-      .post("https://stakeserver.onrender.com/signin", {userSignObj})
+      .post("https://stakeserver.onrender.com/signin", userSignObj)
       .then((res) => {
         // console.log(res.data);
         if (res.data.status === true) {
