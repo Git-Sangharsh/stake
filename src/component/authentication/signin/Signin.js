@@ -32,8 +32,8 @@ const Signin = () => {
       sendSignPass: passInput,
     };
     axios
-      .post("http://localhost:5000/signin", userSignObj)
-      // .post("https://stakeserver.onrender.com/signin", {userSignObj})
+      // .post("http://localhost:5000/signin", userSignObj)
+      .post("https://stakeserver.onrender.com/signin", {userSignObj})
       .then((res) => {
         // console.log(res.data);
         if (res.data.status === true) {
@@ -93,7 +93,6 @@ const Signin = () => {
                 <button
                   className="deposit-btn btn-green btn-padding"
                   onClick={closeSignIn}
-
                 >
                   Done
                 </button>
