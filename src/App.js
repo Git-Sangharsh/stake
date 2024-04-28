@@ -10,7 +10,7 @@ import Crash from "./component/games/CrashWrapper/Crash/Crash";
 import Keno from "./component/games/kenoWrapper/keno/Keno";
 import Register from "./component/authentication/register/Register";
 import Signin from "./component/authentication/signin/Signin";
-import Dice from "./component/games/DiceWrapper/dice/Dice";
+import DiceWrapper from "./component/games/DiceWrapper/diceWrapper/diceWrapper";
 
 const App = () => {
   return (
@@ -43,7 +43,7 @@ const App = () => {
           <Route path="/casino/limbo" element={<LimboWrapper />} />
           <Route path="/casino/crash" element={<Crash />} />
           <Route path="/casino/keno" element={<Keno />} />
-          <Route path="/casino/dice" element={<Dice />} />
+          <Route path="/casino/dice" element={<DiceWrapper />}/>
         </Routes>
       </div>
     </Router>

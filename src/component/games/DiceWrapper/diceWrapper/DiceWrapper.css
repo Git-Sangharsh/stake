@@ -1,0 +1,6 @@
+.diceWrapper{
+    border: 3px solid whitesmoke;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}

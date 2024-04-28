@@ -109,7 +109,6 @@ const Dice = () => {
           </motion.h6>
         </div>
       </div>
-      <h1>Roll Over {value.toFixed(2)}</h1>
       <div className="parent-hexagon-img">
         <img src={hexagon} alt="" />
         <h1 className="dice-appear-number">{diceNumber}</h1>
