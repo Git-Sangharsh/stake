@@ -4,12 +4,14 @@ import diceAudio from "../../../audio/diceAudio.mp3";
 import hexagon from "../../../assets/hexagon.svg";
 import { motion } from "framer-motion";
 import diceBetWinEffect from "../../../audio/dicegamewin.mp3";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
 
 const Dice = () => {
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
   const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
+  const [rollOver, setRollOver] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--thumb-pos", `${value / 100}`);
@@ -64,6 +66,9 @@ const Dice = () => {
     }
   }, [diceNumber, value]);
 
+  const handleRollOver = () => {
+    setRollOver(!rollOver);
+  };
   console.log("animation is", showAnimation);
   console.log("diceNumber is", diceNumber);
   console.log("dicePixelPosition is", dicePixelPosition);
@@ -74,9 +79,6 @@ const Dice = () => {
       <div className="child-dice">
         {/* <div className="parent-dice-range-numbers">
           <h6 className="dice-range-numbers">0</h6>
-          <h6 className="dice-range-numbers">25</h6>
-          <h6 className="dice-range-numbers">50</h6>
-          <h6 className="dice-range-numbers">75</h6>
           <h6 className="dice-range-numbers">100</h6>
         </div> */}
         <div className="parent-dice-range">
@@ -108,11 +110,35 @@ const Dice = () => {
             {diceNumber}
           </motion.h6>
         </div>
+        <div className="parent-roll-over">
+          <div className="inner-parent-roll-over">
+            <h5 className="inner-parent-roll-over-header">
+              {" "}
+              {rollOver ? "Roll Under" : "Roll Over"}
+            </h5>
+            <button
+              className="inner-parent-roll-over-input"
+              onClick={handleRollOver}
+            >
+              {rollOver ? "49.50" : "50.50"}
+              <RotateRightIcon />
+            </button>
+          </div>
+          <div className="inner-parent-roll-over">
+            <h5 className="inner-parent-roll-over-header">Range</h5>
+            <input
+              className="inner-parent-roll-over-input"
+              type="number"
+              value={value}
+            />
+          </div>
+        </div>
       </div>
-      <div className="parent-hexagon-img">
+      {/* <div className="parent-hexagon-img">
         <img src={hexagon} alt="" />
         <h1 className="dice-appear-number">{diceNumber}</h1>
-      </div>
+      </div> */}
+
       <button onClick={genrateDiceFloat}>Click To Roll Dice</button>
     </div>
   );
