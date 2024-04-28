@@ -133,13 +133,14 @@ const Dice = () => {
             />
           </div>
         </div>
+      <button onClick={genrateDiceFloat}>Click To Roll Dice</button>
+
       </div>
       {/* <div className="parent-hexagon-img">
         <img src={hexagon} alt="" />
         <h1 className="dice-appear-number">{diceNumber}</h1>
       </div> */}
 
-      <button onClick={genrateDiceFloat}>Click To Roll Dice</button>
     </div>
   );
 };
