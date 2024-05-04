@@ -13,6 +13,12 @@ const Dice = () => {
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
 
+  const handleValueChange = (e) => {
+    console.log(e.target.value);
+    const newValue = parseFloat(e.target.value);
+    setValue(newValue);
+  }
+
   useEffect(() => {
     document.documentElement.style.setProperty("--thumb-pos", `${value / 100}`);
   }, [value]);
@@ -128,19 +134,20 @@ const Dice = () => {
             <h5 className="inner-parent-roll-over-header">Range</h5>
             <input
               className="inner-parent-roll-over-input"
-              type="number"
+              type="Number"
               value={value}
+              onChange={handleValueChange}
+              min={0}
+              max={100}
             />
           </div>
         </div>
-      <button onClick={genrateDiceFloat}>Click To Roll Dice</button>
-
+        <button onClick={genrateDiceFloat}>Click To Roll Dice</button>
       </div>
       {/* <div className="parent-hexagon-img">
         <img src={hexagon} alt="" />
         <h1 className="dice-appear-number">{diceNumber}</h1>
       </div> */}
-
     </div>
   );
 };
