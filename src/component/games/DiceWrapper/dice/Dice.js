@@ -12,12 +12,15 @@ const Dice = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
+  const [trackGradient, setTrackGradient] = useState(
+    "linear-gradient(to right, red 0%, red calc(var(--thumb-pos) * 100%), green calc(var(--thumb-pos) * 100%), green 100%)"
+  );
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
     const newValue = parseFloat(e.target.value);
     setValue(newValue);
-  }
+  };
 
   useEffect(() => {
     document.documentElement.style.setProperty("--thumb-pos", `${value / 100}`);
@@ -74,11 +77,17 @@ const Dice = () => {
 
   const handleRollOver = () => {
     setRollOver(!rollOver);
+    setTrackGradient(
+      rollOver
+        ? "linear-gradient(to right, red 0%, red calc(var(--thumb-pos) * 100%), green calc(var(--thumb-pos) * 100%), green 100%)"
+        : "linear-gradient(to right, green 0%, green calc(var(--thumb-pos) * 100%), red calc(var(--thumb-pos) * 100%), red 100%)"
+    );
   };
   console.log("animation is", showAnimation);
   console.log("diceNumber is", diceNumber);
   console.log("dicePixelPosition is", dicePixelPosition);
   console.log("selected Dice range value is ", value);
+  console.log("roll Over is ", rollOver);
 
   return (
     <div className="dice">
@@ -89,7 +98,7 @@ const Dice = () => {
         </div> */}
         <div className="parent-dice-range">
           <input
-            className="dice-range"
+            className={rollOver ? "dice-range-green" : "dice-range"}
             type="range"
             step={0.01}
             min={0}
@@ -124,7 +133,9 @@ const Dice = () => {
             </h5>
             <button
               className="inner-parent-roll-over-input"
-              onClick={handleRollOver}
+              onClick={() => {
+                handleRollOver();
+              }}
             >
               {rollOver ? "49.50" : "50.50"}
               <RotateRightIcon />
