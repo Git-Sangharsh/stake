@@ -65,13 +65,16 @@ const Dice = () => {
   }, []);
 
   useEffect(() => {
-    if (diceNumber > value) {
+    if (!rollOver && diceNumber > value) {
       console.log("congrats u win the bet");
       const audio = new Audio(diceBetWinEffect);
       audio.volume = 0.5;
       audio.play();
-    } else {
-      console.log("u loss the bet");
+    } else if (rollOver && diceNumber < value) {
+      console.log("value is Greater than the diceNumeber");
+      const audio = new Audio(diceBetWinEffect);
+      audio.volume = 0.5;
+      audio.play();
     }
   }, [diceNumber, value]);
 
@@ -85,7 +88,7 @@ const Dice = () => {
   };
   console.log("animation is", showAnimation);
   console.log("diceNumber is", diceNumber);
-  console.log("dicePixelPosition is", dicePixelPosition);
+  // console.log("dicePixelPosition is", dicePixelPosition);
   console.log("selected Dice range value is ", value);
   console.log("roll Over is ", rollOver);
 
