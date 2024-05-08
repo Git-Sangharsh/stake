@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Dice = () => {
   const dispatch = useDispatch();
 
-  const diceBetActice = useSelector((state) => state.diceBetActive);
+  const diceBetActive = useSelector((state) => state.diceBetActive);
 
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
@@ -40,7 +40,7 @@ const Dice = () => {
   };
 
   const genrateDiceFloat = () => {
-    dispatch({type: "SET_DICE_BET_ACTIVE", payload: !diceBetActice});
+    dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
     const diceFloat = Math.random();
     const fitNumber = (diceFloat * 100).toFixed(2);
     setDiceNumber(fitNumber);
@@ -56,6 +56,21 @@ const Dice = () => {
       setShowAnimation(false);
     }, 2000);
   };
+
+  // Starting Game With DiceBet diceActiceBet is true
+  useEffect(() => {}, []);
+
+  // if diceBetActive is true setting it is to false under 0.5 sec
+  useEffect(() => {
+    let timeoutId;
+    if (diceBetActive) {
+      timeoutId = setTimeout(() => {
+        dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false});
+      }, 500);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [diceBetActive]);
+
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -92,12 +107,12 @@ const Dice = () => {
         : "linear-gradient(to right, green 0%, green calc(var(--thumb-pos) * 100%), red calc(var(--thumb-pos) * 100%), red 100%)"
     );
   };
-  console.log("animation is", showAnimation);
-  console.log("diceNumber is", diceNumber);
-  // console.log("dicePixelPosition is", dicePixelPosition);
-  console.log("selected Dice range value is ", value);
-  console.log("roll Over is ", rollOver);
-  console.log("dice bet Actice is ", diceBetActice)
+  // console.log("animation is", showAnimation);
+  // console.log("diceNumber is", diceNumber);
+  // // console.log("dicePixelPosition is", dicePixelPosition);
+  // console.log("selected Dice range value is ", value);
+  // console.log("roll Over is ", rollOver);
+  console.log("dice bet Actice is ", diceBetActive);
 
   return (
     <div className="dice">

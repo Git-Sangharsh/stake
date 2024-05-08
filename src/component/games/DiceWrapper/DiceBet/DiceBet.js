@@ -7,7 +7,7 @@ import betSoundEffect from "../../../audio/betSoundEffect.mp3";
 const DiceBet = () => {
   const dispatch = useDispatch();
   const walletBalance = useSelector((state) => state.walletBalance);
-  const reduxBetActive = useSelector((state) => state.betActive);
+  // const reduxBetActive = useSelector((state) => state.betActive);
   const diceBetActice = useSelector((state) => state.diceBetActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
@@ -29,7 +29,7 @@ const DiceBet = () => {
   };
 
   const handleIncreaseByOneTwoX = () => {
-    if (!reduxBetActive) {
+    if (!diceBetActice) {
       const multipliedAmount = parseFloat(betAmount) * 1.5;
       if (multipliedAmount > walletBalance) {
         console.log("not enough balance in wallet");
@@ -41,7 +41,7 @@ const DiceBet = () => {
   };
 
   const handleIncreaseByTwoX = () => {
-    if (!reduxBetActive) {
+    if (!diceBetActice) {
       const multipliedAmount = parseFloat(betAmount) * 2;
       if (multipliedAmount > walletBalance) {
         console.log("not enough balance in wallet");
@@ -58,7 +58,7 @@ const DiceBet = () => {
   const handleBet = () => {
     if (betAmount.toString().startsWith("0") || betAmount === "") {
       console.log("bet starting with zero value");
-      dispatch({ type: "SET_BET_ACTIVE", payload: false });
+      dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
     } else if (betAmount > walletBalance) {
       console.log("not enough balance in wallet");
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: true });
@@ -67,12 +67,12 @@ const DiceBet = () => {
       audio.volume = 0.5;
       audio.play();
       dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
-      dispatch({ type: "SET_BET_ACTIVE", payload: true });
+      dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
-      dispatch({ type: "SET_PROFIT_BOX", payload: false });
     }
   };
 
+  console.log("diceBet js dice bet active is ", diceBetActice)
   return (
     <div className="bet limbo-bet">
       <div className="parent-manual">
@@ -94,7 +94,7 @@ const DiceBet = () => {
                 ? "bet-amount-input-notEnoughBalance bet-amount-input"
                 : "bet-amount-input"
             }
-            disabled={reduxBetActive}
+            disabled={diceBetActice}
           />
           <img src={rupeesSvg} alt="" className="rupeesSvg" />
         </div>
@@ -111,7 +111,7 @@ const DiceBet = () => {
         </div>
       </div>
 
-      {reduxBetActive ? (
+      {diceBetActice ? (
         <h1 className="disabled-bet-btn">Bet</h1>
       ) : (
         <h1 className="bet-btn" onClick={handleBet}>
