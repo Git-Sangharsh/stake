@@ -10,6 +10,7 @@ const initialState = {
   profitFromBet: 0,
   profitMultiplier: 0.0,
   profitBox: false,
+  diceBetActive: false,
   mineEncounter: false,
   mineCounter: 5,
   cashOutAmount: 0.0,
@@ -43,6 +44,8 @@ const Reducer = (state = initialState, action) => {
       return { ...state, profitMultiplier: action.payload };
     case "SET_PROFIT_BOX":
       return { ...state, profitBox: action.payload };
+    case "SET_DICE_BET_ACTIVE":
+      return { ...state, diceBetActive: action.payload };
     case "SET_MINE_ENCOUNTER":
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":

@@ -5,8 +5,13 @@ import hexagon from "../../../assets/hexagon.svg";
 import { motion } from "framer-motion";
 import diceBetWinEffect from "../../../audio/dicegamewin.mp3";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dice = () => {
+  const dispatch = useDispatch();
+
+  const diceBetActice = useSelector((state) => state.diceBetActive);
+
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
   const [showAnimation, setShowAnimation] = useState(false);
@@ -35,6 +40,7 @@ const Dice = () => {
   };
 
   const genrateDiceFloat = () => {
+    dispatch({type: "SET_DICE_BET_ACTIVE", payload: !diceBetActice});
     const diceFloat = Math.random();
     const fitNumber = (diceFloat * 100).toFixed(2);
     setDiceNumber(fitNumber);
@@ -91,6 +97,7 @@ const Dice = () => {
   // console.log("dicePixelPosition is", dicePixelPosition);
   console.log("selected Dice range value is ", value);
   console.log("roll Over is ", rollOver);
+  console.log("dice bet Actice is ", diceBetActice)
 
   return (
     <div className="dice">

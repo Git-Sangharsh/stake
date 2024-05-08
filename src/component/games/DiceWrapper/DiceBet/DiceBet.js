@@ -8,6 +8,7 @@ const DiceBet = () => {
   const dispatch = useDispatch();
   const walletBalance = useSelector((state) => state.walletBalance);
   const reduxBetActive = useSelector((state) => state.betActive);
+  const diceBetActice = useSelector((state) => state.diceBetActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
