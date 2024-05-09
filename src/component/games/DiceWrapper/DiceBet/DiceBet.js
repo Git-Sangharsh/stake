@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './DiceBet.css';
+import "./DiceBet.css";
 import rupeesSvg from "../../../assets/rs.svg";
 import { useDispatch, useSelector } from "react-redux";
 import betSoundEffect from "../../../audio/betSoundEffect.mp3";
@@ -7,7 +7,7 @@ import betSoundEffect from "../../../audio/betSoundEffect.mp3";
 const DiceBet = () => {
   const dispatch = useDispatch();
   const walletBalance = useSelector((state) => state.walletBalance);
-  // const reduxBetActive = useSelector((state) => state.betActive);
+  const reduxBetActive = useSelector((state) => state.betActive);
   const diceBetActice = useSelector((state) => state.diceBetActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
@@ -18,20 +18,20 @@ const DiceBet = () => {
   //   console.log("initial bet amount is ", amount);
   //   return amount
   // });
-
+  const [betAmount, setBetAmount] = useState(0);
   const reduxBetAmount = useSelector((state) => state.betAmount);
 
   const handleBetAmount = (e) => {
     const input = e.target.value;
     if (!isNaN(input) || input === "") {
-      // setBetAmount(input);
-      dispatch({type: "SET_BET_AMOUNT", payload: input});
+      setBetAmount(input);
+        // dispatch({ type: "SET_BET_AMOUNT", payload: input });
     }
   };
 
   const handleBetClick = () => {
     // setBetAmount("");
-    dispatch({type: "SET_BET_AMOUNT", payload: ""});
+    dispatch({ type: "SET_BET_AMOUNT", payload: "" });
   };
 
   const handleIncreaseByOneTwoX = () => {
@@ -41,11 +41,13 @@ const DiceBet = () => {
       if (multipliedAmount > walletBalance) {
         console.log("not enough balance in wallet");
         // setBetAmount(walletBalance);
-      dispatch({type: "SET_BET_AMOUNT", payload: walletBalance});
+        dispatch({ type: "SET_BET_AMOUNT", payload: walletBalance });
       } else {
         // setBetAmount(multipliedAmount.toFixed(2));
-      dispatch({type: "SET_BET_AMOUNT", payload: multipliedAmount.toFixed(2)});
-
+        dispatch({
+          type: "SET_BET_AMOUNT",
+          payload: multipliedAmount.toFixed(2),
+        });
       }
     }
   };
@@ -57,12 +59,13 @@ const DiceBet = () => {
       if (multipliedAmount > walletBalance) {
         console.log("not enough balance in wallet");
         // setBetAmount(walletBalance);
-        dispatch({type: "SET_BET_AMOUNT", payload: walletBalance});
-
+        dispatch({ type: "SET_BET_AMOUNT", payload: walletBalance });
       } else {
         // setBetAmount(multipliedAmount.toFixed(2));
-        dispatch({type: "SET_BET_AMOUNT", payload: multipliedAmount.toFixed(2)});
-
+        dispatch({
+          type: "SET_BET_AMOUNT",
+          payload: multipliedAmount.toFixed(2),
+        });
       }
     }
   };
@@ -72,24 +75,26 @@ const DiceBet = () => {
 
   const handleBet = () => {
     // if (betAmount.toString().startsWith("0") || betAmount === "") {
-    if (reduxBetAmount.toString().startsWith("0") || reduxBetAmount === "") {
+    if (betAmount.toString().startsWith("0") || betAmount === "") {
       console.log("bet starting with zero value");
       dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
-    } else if (reduxBetAmount > walletBalance) {
+    } else if (betAmount > walletBalance) {
       console.log("not enough balance in wallet");
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: true });
     } else {
       const audio = new Audio(betSoundEffect);
       audio.volume = 0.4;
       audio.play();
-      dispatch({ type: "SET_BET_AMOUNT", payload: reduxBetAmount });
+      dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
       dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
     }
   };
 
-  console.log("diceBet js dice bet active is ", diceBetActice)
-  console.log("redux Bet Amount is ", reduxBetAmount)
+  console.log("diceBet js dice bet active is ", diceBetActice);
+  console.log("redux Bet Amount is ", reduxBetAmount);
+  console.log("redux betActive is ", reduxBetActive)
+
   return (
     <div className="bet limbo-bet">
       <div className="parent-manual">
@@ -103,7 +108,7 @@ const DiceBet = () => {
         <div className="bet-amount-row-1">
           <input
             type="text"
-            value={reduxBetAmount}
+            value={betAmount}
             onChange={handleBetAmount}
             onClick={handleBetClick}
             className={
@@ -146,6 +151,6 @@ const DiceBet = () => {
       </div>
     </div>
   );
-}
+};
 
-export default DiceBet
+export default DiceBet;
