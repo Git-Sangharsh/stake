@@ -17,9 +17,6 @@ const Dice = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
-  const [trackGradient, setTrackGradient] = useState(
-    "linear-gradient(to right, red 0%, red calc(var(--thumb-pos) * 100%), green calc(var(--thumb-pos) * 100%), green 100%)"
-  );
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
@@ -40,7 +37,6 @@ const Dice = () => {
   };
 
   const genrateDiceFloat = () => {
-    dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
     const diceFloat = Math.random();
     const fitNumber = (diceFloat * 100).toFixed(2);
     setDiceNumber(fitNumber);
@@ -58,19 +54,22 @@ const Dice = () => {
   };
 
   // Starting Game With DiceBet diceActiceBet is true
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (diceBetActive) {
+      genrateDiceFloat();
+    }
+  }, [diceBetActive]);
 
   // if diceBetActive is true setting it is to false under 0.5 sec
   useEffect(() => {
     let timeoutId;
     if (diceBetActive) {
       timeoutId = setTimeout(() => {
-        dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false});
+        dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
       }, 500);
     }
     return () => clearTimeout(timeoutId);
   }, [diceBetActive]);
-
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -88,24 +87,23 @@ const Dice = () => {
   useEffect(() => {
     if (!rollOver && diceNumber > value) {
       console.log("congrats u win the bet");
-      const audio = new Audio(diceBetWinEffect);
-      audio.volume = 0.5;
-      audio.play();
+      if (diceBetActive) {
+        const audio = new Audio(diceBetWinEffect);
+        audio.volume = 0.5;
+        audio.play();
+      }
     } else if (rollOver && diceNumber < value) {
       console.log("value is Greater than the diceNumeber");
-      const audio = new Audio(diceBetWinEffect);
-      audio.volume = 0.5;
-      audio.play();
+      if (diceBetActive) {
+        const audio = new Audio(diceBetWinEffect);
+        audio.volume = 0.5;
+        audio.play();
+      }
     }
   }, [diceNumber, value]);
 
   const handleRollOver = () => {
     setRollOver(!rollOver);
-    setTrackGradient(
-      rollOver
-        ? "linear-gradient(to right, red 0%, red calc(var(--thumb-pos) * 100%), green calc(var(--thumb-pos) * 100%), green 100%)"
-        : "linear-gradient(to right, green 0%, green calc(var(--thumb-pos) * 100%), red calc(var(--thumb-pos) * 100%), red 100%)"
-    );
   };
   // console.log("animation is", showAnimation);
   // console.log("diceNumber is", diceNumber);

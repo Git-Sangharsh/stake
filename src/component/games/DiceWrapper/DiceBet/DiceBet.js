@@ -13,41 +13,56 @@ const DiceBet = () => {
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
 
-  const [betAmount, setBetAmount] = useState(() => {
-    return localStorage.getItem("betAmount") || "0.00";
-  });
+  // const [betAmount, setBetAmount] = useState(() => {
+  //   const amount =  localStorage.getItem("betAmount") || "0.00";
+  //   console.log("initial bet amount is ", amount);
+  //   return amount
+  // });
+
+  const reduxBetAmount = useSelector((state) => state.betAmount);
 
   const handleBetAmount = (e) => {
     const input = e.target.value;
     if (!isNaN(input) || input === "") {
-      setBetAmount(input);
+      // setBetAmount(input);
+      dispatch({type: "SET_BET_AMOUNT", payload: input});
     }
   };
 
   const handleBetClick = () => {
-    setBetAmount("");
+    // setBetAmount("");
+    dispatch({type: "SET_BET_AMOUNT", payload: ""});
   };
 
   const handleIncreaseByOneTwoX = () => {
     if (!diceBetActice) {
-      const multipliedAmount = parseFloat(betAmount) * 1.5;
+      // const multipliedAmount = parseFloat(betAmount) * 1.5;
+      const multipliedAmount = parseFloat(reduxBetAmount) * 1.5;
       if (multipliedAmount > walletBalance) {
         console.log("not enough balance in wallet");
-        setBetAmount(walletBalance);
+        // setBetAmount(walletBalance);
+      dispatch({type: "SET_BET_AMOUNT", payload: walletBalance});
       } else {
-        setBetAmount(multipliedAmount.toFixed(2));
+        // setBetAmount(multipliedAmount.toFixed(2));
+      dispatch({type: "SET_BET_AMOUNT", payload: multipliedAmount.toFixed(2)});
+
       }
     }
   };
 
   const handleIncreaseByTwoX = () => {
     if (!diceBetActice) {
-      const multipliedAmount = parseFloat(betAmount) * 2;
+      // const multipliedAmount = parseFloat(betAmount) * 2;
+      const multipliedAmount = parseFloat(reduxBetAmount) * 2;
       if (multipliedAmount > walletBalance) {
         console.log("not enough balance in wallet");
-        setBetAmount(walletBalance);
+        // setBetAmount(walletBalance);
+        dispatch({type: "SET_BET_AMOUNT", payload: walletBalance});
+
       } else {
-        setBetAmount(multipliedAmount.toFixed(2));
+        // setBetAmount(multipliedAmount.toFixed(2));
+        dispatch({type: "SET_BET_AMOUNT", payload: multipliedAmount.toFixed(2)});
+
       }
     }
   };
@@ -56,23 +71,25 @@ const DiceBet = () => {
   // console.log("walletBalance: ", walletBalance)
 
   const handleBet = () => {
-    if (betAmount.toString().startsWith("0") || betAmount === "") {
+    // if (betAmount.toString().startsWith("0") || betAmount === "") {
+    if (reduxBetAmount.toString().startsWith("0") || reduxBetAmount === "") {
       console.log("bet starting with zero value");
       dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
-    } else if (betAmount > walletBalance) {
+    } else if (reduxBetAmount > walletBalance) {
       console.log("not enough balance in wallet");
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: true });
     } else {
       const audio = new Audio(betSoundEffect);
-      audio.volume = 0.5;
+      audio.volume = 0.4;
       audio.play();
-      dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
+      dispatch({ type: "SET_BET_AMOUNT", payload: reduxBetAmount });
       dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
     }
   };
 
   console.log("diceBet js dice bet active is ", diceBetActice)
+  console.log("redux Bet Amount is ", reduxBetAmount)
   return (
     <div className="bet limbo-bet">
       <div className="parent-manual">
@@ -86,7 +103,7 @@ const DiceBet = () => {
         <div className="bet-amount-row-1">
           <input
             type="text"
-            value={betAmount}
+            value={reduxBetAmount}
             onChange={handleBetAmount}
             onClick={handleBetClick}
             className={
