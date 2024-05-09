@@ -30,8 +30,8 @@ const DiceBet = () => {
   };
 
   const handleBetClick = () => {
-    // setBetAmount("");
-    dispatch({ type: "SET_BET_AMOUNT", payload: "" });
+    setBetAmount("");
+    // dispatch({ type: "SET_BET_AMOUNT", payload: "" });
   };
 
   const handleIncreaseByOneTwoX = () => {
@@ -46,7 +46,7 @@ const DiceBet = () => {
         // setBetAmount(multipliedAmount.toFixed(2));
         dispatch({
           type: "SET_BET_AMOUNT",
-          payload: multipliedAmount.toFixed(2),
+          payload: multipliedAmount.toFixed(2)
         });
       }
     }
