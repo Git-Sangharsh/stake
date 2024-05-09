@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DiceBet.css";
 import rupeesSvg from "../../../assets/rs.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,14 +18,14 @@ const DiceBet = () => {
   //   console.log("initial bet amount is ", amount);
   //   return amount
   // });
-  const [betAmount, setBetAmount] = useState(0);
+  const [betAmount, setBetAmount] = useState(1);
   const reduxBetAmount = useSelector((state) => state.betAmount);
 
   const handleBetAmount = (e) => {
     const input = e.target.value;
     if (!isNaN(input) || input === "") {
       setBetAmount(input);
-        // dispatch({ type: "SET_BET_AMOUNT", payload: input });
+      // dispatch({ type: "SET_BET_AMOUNT", payload: input });
     }
   };
 
@@ -46,7 +46,7 @@ const DiceBet = () => {
         // setBetAmount(multipliedAmount.toFixed(2));
         dispatch({
           type: "SET_BET_AMOUNT",
-          payload: multipliedAmount.toFixed(2)
+          payload: multipliedAmount.toFixed(2),
         });
       }
     }
@@ -91,9 +91,10 @@ const DiceBet = () => {
     }
   };
 
+
   console.log("diceBet js dice bet active is ", diceBetActice);
   console.log("redux Bet Amount is ", reduxBetAmount);
-  console.log("redux betActive is ", reduxBetActive)
+  console.log("redux betActive is ", reduxBetActive);
 
   return (
     <div className="bet limbo-bet">

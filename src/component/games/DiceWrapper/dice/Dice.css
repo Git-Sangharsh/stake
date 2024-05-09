@@ -10,10 +10,14 @@
   border-radius: 3px;
   flex-direction: column;
   height: 900px;
+  width: 1200px;
+  background-color: red;
+  background-color: #0f212e;
 }
 
 .child-dice {
   height: 600px;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -45,6 +49,7 @@
 .parent-dice-range {
   position: relative;
   width: 620px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,16 +135,25 @@
 }
 
 .hexagon-img {
-  width: 70px;
+  width: 60px;
+  border: 6px solid red;
+}
+
+.parent-assume-img{
+  border: 1px solid red;
+  width: 100%;
+  position: relative;
 }
 
 .assume-img {
   width: 580px;
   box-sizing: border-box;
   position: absolute;
-  top: -51px;
-  left: -15px;
+  top: -10px;
+  /*left: -15px; */
   z-index: 0;
+  border: 3px solid white;
+  width: 100%;
 }
 
 /* this is static img */

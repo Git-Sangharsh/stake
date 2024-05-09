@@ -42,8 +42,9 @@ const Dice = () => {
     setDiceNumber(fitNumber);
     // setDiceNumber(0)
 
-    const containerWidth = 600; // Width of the container
-    const pixels = (fitNumber / 100) * containerWidth;
+    const containerWidth = 1200; // Width of the container
+    // const pixels = (fitNumber / 100) * containerWidth;
+    const pixels = (fitNumber / 110.2) * containerWidth;
 
     // Animate the image
     setShowAnimation(true);
@@ -130,24 +131,27 @@ const Dice = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div className="assume-img">
-          <motion.img
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 1, x: dicePixelPosition }}
-            transition={{ duration: 0.2 }}
-            className="hexagon-img"
-            src={hexagon}
-            alt=""
-          />
-          <motion.h6
-            className="dice-img-number"
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 1, x: dicePixelPosition }}
-            transition={{ duration: 0.2 }}
-          >
-            {diceNumber}
-          </motion.h6>
+        <div className="parent-assume-img">
+          <div className="assume-img">
+            <motion.img
+              initial={{ opacity: 0, x: 0 }}
+              animate={{ opacity: 1, x: dicePixelPosition }}
+              transition={{ duration: 0.2 }}
+              className="hexagon-img"
+              src={hexagon}
+              alt=""
+            />
+            <motion.h6
+              className="dice-img-number"
+              initial={{ opacity: 0, x: 0 }}
+              animate={{ opacity: 1, x: dicePixelPosition }}
+              transition={{ duration: 0.2 }}
+            >
+              {diceNumber}
+            </motion.h6>
+          </div>
         </div>
+
         <div className="parent-roll-over">
           <div className="inner-parent-roll-over">
             <h5 className="inner-parent-roll-over-header">
@@ -176,7 +180,7 @@ const Dice = () => {
             />
           </div>
         </div>
-        <button onClick={genrateDiceFloat}>Click To Roll Dice</button>
+        {/* <button onClick={genrateDiceFloat}>Click To Roll Dice</button> */}
       </div>
       {/* <div className="parent-hexagon-img">
         <img src={hexagon} alt="" />
