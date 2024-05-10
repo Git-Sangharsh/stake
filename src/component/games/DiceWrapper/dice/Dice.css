@@ -136,11 +136,11 @@
 
 .hexagon-img {
   width: 60px;
-  border: 6px solid red;
+  /* border: 6px solid red; */
 }
 
 .parent-assume-img{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
   position: relative;
 }
@@ -149,10 +149,10 @@
   width: 580px;
   box-sizing: border-box;
   position: absolute;
-  top: -10px;
+  top: -90px;
   /*left: -15px; */
   z-index: 0;
-  border: 3px solid white;
+  /* border: 3px solid white; */
   width: 100%;
 }
 
@@ -170,14 +170,14 @@
 
 .dice-img-number {
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-weight: bolder;
   font-style: normal;
   position: absolute;
-  top: 28px;
-  left: 21px;
+  top: 22px;
+  left: 18px;
   transform: translate(-50%, -50%);
   color: yellow;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .parent-roll-over {
