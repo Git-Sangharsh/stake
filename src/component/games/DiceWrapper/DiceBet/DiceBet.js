@@ -97,7 +97,7 @@ const DiceBet = () => {
   console.log("redux betActive is ", reduxBetActive);
 
   return (
-    <div className="bet limbo-bet">
+    <div className="bet limbo-bet dice-bet">
       <div className="parent-manual">
         <h4 className="manual">Manual</h4>
       </div>
