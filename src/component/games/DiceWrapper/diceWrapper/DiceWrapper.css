@@ -1,8 +1,7 @@
 .diceWrapper{
-    /* border: 3px solid whitesmoke; */
     margin-top: 60px;
     display: flex;
     justify-content: center;
-    padding-top: 60px;
-    padding-bottom: 30px;
+    padding-top: 130px;
 }
+
