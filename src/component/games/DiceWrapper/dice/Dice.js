@@ -17,6 +17,7 @@ const Dice = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
+  const [showDiceClr, setShowDiceClr] = useState(true);
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
@@ -72,20 +73,18 @@ const Dice = () => {
     return () => clearTimeout(timeoutId);
   }, [diceBetActive]);
 
-
-
-
-
   useEffect(() => {
     if (!rollOver && diceNumber > value) {
       console.log("congrats u win the bet");
+      setShowDiceClr(true);
       if (diceBetActive) {
         const audio = new Audio(diceBetWinEffect);
         audio.volume = 0.5;
         audio.play();
       }
-    } else if (rollOver && diceNumber < value) {
+    } else if (!(!rollOver && diceNumber > value)) {
       console.log("value is Greater than the diceNumeber");
+      setShowDiceClr(false);
       if (diceBetActive) {
         const audio = new Audio(diceBetWinEffect);
         audio.volume = 0.5;
@@ -102,7 +101,8 @@ const Dice = () => {
   // // console.log("dicePixelPosition is", dicePixelPosition);
   // console.log("selected Dice range value is ", value);
   // console.log("roll Over is ", rollOver);
-  console.log("dice bet Actice is ", diceBetActive);
+  // console.log("dice bet Actice is ", diceBetActive);
+  console.log("showDice Clr is ", showDiceClr);
   return (
     <div className="dice">
       <div className="child-dice">
@@ -122,7 +122,7 @@ const Dice = () => {
           />
         </div>
         <div className="parent-assume-img">
-        {/* hide this */}
+          {/* hide this */}
           <div className="assume-img">
             <motion.img
               initial={{ opacity: 0, x: 0 }}
@@ -144,12 +144,17 @@ const Dice = () => {
         </div>
 
         <div className="parent-roll-over">
-        <div className="inner-parent-roll-over">
-            <h5 className="inner-parent-roll-over-header">Range</h5>
+          <div className="inner-parent-roll-over">
+            <h5 className="inner-parent-roll-over-header">Result</h5>
+            {/* change color here of dice bet */}
             <input
-              className="inner-parent-roll-over-input"
+              className={
+                showDiceClr
+                  ? "inner-parent-roll-over-input show-dice-clr-green"
+                  : "inner-parent-roll-over-input show-dice-clr-red"
+              }
               type="Number"
-              value={value}
+              value={diceNumber}
               onChange={handleValueChange}
               min={0}
               max={100}
@@ -180,7 +185,6 @@ const Dice = () => {
               max={100}
             />
           </div>
-
         </div>
         {/* <button onClick={genrateDiceFloat}>Click To Roll Dice</button> */}
       </div>

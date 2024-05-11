@@ -214,7 +214,7 @@
   padding: 6px 6px;
   color: #ffffff;
   background-color: #0f212e;
-  border: 1px solid #acb5ce;
+  border: 2px solid #acb5ce;
   border-radius: 3px;
   text-align: start;
   display: flex;
@@ -222,4 +222,18 @@
   justify-content: space-between;
   height: 38px;
   cursor: pointer;
+}
+
+
+.show-dice-clr-red{
+  color: red;
+  border: 2px solid red;
+  transition: 1s ease;
+}
+
+.show-dice-clr-green{
+  color: rgb(15, 205, 15);
+  border: 2px solid rgb(15, 205, 15);
+  transition: 1s ease;
+
 }
