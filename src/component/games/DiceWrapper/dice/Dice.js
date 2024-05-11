@@ -17,7 +17,7 @@ const Dice = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
-  const [showDiceClr, setShowDiceClr] = useState(true);
+  const [showDiceClr, setShowDiceClr] = useState("");
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
@@ -150,8 +150,8 @@ const Dice = () => {
             <input
               className={
                 showDiceClr
-                  ? "inner-parent-roll-over-input show-dice-clr-green"
-                  : "inner-parent-roll-over-input show-dice-clr-red"
+                  ? "inner-parent-roll-over-input show-dice-clr-red"
+                  : "inner-parent-roll-over-input show-dice-clr-green"
               }
               type="Number"
               value={diceNumber}
