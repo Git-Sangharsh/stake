@@ -72,18 +72,9 @@ const Dice = () => {
     return () => clearTimeout(timeoutId);
   }, [diceBetActive]);
 
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (e.code === "Space") {
-        genrateDiceFloat();
-      }
-      window.addEventListener("keydown", handleKeyPress);
 
-      return () => {
-        window.removeEventListener("keydown", handleKeyPress);
-      };
-    };
-  }, []);
+
+
 
   useEffect(() => {
     if (!rollOver && diceNumber > value) {
@@ -112,7 +103,6 @@ const Dice = () => {
   // console.log("selected Dice range value is ", value);
   // console.log("roll Over is ", rollOver);
   console.log("dice bet Actice is ", diceBetActive);
-
   return (
     <div className="dice">
       <div className="child-dice">
@@ -132,30 +122,41 @@ const Dice = () => {
           />
         </div>
         <div className="parent-assume-img">
+        {/* hide this */}
           <div className="assume-img">
             <motion.img
               initial={{ opacity: 0, x: 0 }}
-              animate={{ opacity: 1, x: dicePixelPosition }}
+              animate={{ opacity: dicePixelPosition, x: dicePixelPosition }}
               transition={{ duration: 0.2 }}
               className="hexagon-img"
               src={hexagon}
               alt=""
             />
-            <motion.h6
+            {/* <motion.h6
               className="dice-img-number"
               initial={{ opacity: 0, x: 0 }}
-              animate={{ opacity: 1, x: dicePixelPosition }}
+              animate={{ opacity: dicePixelPosition, x: dicePixelPosition }}
               transition={{ duration: 0.2 }}
             >
               {diceNumber}
-            </motion.h6>
+            </motion.h6> */}
           </div>
         </div>
 
         <div className="parent-roll-over">
+        <div className="inner-parent-roll-over">
+            <h5 className="inner-parent-roll-over-header">Range</h5>
+            <input
+              className="inner-parent-roll-over-input"
+              type="Number"
+              value={value}
+              onChange={handleValueChange}
+              min={0}
+              max={100}
+            />
+          </div>
           <div className="inner-parent-roll-over">
             <h5 className="inner-parent-roll-over-header">
-              {" "}
               {rollOver ? "Roll Under" : "Roll Over"}
             </h5>
             <button
@@ -179,6 +180,7 @@ const Dice = () => {
               max={100}
             />
           </div>
+
         </div>
         {/* <button onClick={genrateDiceFloat}>Click To Roll Dice</button> */}
       </div>
