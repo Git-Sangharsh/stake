@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Casino.css";
 import casinoMine from "../assets/casinoMine.avif";
 import casinoLimbo from "../assets/casinoLimbo.avif";
+import casinoDice from "../assets/casinoDice.avif";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
@@ -36,7 +37,7 @@ const Casino = () => {
         </div>
         <div className="stake-originals">
           <motion.img
-            initial={{ y: 0, boxShadow: "none" }}
+            initial={{ y: 0 }}
             whileHover={{
               y: -5,
               boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
@@ -48,13 +49,25 @@ const Casino = () => {
             onClick={handleMineRoute}
           />
           <motion.img
-            initial={{ y: 0, boxShadow: "none" }}
+            initial={{ y: 0}}
             whileHover={{
               y: -5,
               boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
             }}
             transition={{ duration: 0.1 }}
             src={casinoLimbo}
+            className="stake-originals-img"
+            alt=""
+            onClick={handleLimboRoute}
+          />
+          <motion.img
+            initial={{ y: 0 }}
+            whileHover={{
+              y: -5,
+              boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
+            }}
+            transition={{ duration: 0.1 }}
+            src={casinoDice}
             className="stake-originals-img"
             alt=""
             onClick={handleLimboRoute}
