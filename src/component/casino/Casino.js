@@ -12,20 +12,24 @@ const Casino = () => {
 
   const [loader, setLoader] = useState(false);
 
-  const handleMineRoute = () => {
+  const handleRoute = (route) => {
     setLoader(true);
     setTimeout(() => {
-      navigate("/casino/mines");
+      navigate(`/casino/${route}`);
       setLoader(false);
     }, 2000);
   };
 
+  const handleMineRoute = () => {
+    handleRoute("mines");
+  };
+
   const handleLimboRoute = () => {
-    setLoader(true);
-    setTimeout(() => {
-      navigate("/casino/limbo");
-      setLoader(false);
-    }, 2000);
+    handleRoute("limbo");
+  };
+
+  const handleDiceRoute = () => {
+    handleRoute("dice");
   };
 
   return (
@@ -70,7 +74,7 @@ const Casino = () => {
             src={casinoDice}
             className="stake-originals-img"
             alt=""
-            onClick={handleLimboRoute}
+            onClick={handleDiceRoute}
           />
           {loader && (
             <div className="route-loader">
