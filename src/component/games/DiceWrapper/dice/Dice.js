@@ -11,6 +11,7 @@ const Dice = () => {
   const dispatch = useDispatch();
 
   const diceBetActive = useSelector((state) => state.diceBetActive);
+  const reduxBetAmount = useSelector((state) => state.betAmount);
 
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
@@ -18,6 +19,7 @@ const Dice = () => {
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
   const [showDiceClr, setShowDiceClr] = useState("");
+  const [profitFromDiceBet, setProfitFromDiceBet] = useState("");
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
@@ -34,6 +36,8 @@ const Dice = () => {
     setValue(newValue);
 
     const audio = new Audio(diceAudio);
+    // dice range adjustment volume;
+    audio.volume = 0;
     audio.play();
   };
 
@@ -75,7 +79,7 @@ const Dice = () => {
 
   useEffect(() => {
     if (!rollOver && diceNumber > value) {
-      console.log("congrats u win the bet");
+      // console.log("congrats u win the bet");
       setShowDiceClr(true);
       if (diceBetActive) {
         const audio = new Audio(diceBetWinEffect);
@@ -83,7 +87,7 @@ const Dice = () => {
         audio.play();
       }
     } else if (!(!rollOver && diceNumber > value)) {
-      console.log("value is Greater than the diceNumeber");
+      // console.log("value is Greater than the diceNumeber");
       setShowDiceClr(false);
       if (diceBetActive) {
         const audio = new Audio(diceBetWinEffect);
@@ -96,13 +100,47 @@ const Dice = () => {
   const handleRollOver = () => {
     setRollOver(!rollOver);
   };
+
+  useEffect(() => {
+    // if statement with result and input-range
+    if (diceNumber > 50.5) {
+      console.log(reduxBetAmount * 2);
+    } else if (diceNumber > 60.0) {
+      console.log(reduxBetAmount * 2.475);
+    } else if (diceNumber > 65) {
+      console.log(reduxBetAmount * 2.8286);
+    } else if (diceNumber > 70) {
+      console.log(reduxBetAmount * 3.3);
+    } else if (diceNumber > 75) {
+      console.log(reduxBetAmount * 3.96);
+    } else if (diceNumber > 80) {
+      console.log(reduxBetAmount * 4.95);
+    } else if (diceNumber > 85) {
+      console.log(reduxBetAmount * 6.6);
+    } else if (diceNumber > 90) {
+      console.log(reduxBetAmount * 9.9);
+    } else if (diceNumber > 92) {
+      console.log(reduxBetAmount * 12.375);
+    } else if (diceNumber > 94) {
+      console.log(reduxBetAmount * 16.5);
+    } else if (diceNumber > 96) {
+      console.log(reduxBetAmount * 24.75);
+    } else if (diceNumber > 97) {
+      console.log(reduxBetAmount * 33.0);
+    } else if (diceNumber > 98) {
+      console.log(reduxBetAmount * 49.5);
+    }
+  }, [diceNumber]);
+  // console.log(diceNumber)
+  // console.log(value)
   // console.log("animation is", showAnimation);
   // console.log("diceNumber is", diceNumber);
   // // console.log("dicePixelPosition is", dicePixelPosition);
   // console.log("selected Dice range value is ", value);
   // console.log("roll Over is ", rollOver);
   // console.log("dice bet Actice is ", diceBetActive);
-  console.log("showDice Clr is ", showDiceClr);
+  // console.log("showDice Clr is ", showDiceClr);
+
   return (
     <div className="dice">
       <div className="child-dice">
@@ -156,6 +194,7 @@ const Dice = () => {
               type="Number"
               value={diceNumber}
               onChange={handleValueChange}
+              disabled
               min={0}
               max={100}
             />

@@ -92,9 +92,9 @@ const DiceBet = () => {
   };
 
 
-  console.log("diceBet js dice bet active is ", diceBetActice);
-  console.log("redux Bet Amount is ", reduxBetAmount);
-  console.log("redux betActive is ", reduxBetActive);
+  // console.log("diceBet js dice bet active is ", diceBetActice);
+  // console.log("redux Bet Amount is ", reduxBetAmount);
+  // console.log("redux betActive is ", reduxBetActive);
 
   return (
     <div className="bet limbo-bet dice-bet">
