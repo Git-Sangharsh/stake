@@ -22,7 +22,7 @@ const DiceBet = () => {
   const reduxBetAmount = useSelector((state) => state.betAmount);
 
   const handleBetAmount = (e) => {
-    const input = e.target.value;
+    const input = parseInt(e.target.value)
     if (!isNaN(input) || input === "") {
       setBetAmount(input);
       // dispatch({ type: "SET_BET_AMOUNT", payload: input });
