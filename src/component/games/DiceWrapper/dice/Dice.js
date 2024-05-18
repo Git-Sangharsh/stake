@@ -156,10 +156,17 @@ const Dice = () => {
 
   const getRewardMultiplier = () => {
     if (diceNumber > value) {
-      if (value >= 50 && diceNumber <= 60) {
-        console.log("bet is win ", diceNumber, value);
-      } else if(diceNumber >= 60){
+      if (diceNumber >= 50 && diceNumber <= 60) {
+        // console.log(reduxBetAmount * 2);
+        console.log("First Condition is True", diceNumber, value);
+      } else if (diceNumber >= 60 && diceNumber <= 70) {
         console.log("Second Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 70 && diceNumber <= 80) {
+        console.log("Third Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 80 && diceNumber <= 90) {
+        console.log("Fourth Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 90 && diceNumber <= 100) {
+        console.log("Sixth Condition is true ", diceNumber, value);
       }
     } else {
       console.log("bet is lost");
