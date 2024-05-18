@@ -12,6 +12,7 @@ const initialState = {
   profitBox: false,
   diceBetActive: false,
   diceBetWin: false,
+  diceBetWinAmount: 0,
   mineEncounter: false,
   mineCounter: 5,
   cashOutAmount: 0.0,

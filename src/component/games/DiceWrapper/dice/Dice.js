@@ -12,6 +12,7 @@ const Dice = () => {
 
   const diceBetActive = useSelector((state) => state.diceBetActive);
   const reduxBetAmount = useSelector((state) => state.betAmount);
+  const diceBetWinAmount = useSelector((state) => state.diceBetWinAmount);
 
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
@@ -95,12 +96,15 @@ const Dice = () => {
         audio.play();
       }
     }
-  }, [diceNumber, value]);
+
+    if (diceBetActive) {
+      getRewardMultiplier();
+    }
+  }, [diceNumber, value, diceBetActive]);
 
   const handleRollOver = () => {
     setRollOver(!rollOver);
   };
-
 
   // console.log(typeof reduxBetAmount)
   // console.log(diceNumber)
@@ -112,8 +116,6 @@ const Dice = () => {
   // console.log("roll Over is ", rollOver);
   // console.log("dice bet Actice is ", diceBetActive);
   // console.log("showDice Clr is ", showDiceClr);
-
-
 
   // useEffect(() => {
   //   if (diceBetActive) {
@@ -152,19 +154,20 @@ const Dice = () => {
   //   }
   // }, [diceNumber, value, diceBetActive, reduxBetAmount]);
 
-
-  useEffect(() => {
-    if(diceBetActive){
+  const getRewardMultiplier = () => {
+    if (diceNumber > value) {
+      if (value >= 50 && diceNumber <= 60) {
+        console.log("bet is win ", diceNumber, value);
+      } else if(diceNumber >= 60){
+        console.log("Second Condition is true ", diceNumber, value);
+      }
+    } else {
+      console.log("bet is lost");
     }
-
-  },[diceBetActive])
-
-  const getDiceMultiPlier = () => {
-    const REWARD_1 = 2
-    const REWARD_2 = 5
   };
 
-  console.log("showDiceClr is ", showDiceClr)
+  // console.log("diceNumber: " + diceNumber)
+
   return (
     <div className="dice">
       <div className="child-dice">
