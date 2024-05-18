@@ -106,6 +106,41 @@ const Dice = () => {
     setRollOver(!rollOver);
   };
 
+  const getRewardMultiplier = () => {
+    if (diceNumber > value) {
+      if (diceNumber >= 50.5 && diceNumber <= 60) {
+        console.log("First Condition is True", diceNumber, value);
+      } else if (diceNumber >= 60 && diceNumber <= 65) {
+        console.log("Second Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 65 && diceNumber <= 70) {
+        console.log("Third Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 70 && diceNumber <= 75) {
+        console.log("Fourth Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 75 && diceNumber <= 80) {
+        console.log("Sixth Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 80 && diceNumber <= 85) {
+        console.log("Seventh Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 85 && diceNumber <= 90) {
+        console.log("Eighth Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 90 && diceNumber <= 92) {
+        console.log("TenTh Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 92 && diceNumber <= 94) {
+        console.log("eleven Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 94 && diceNumber <= 96) {
+        console.log("tweleve Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 96 && diceNumber <= 97) {
+        console.log("Thirteen Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 97 && diceNumber <= 98) {
+        console.log("fourteen Condition is true ", diceNumber, value);
+      } else if (diceNumber >= 98) {
+        console.log("fifteen Condition is true ", diceNumber, value);
+      }
+    } else {
+      console.log("bet is lost");
+    }
+  };
+
+  // console.log("diceNumber: " + diceNumber)
   // console.log(typeof reduxBetAmount)
   // console.log(diceNumber)
   // console.log(value)
@@ -116,64 +151,6 @@ const Dice = () => {
   // console.log("roll Over is ", rollOver);
   // console.log("dice bet Actice is ", diceBetActive);
   // console.log("showDice Clr is ", showDiceClr);
-
-  // useEffect(() => {
-  //   if (diceBetActive) {
-  //     if (diceNumber < value) {
-  //       console.log("life is suckss");
-  //     } else if (diceNumber > value && value > 50.5 && value < 60) {
-  //       console.log("Hello World!");
-  //       console.log(reduxBetAmount * 2);
-  //     } else if (diceNumber > value && value > 60.0 && value < 65) {
-  //       console.log(reduxBetAmount * 2.47);
-  //     } else if (diceNumber > value && value > 65 && value < 70) {
-  //       console.log(reduxBetAmount * 2.82);
-  //     } else if (diceNumber > value && value > 70 && value < 75) {
-  //       console.log(reduxBetAmount * 3.3);
-  //     } else if (diceNumber > value && value > 75 && value < 80) {
-  //       console.log(reduxBetAmount * 3.96);
-  //     } else if (diceNumber > value && value > 80 && value < 85) {
-  //       console.log(reduxBetAmount * 4.95);
-  //     } else if (diceNumber > value && value > 85 && value < 90) {
-  //       console.log(reduxBetAmount * 6.6);
-  //     } else if (diceNumber > value && value > 90 && value < 92) {
-  //       console.log(reduxBetAmount * 9.9);
-  //     } else if (diceNumber > value && value > 92 && value < 94) {
-  //       console.log(reduxBetAmount * 12.37);
-  //     } else if (diceNumber > value && value > 94 && value < 96) {
-  //       console.log(reduxBetAmount * 16.5);
-  //     } else if (diceNumber > value && value > 96 && value < 97) {
-  //       console.log(reduxBetAmount * 24.75);
-  //     } else if (diceNumber > value && value > 97 && value < 98) {
-  //       console.log(reduxBetAmount * 33.0);
-  //     } else if (diceNumber > value && value > 98) {
-  //       console.log(reduxBetAmount * 49.5);
-  //     } else {
-  //       console.log(reduxBetAmount, diceNumber, value);
-  //     }
-  //   }
-  // }, [diceNumber, value, diceBetActive, reduxBetAmount]);
-
-  const getRewardMultiplier = () => {
-    if (diceNumber > value) {
-      if (diceNumber >= 50 && diceNumber <= 60) {
-        // console.log(reduxBetAmount * 2);
-        console.log("First Condition is True", diceNumber, value);
-      } else if (diceNumber >= 60 && diceNumber <= 70) {
-        console.log("Second Condition is true ", diceNumber, value);
-      } else if (diceNumber >= 70 && diceNumber <= 80) {
-        console.log("Third Condition is true ", diceNumber, value);
-      } else if (diceNumber >= 80 && diceNumber <= 90) {
-        console.log("Fourth Condition is true ", diceNumber, value);
-      } else if (diceNumber >= 90 && diceNumber <= 100) {
-        console.log("Sixth Condition is true ", diceNumber, value);
-      }
-    } else {
-      console.log("bet is lost");
-    }
-  };
-
-  // console.log("diceNumber: " + diceNumber)
 
   return (
     <div className="dice">
