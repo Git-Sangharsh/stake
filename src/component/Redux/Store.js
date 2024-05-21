@@ -12,7 +12,6 @@ const initialState = {
   profitBox: false,
   diceBetActive: false,
   diceBetWin: false,
-  diceBetWinAmount: 0,
   mineEncounter: false,
   mineCounter: 5,
   cashOutAmount: 0.0,
@@ -21,7 +20,7 @@ const initialState = {
   viewRegister: false,
   viewSignin: false,
   userEmail: "",
-  login: false
+  login: false,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -49,7 +48,10 @@ const Reducer = (state = initialState, action) => {
     case "SET_DICE_BET_ACTIVE":
       return { ...state, diceBetActive: action.payload };
     case "SET_DICE_BET_WIN":
-      return { ...state, diceBetWin: action. payload};
+      return { ...state, diceBetWin: action.payload };
+    case "SET_PROFIT_FROM_DICE":
+      const newWalletBalanceFromDice = state.walletBalance + action.payload;
+      return { ...state, walletBalance: newWalletBalanceFromDice };
     case "SET_MINE_ENCOUNTER":
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":
@@ -71,13 +73,13 @@ const Reducer = (state = initialState, action) => {
     case "SET_VIEW_PROFILE_DROPDOWN":
       return { ...state, viewProfileDropDown: action.payload };
     case "SET_VIEW_REGISTER":
-      return {...state, viewRegister: action.payload};
+      return { ...state, viewRegister: action.payload };
     case "SET_VIEW_SIGNIN":
-      return {...state, viewSignin: action.payload};
+      return { ...state, viewSignin: action.payload };
     case "SET_USER_EMAIL":
-      return {...state, userEmail: action.payload};
+      return { ...state, userEmail: action.payload };
     case "SET_LOG_IN":
-      return {...state, login: action.payload};
+      return { ...state, login: action.payload };
     default:
       return state;
   }

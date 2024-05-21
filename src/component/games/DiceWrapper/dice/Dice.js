@@ -12,8 +12,7 @@ const Dice = () => {
 
   const diceBetActive = useSelector((state) => state.diceBetActive);
   const reduxBetAmount = useSelector((state) => state.betAmount);
-  const diceBetWinAmount = useSelector((state) => state.diceBetWinAmount);
-
+  const walletBalance = useSelector((state) => state.walletBalance);
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
   const [showAnimation, setShowAnimation] = useState(false);
@@ -110,36 +109,50 @@ const Dice = () => {
     if (diceNumber > value) {
       if (diceNumber >= 50.5 && diceNumber <= 60) {
         console.log("First Condition is True", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 2 });
       } else if (diceNumber >= 60 && diceNumber <= 65) {
         console.log("Second Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 2.47 });
       } else if (diceNumber >= 65 && diceNumber <= 70) {
         console.log("Third Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 2.82 });
       } else if (diceNumber >= 70 && diceNumber <= 75) {
         console.log("Fourth Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 3.3 });
       } else if (diceNumber >= 75 && diceNumber <= 80) {
         console.log("Sixth Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 3.96 });
       } else if (diceNumber >= 80 && diceNumber <= 85) {
         console.log("Seventh Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 4.95 });
       } else if (diceNumber >= 85 && diceNumber <= 90) {
         console.log("Eighth Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 6.6 });
       } else if (diceNumber >= 90 && diceNumber <= 92) {
         console.log("TenTh Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 9.9 });
       } else if (diceNumber >= 92 && diceNumber <= 94) {
         console.log("eleven Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 12.37 });
       } else if (diceNumber >= 94 && diceNumber <= 96) {
         console.log("tweleve Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 16.5 });
       } else if (diceNumber >= 96 && diceNumber <= 97) {
         console.log("Thirteen Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 24.75 });
       } else if (diceNumber >= 97 && diceNumber <= 98) {
         console.log("fourteen Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 33 });
       } else if (diceNumber >= 98) {
         console.log("fifteen Condition is true ", diceNumber, value);
+        dispatch({ type: "SET_PROFIT_FROM_DICE", payload: reduxBetAmount * 49.5 });
       }
     } else {
       console.log("bet is lost");
     }
   };
 
+  console.log("walletBalance is ", walletBalance);
   // console.log("diceNumber: " + diceNumber)
   // console.log(typeof reduxBetAmount)
   // console.log(diceNumber)
