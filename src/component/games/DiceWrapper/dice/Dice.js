@@ -108,34 +108,89 @@ const Dice = () => {
   useEffect(() => {
     let profit = 0;
     if (diceNumber > value) {
-      if (value >= 90) {
-        console.log("1st");
-        profit = reduxBetAmount * 10;
+      if (value >= 98) {
+        profit = 49.5;
+        console.log(profit);
+      } else if (value >= 97) {
+        profit = 33;
+        console.log(profit);
+      } else if (value >= 96) {
+        profit = 24.75;
+        console.log(profit);
+      } else if (value >= 94) {
+        profit = 16.5;
+        console.log(profit);
+      } else if (value >= 92) {
+        profit = 2;
+        console.log(profit);
+      } else if (value >= 90) {
+        profit = 9.9;
+        console.log(profit);
+      } else if (value >= 85) {
+        profit = 6.6;
         console.log(profit);
       } else if (value >= 80) {
-        console.log("2nd");
-        profit = reduxBetAmount * 5;
+        profit = 4.95;
+        console.log(profit);
+      } else if (value >= 75) {
+        profit = 3.96;
         console.log(profit);
       } else if (value >= 70) {
-        console.log("third");
-        profit = reduxBetAmount * 3;
+        profit = 3.3;
+        console.log(profit);
+      } else if (value >= 65) {
+        profit = 2.82;
         console.log(profit);
       } else if (value >= 60) {
-        console.log("fourth");
-        profit = reduxBetAmount * 2.5;
+        profit = 2.47;
+        console.log(profit);
+      } else if (value >= 55) {
+        profit = 2.23;
         console.log(profit);
       } else if (value >= 50) {
-        console.log("fifth");
-        profit = reduxBetAmount * 2;
+        profit = 2;
+        console.log(profit);
+      } else if (value >= 45) {
+        profit = 1.8;
+        console.log(profit);
+      } else if (value >= 40) {
+        profit = 1.65;
+        console.log(profit);
+      } else if (value >= 35) {
+        profit = 1.52;
+        console.log(profit);
+      } else if (value >= 30) {
+        profit = 1.41;
+        console.log(profit);
+      } else if (value >= 25) {
+        profit = 1.32;
+        console.log(profit);
+      } else if (value >= 20) {
+        profit = 1.23;
+        console.log(profit);
+      } else if (value >= 15) {
+        profit = 1.16;
+        console.log(profit);
+      } else if (value >= 10) {
+        profit = 1.1;
+        console.log(profit);
+      } else if (value >= 5) {
+        profit = 1.04;
         console.log(profit);
       }
-    } else {
-      console.log("bet is lost");
     }
-    console.log("value : ",value);
-    console.log("profit : ",profit);
-    dispatch({type: "SET_PROFIT_FROM_DICE", payload: profit});
-  }, [value,diceNumber]);
+    console.log("value : ", value);
+    console.log("profit : ", profit);
+    if (!profit > 0) {
+      console.log("Profit is greater than 0 on this bet");
+      dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
+    } else {
+      dispatch({
+        type: "SET_PROFIT_FROM_DICE",
+        payload: reduxBetAmount * profit,
+      });
+    }
+  }, [value, diceNumber]);
 
   // console.log("walletBalance is ", walletBalance);
   // console.log("diceNumber: " + diceNumber)
