@@ -72,7 +72,7 @@ const Dice = () => {
     if (diceBetActive) {
       timeoutId = setTimeout(() => {
         dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
-      }, 500);
+      }, 0);
     }
     return () => clearTimeout(timeoutId);
   }, [diceBetActive]);
@@ -106,22 +106,36 @@ const Dice = () => {
   };
 
   useEffect(() => {
+    let profit = 0;
     if (diceNumber > value) {
       if (value >= 90) {
         console.log("1st");
+        profit = reduxBetAmount * 10;
+        console.log(profit);
       } else if (value >= 80) {
         console.log("2nd");
+        profit = reduxBetAmount * 5;
+        console.log(profit);
       } else if (value >= 70) {
         console.log("third");
+        profit = reduxBetAmount * 3;
+        console.log(profit);
       } else if (value >= 60) {
         console.log("fourth");
+        profit = reduxBetAmount * 2.5;
+        console.log(profit);
       } else if (value >= 50) {
         console.log("fifth");
+        profit = reduxBetAmount * 2;
+        console.log(profit);
       }
     } else {
       console.log("bet is lost");
     }
-  }, [value, diceNumber, diceBetActive]);
+    console.log("value : ",value);
+    console.log("profit : ",profit);
+    dispatch({type: "SET_PROFIT_FROM_DICE", payload: profit});
+  }, [value,diceNumber]);
 
   // console.log("walletBalance is ", walletBalance);
   // console.log("diceNumber: " + diceNumber)
