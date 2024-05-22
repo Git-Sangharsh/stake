@@ -12,14 +12,12 @@ const Dice = () => {
 
   const diceBetActive = useSelector((state) => state.diceBetActive);
   const reduxBetAmount = useSelector((state) => state.betAmount);
-  const walletBalance = useSelector((state) => state.walletBalance);
+  // const walletBalance = useSelector((state) => state.walletBalance);
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
-  const [showAnimation, setShowAnimation] = useState(false);
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
   const [showDiceClr, setShowDiceClr] = useState("");
-  const [profitFromDiceBet, setProfitFromDiceBet] = useState("");
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
@@ -52,11 +50,7 @@ const Dice = () => {
     const pixels = (fitNumber / 110.2) * containerWidth;
 
     // Animate the image
-    setShowAnimation(true);
     setDicePixelPosition(pixels);
-    setTimeout(() => {
-      setShowAnimation(false);
-    }, 2000);
   };
 
   // Starting Game With DiceBet diceActiceBet is true
@@ -107,88 +101,90 @@ const Dice = () => {
 
   useEffect(() => {
     let profit = 0;
-    if (diceNumber > value) {
-      if (value >= 98) {
-        profit = 49.5;
-        console.log(profit);
-      } else if (value >= 97) {
-        profit = 33;
-        console.log(profit);
-      } else if (value >= 96) {
-        profit = 24.75;
-        console.log(profit);
-      } else if (value >= 94) {
-        profit = 16.5;
-        console.log(profit);
-      } else if (value >= 92) {
-        profit = 2;
-        console.log(profit);
-      } else if (value >= 90) {
-        profit = 9.9;
-        console.log(profit);
-      } else if (value >= 85) {
-        profit = 6.6;
-        console.log(profit);
-      } else if (value >= 80) {
-        profit = 4.95;
-        console.log(profit);
-      } else if (value >= 75) {
-        profit = 3.96;
-        console.log(profit);
-      } else if (value >= 70) {
-        profit = 3.3;
-        console.log(profit);
-      } else if (value >= 65) {
-        profit = 2.82;
-        console.log(profit);
-      } else if (value >= 60) {
-        profit = 2.47;
-        console.log(profit);
-      } else if (value >= 55) {
-        profit = 2.23;
-        console.log(profit);
-      } else if (value >= 50) {
-        profit = 2;
-        console.log(profit);
-      } else if (value >= 45) {
-        profit = 1.8;
-        console.log(profit);
-      } else if (value >= 40) {
-        profit = 1.65;
-        console.log(profit);
-      } else if (value >= 35) {
-        profit = 1.52;
-        console.log(profit);
-      } else if (value >= 30) {
-        profit = 1.41;
-        console.log(profit);
-      } else if (value >= 25) {
-        profit = 1.32;
-        console.log(profit);
-      } else if (value >= 20) {
-        profit = 1.23;
-        console.log(profit);
-      } else if (value >= 15) {
-        profit = 1.16;
-        console.log(profit);
-      } else if (value >= 10) {
-        profit = 1.1;
-        console.log(profit);
-      } else if (value >= 5) {
-        profit = 1.04;
-        console.log(profit);
+    if (diceBetActive) {
+      if (diceNumber > value) {
+        if (value >= 98) {
+          profit = 49.5;
+          console.log(profit);
+        } else if (value >= 97) {
+          profit = 33;
+          console.log(profit);
+        } else if (value >= 96) {
+          profit = 24.75;
+          console.log(profit);
+        } else if (value >= 94) {
+          profit = 16.5;
+          console.log(profit);
+        } else if (value >= 92) {
+          profit = 2;
+          console.log(profit);
+        } else if (value >= 90) {
+          profit = 9.9;
+          console.log(profit);
+        } else if (value >= 85) {
+          profit = 6.6;
+          console.log(profit);
+        } else if (value >= 80) {
+          profit = 4.95;
+          console.log(profit);
+        } else if (value >= 75) {
+          profit = 3.96;
+          console.log(profit);
+        } else if (value >= 70) {
+          profit = 3.3;
+          console.log(profit);
+        } else if (value >= 65) {
+          profit = 2.82;
+          console.log(profit);
+        } else if (value >= 60) {
+          profit = 2.47;
+          console.log(profit);
+        } else if (value >= 55) {
+          profit = 2.23;
+          console.log(profit);
+        } else if (value >= 50) {
+          profit = 2;
+          console.log(profit);
+        } else if (value >= 45) {
+          profit = 1.8;
+          console.log(profit);
+        } else if (value >= 40) {
+          profit = 1.65;
+          console.log(profit);
+        } else if (value >= 35) {
+          profit = 1.52;
+          console.log(profit);
+        } else if (value >= 30) {
+          profit = 1.41;
+          console.log(profit);
+        } else if (value >= 25) {
+          profit = 1.32;
+          console.log(profit);
+        } else if (value >= 20) {
+          profit = 1.23;
+          console.log(profit);
+        } else if (value >= 15) {
+          profit = 1.16;
+          console.log(profit);
+        } else if (value >= 10) {
+          profit = 1.1;
+          console.log(profit);
+        } else if (value >= 5) {
+          profit = 1.04;
+          console.log(profit);
+        }
       }
-    }
-    console.log("value : ", value);
-    console.log("profit : ", profit);
-    if (!profit > 0) {
-      console.log("Profit is greater than 0 on this bet");
-      dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
-    } else {
-      dispatch({
-        type: "SET_PROFIT_FROM_DICE",
-        payload: reduxBetAmount * profit,
-      });
+      console.log("value : ", value);
+      console.log("profit : ", profit);
+      if (!profit > 0) {
+        console.log("Profit is greater than 0 on this bet");
+        dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
+      } else {
+        dispatch({
+          type: "SET_PROFIT_FROM_DICE",
+          payload: reduxBetAmount * profit,
+        });
+      }
     }
   }, [value, diceNumber]);
 
@@ -204,6 +200,7 @@ const Dice = () => {
   // console.log("roll Over is ", rollOver);
   // console.log("dice bet Actice is ", diceBetActive);
   // console.log("showDice Clr is ", showDiceClr);
+  console.log("diceBEtActive is ", diceBetActive);
 
   return (
     <div className="dice">
