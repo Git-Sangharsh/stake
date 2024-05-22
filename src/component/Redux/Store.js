@@ -51,7 +51,11 @@ const Reducer = (state = initialState, action) => {
       return { ...state, diceBetWin: action.payload };
     case "SET_PROFIT_FROM_DICE":
       const newWalletBalanceFromDice = state.walletBalance + action.payload;
-      return { ...state, walletBalance: newWalletBalanceFromDice };
+      return {
+        ...state,
+        walletBalance: parseFloat(newWalletBalanceFromDice.toFixed(2)),
+      };
+
     case "SET_MINE_ENCOUNTER":
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":
