@@ -94,7 +94,7 @@ const DiceBet = () => {
   };
 
   useEffect(() => {
-    console.log("real amount", betAmount * diceEstimatedProfit);
+    // console.log("real amount", betAmount * diceEstimatedProfit);
     setShowEstimatedProfit(betAmount * diceEstimatedProfit);
   }, [betAmount, diceEstimatedProfit]);
 

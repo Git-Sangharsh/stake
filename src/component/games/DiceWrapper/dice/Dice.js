@@ -126,30 +126,57 @@ const Dice = () => {
   // console.log("showDice Clr is ", showDiceClr);
 
   const calculateProfit = (value) => {
-    if (value >= 98) return 49.5;
-    if (value >= 97) return 33;
-    if (value >= 96) return 24.75;
-    if (value >= 94) return 16.5;
-    if (value >= 92) return 12;
-    if (value >= 90) return 9.9;
-    if (value >= 85) return 6.6;
-    if (value >= 80) return 4.95;
-    if (value >= 75) return 3.96;
-    if (value >= 70) return 3.3;
-    if (value >= 65) return 2.82;
-    if (value >= 60) return 2.45;
-    if (value >= 55) return 2.23;
-    if (value >= 50) return 2;
-    if (value >= 45) return 1.8;
-    if (value >= 40) return 1.65;
-    if (value >= 35) return 1.52;
-    if (value >= 30) return 1.41;
-    if (value >= 25) return 1.32;
-    if (value >= 20) return 1.23;
-    if (value >= 15) return 1.16;
-    if (value >= 10) return 1.1;
-    if (value >= 5) return 1.04;
-    return 0;
+    if (!rollOver) {
+      if (value >= 98) return 49.5;
+      if (value >= 97) return 33;
+      if (value >= 96) return 24.75;
+      if (value >= 94) return 16.5;
+      if (value >= 92) return 12;
+      if (value >= 90) return 9.9;
+      if (value >= 85) return 6.6;
+      if (value >= 80) return 4.95;
+      if (value >= 75) return 3.96;
+      if (value >= 70) return 3.3;
+      if (value >= 65) return 2.82;
+      if (value >= 60) return 2.45;
+      if (value >= 55) return 2.23;
+      if (value >= 50) return 2;
+      if (value >= 45) return 1.8;
+      if (value >= 40) return 1.65;
+      if (value >= 35) return 1.52;
+      if (value >= 30) return 1.41;
+      if (value >= 25) return 1.32;
+      if (value >= 20) return 1.23;
+      if (value >= 15) return 1.16;
+      if (value >= 10) return 1.1;
+      if (value >= 5) return 1.04;
+      return 0;
+    } else {
+      if (value >= 95) return 0;
+      if (value >= 90) return 1.1;
+      if (value >= 85) return 1.16;
+      if (value >= 80) return 1.23;
+      if (value >= 75) return 1.32;
+      if (value >= 70) return 1.41;
+      if (value >= 65) return 1.52;
+      if (value >= 60) return 1.65;
+      if (value >= 55) return 1.8;
+      if (value >= 50) return 2;
+      if (value >= 45) return 2.23;
+      if (value >= 40) return 2.45;
+      if (value >= 35) return 2.82;
+      if (value >= 30) return 3.3;
+      if (value >= 25) return 3.96;
+      if (value >= 20) return 4.95;
+      if (value >= 15) return 6.6;
+      if (value >= 10) return 9.9;
+      if (value >= 8) return 12;
+      if (value >= 6) return 16.5;
+      if (value >= 4) return 24.75;
+      if (value >= 3) return 33;
+      if (value >= 0) return 49.5;
+      return 0;
+    }
   };
 
   useEffect(() => {
@@ -161,6 +188,7 @@ const Dice = () => {
   }, [value, dispatch]);
 
   // console.log("estimatedProfit is ", estimatedProfit * reduxBetAmount);
+  console.log("roll over is ", rollOver);
   return (
     <div className="dice">
       <div className="child-dice">
