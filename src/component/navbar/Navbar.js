@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Navbar.css";
-import logo from "../assets/mines.png";
+import logo from "../assets/winwell.png";
 import PersonIcon from "@mui/icons-material/Person";
 import bitCoinImg from "../assets/bitcoin.png";
 import { useDispatch, useSelector } from "react-redux";
