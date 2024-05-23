@@ -12,18 +12,15 @@ const Dice = () => {
 
   const diceBetActive = useSelector((state) => state.diceBetActive);
   const reduxBetAmount = useSelector((state) => state.betAmount);
-  // const diceEstimatedProfit = useSelector((state) => state.diceEstimatedProfit);
-  // const walletBalance = useSelector((state) => state.walletBalance);
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
-  const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
+  const [dicePixelPosition, setDicePixelPosition] = useState(0);
   const [rollOver, setRollOver] = useState(false);
   const [showDiceClr, setShowDiceClr] = useState("");
   const [betInProgress, setBetInProgress] = useState(false);
   const [estimatedProfit, setEstimatedProfit] = useState(0);
 
   const handleValueChange = (e) => {
-    console.log(e.target.value);
     const newValue = parseFloat(e.target.value);
     setValue(newValue);
   };
@@ -37,7 +34,6 @@ const Dice = () => {
     setValue(newValue);
 
     const audio = new Audio(diceAudio);
-    // dice range adjustment volume;
     audio.volume = 0;
     audio.play();
   };
@@ -46,30 +42,26 @@ const Dice = () => {
     const diceFloat = Math.random();
     const fitNumber = (diceFloat * 100).toFixed(2);
     setDiceNumber(parseFloat(fitNumber));
-    // setDiceNumber(0)
 
-    const containerWidth = 1200; // Width of the container
-    // const pixels = (fitNumber / 100) * containerWidth;
+    const containerWidth = 1200;
     const pixels = (fitNumber / 110.2) * containerWidth;
 
-    // Animate the image
     setDicePixelPosition(pixels);
   };
 
-  // Starting Game With DiceBet diceActiceBet is true
   useEffect(() => {
     if (diceBetActive) {
       genrateDiceFloat();
-      setBetInProgress(true); // Start bet processing
+      setBetInProgress(true);
     }
-  }, [diceBetActive]);
+  }, [diceBetActive, rollOver]);
 
   useEffect(() => {
     let timeoutId;
     if (diceBetActive) {
       timeoutId = setTimeout(() => {
         dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
-      }, 500); // Ensure bet processing finishes within 500ms
+      }, 500);
     }
     return () => clearTimeout(timeoutId);
   }, [diceBetActive, dispatch]);
@@ -77,12 +69,11 @@ const Dice = () => {
   useEffect(() => {
     if (betInProgress) {
       let profit = 0;
-      if (diceNumber > value) {
+      if ((!rollOver && diceNumber > value) || (rollOver && diceNumber < value)) {
         setShowDiceClr(true);
         const audio = new Audio(diceBetWinEffect);
         audio.volume = 0.5;
         audio.play();
-
         profit = estimatedProfit;
       } else {
         setShowDiceClr(false);
@@ -97,7 +88,7 @@ const Dice = () => {
         dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
       }
 
-      setBetInProgress(false); // Bet processing finished
+      setBetInProgress(false);
     }
   }, [
     diceNumber,
@@ -106,96 +97,87 @@ const Dice = () => {
     betInProgress,
     dispatch,
     reduxBetAmount,
+    rollOver,
   ]);
 
   const handleRollOver = () => {
     setRollOver(!rollOver);
   };
 
-  // console.log("diceEstimatedProfit ", diceEstimatedProfit);
-  // console.log("walletBalance is ", walletBalance);
-  // console.log("diceNumber: " + diceNumber)
-  // console.log(typeof reduxBetAmount)
-  // console.log(diceNumber)
-  // console.log(value)
-  // console.log("diceNumber is", diceNumber);
-  // console.log("dicePixelPosition is", dicePixelPosition);
-  // console.log("selected Dice range value is ", value);
-  // console.log("roll Over is ", rollOver);
-  // console.log("dice bet Actice is ", diceBetActive);
-  // console.log("showDice Clr is ", showDiceClr);
-
   const calculateProfit = (value) => {
-    if (!rollOver) {
-      if (value >= 98) return 49.5;
-      if (value >= 97) return 33;
-      if (value >= 96) return 24.75;
-      if (value >= 94) return 16.5;
-      if (value >= 92) return 12;
-      if (value >= 90) return 9.9;
-      if (value >= 85) return 6.6;
-      if (value >= 80) return 4.95;
-      if (value >= 75) return 3.96;
-      if (value >= 70) return 3.3;
-      if (value >= 65) return 2.82;
-      if (value >= 60) return 2.45;
-      if (value >= 55) return 2.23;
-      if (value >= 50) return 2;
-      if (value >= 45) return 1.8;
-      if (value >= 40) return 1.65;
-      if (value >= 35) return 1.52;
-      if (value >= 30) return 1.41;
-      if (value >= 25) return 1.32;
-      if (value >= 20) return 1.23;
-      if (value >= 15) return 1.16;
-      if (value >= 10) return 1.1;
-      if (value >= 5) return 1.04;
-      return 0;
-    } else {
-      if (value >= 95) return 0;
-      if (value >= 90) return 1.1;
-      if (value >= 85) return 1.16;
-      if (value >= 80) return 1.23;
-      if (value >= 75) return 1.32;
-      if (value >= 70) return 1.41;
-      if (value >= 65) return 1.52;
-      if (value >= 60) return 1.65;
-      if (value >= 55) return 1.8;
-      if (value >= 50) return 2;
-      if (value >= 45) return 2.23;
-      if (value >= 40) return 2.45;
-      if (value >= 35) return 2.82;
-      if (value >= 30) return 3.3;
-      if (value >= 25) return 3.96;
-      if (value >= 20) return 4.95;
-      if (value >= 15) return 6.6;
-      if (value >= 10) return 9.9;
-      if (value >= 8) return 12;
-      if (value >= 6) return 16.5;
-      if (value >= 4) return 24.75;
-      if (value >= 3) return 33;
-      if (value >= 0) return 49.5;
-      return 0;
-    }
+    if (value >= 98) return 49.5;
+    if (value >= 97) return 33;
+    if (value >= 96) return 24.75;
+    if (value >= 94) return 16.5;
+    if (value >= 92) return 12;
+    if (value >= 90) return 9.9;
+    if (value >= 85) return 6.6;
+    if (value >= 80) return 4.95;
+    if (value >= 75) return 3.96;
+    if (value >= 70) return 3.3;
+    if (value >= 65) return 2.82;
+    if (value >= 60) return 2.45;
+    if (value >= 55) return 2.23;
+    if (value >= 50) return 2;
+    if (value >= 45) return 1.8;
+    if (value >= 40) return 1.65;
+    if (value >= 35) return 1.52;
+    if (value >= 30) return 1.41;
+    if (value >= 25) return 1.32;
+    if (value >= 20) return 1.23;
+    if (value >= 15) return 1.16;
+    if (value >= 10) return 1.1;
+    if (value >= 5) return 1.04;
+    return 0;
+  };
+
+  const handleRollUnderProfit = (value) => {
+    if (value >= 98) return 0;
+    if (value >= 95) return 1.1;
+    if (value >= 90) return 1.16;
+    if (value >= 85) return 1.23;
+    if (value >= 80) return 1.32;
+    if (value >= 75) return 1.41;
+    if (value >= 70) return 1.52;
+    if (value >= 65) return 1.65;
+    if (value >= 60) return 1.8;
+    if (value >= 55) return 1.95;
+    if (value >= 50) return 2;
+    if (value >= 45) return 2.45;
+    if (value >= 40) return 2.82;
+    if (value >= 35) return 3.3;
+    if (value >= 30) return 3.96;
+    if (value >= 25) return 4.95;
+    if (value >= 20) return 6.6;
+    if (value >= 15) return 9.9;
+    if (value >= 10) return 12;
+    if (value >= 8) return 16.5;
+    if (value >= 6) return 24.75;
+    if (value >= 4) return 33;
+    if (value >= 3) return 49.5;
+    return 49.5;
   };
 
   useEffect(() => {
-    setEstimatedProfit(calculateProfit(parseFloat(value).toFixed(2)));
-    dispatch({
-      type: "SET_DICE_ESTIMATED_PROFIT",
-      payload: calculateProfit(value),
-    });
-  }, [value, dispatch]);
-
+    if (!rollOver) {
+      setEstimatedProfit(calculateProfit(value));
+      dispatch({
+        type: "SET_DICE_ESTIMATED_PROFIT",
+        payload: calculateProfit(value),
+      });
+    } else {
+      setEstimatedProfit(handleRollUnderProfit(value));
+      dispatch({
+        type: "SET_DICE_ESTIMATED_PROFIT",
+        payload: handleRollUnderProfit(value),
+      });
+    }
+  }, [value, dispatch, rollOver]);
   // console.log("estimatedProfit is ", estimatedProfit * reduxBetAmount);
-  console.log("roll over is ", rollOver);
+  // console.log("roll over is ", rollOver);
   return (
     <div className="dice">
       <div className="child-dice">
-        {/* <div className="parent-dice-range-numbers">
-          <h6 className="dice-range-numbers">0</h6>
-          <h6 className="dice-range-numbers">100</h6>
-        </div> */}
         <div className="parent-dice-range">
           <input
             className={rollOver ? "dice-range-green" : "dice-range"}
@@ -235,7 +217,7 @@ const Dice = () => {
             {/* change color here of dice bet */}
             <input
               className={
-                showDiceClr
+                !showDiceClr
                   ? "inner-parent-roll-over-input show-dice-clr-red"
                   : "inner-parent-roll-over-input show-dice-clr-green"
               }
@@ -257,7 +239,7 @@ const Dice = () => {
                 handleRollOver();
               }}
             >
-              {rollOver ? "49.50" : "50.50"}
+              {rollOver ? "50.50" : "50.50"}
               <RotateRightIcon />
             </button>
           </div>
