@@ -7,22 +7,24 @@ import betSoundEffect from "../../../audio/betSoundEffect.mp3";
 const DiceBet = () => {
   const dispatch = useDispatch();
   const walletBalance = useSelector((state) => state.walletBalance);
-  const reduxBetActive = useSelector((state) => state.betActive);
+  // const reduxBetActive = useSelector((state) => state.betActive);
   const diceBetActice = useSelector((state) => state.diceBetActive);
   const betProfit = useSelector((state) => state.profitFromBet).toFixed(2);
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
+  const diceEstimatedProfit = useSelector((state) => state.diceEstimatedProfit);
 
   // const [betAmount, setBetAmount] = useState(() => {
   //   const amount =  localStorage.getItem("betAmount") || "0.00";
   //   console.log("initial bet amount is ", amount);
   //   return amount
   // });
-  const [betAmount, setBetAmount] = useState(1);
+  const [betAmount, setBetAmount] = useState(10);
   const reduxBetAmount = useSelector((state) => state.betAmount);
+  const [showEstimatedProfit, setShowEstimatedProfit] = useState("669");
 
   const handleBetAmount = (e) => {
-    const input = parseInt(e.target.value)
+    const input = parseInt(e.target.value);
     if (!isNaN(input) || input === "") {
       setBetAmount(input);
       // dispatch({ type: "SET_BET_AMOUNT", payload: input });
@@ -91,6 +93,10 @@ const DiceBet = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("real amount", betAmount * diceEstimatedProfit);
+    setShowEstimatedProfit(betAmount * diceEstimatedProfit);
+  }, [betAmount, diceEstimatedProfit]);
 
   // console.log("diceBet js dice bet active is ", diceBetActice);
   // console.log("redux Bet Amount is ", reduxBetAmount);
@@ -147,7 +153,7 @@ const DiceBet = () => {
         <h6 className="show-profit-text">{betProfit} BTC</h6>
       </div>
       <div className="profit-amount-div">
-        <h4>{betProfit}</h4>
+        <h4>{showEstimatedProfit}</h4>
         <img src={rupeesSvg} alt="" className="rupeesSvg" />
       </div>
     </div>

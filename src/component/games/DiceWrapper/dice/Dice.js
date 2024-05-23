@@ -12,12 +12,15 @@ const Dice = () => {
 
   const diceBetActive = useSelector((state) => state.diceBetActive);
   const reduxBetAmount = useSelector((state) => state.betAmount);
+  // const diceEstimatedProfit = useSelector((state) => state.diceEstimatedProfit);
   // const walletBalance = useSelector((state) => state.walletBalance);
   const [value, setValue] = useState(50);
   const [diceNumber, setDiceNumber] = useState("0.00");
   const [dicePixelPosition, setDicePixelPosition] = useState(0); // Define dicePixelPosition state
   const [rollOver, setRollOver] = useState(false);
   const [showDiceClr, setShowDiceClr] = useState("");
+  const [betInProgress, setBetInProgress] = useState(false);
+  const [estimatedProfit, setEstimatedProfit] = useState(0);
 
   const handleValueChange = (e) => {
     console.log(e.target.value);
@@ -57,151 +60,107 @@ const Dice = () => {
   useEffect(() => {
     if (diceBetActive) {
       genrateDiceFloat();
+      setBetInProgress(true); // Start bet processing
     }
   }, [diceBetActive]);
 
-  // if diceBetActive is true setting it is to false under 0.5 sec
   useEffect(() => {
     let timeoutId;
     if (diceBetActive) {
       timeoutId = setTimeout(() => {
         dispatch({ type: "SET_DICE_BET_ACTIVE", payload: false });
-      }, 0);
+      }, 500); // Ensure bet processing finishes within 500ms
     }
     return () => clearTimeout(timeoutId);
-  }, [diceBetActive]);
+  }, [diceBetActive, dispatch]);
 
   useEffect(() => {
-    if (!rollOver && diceNumber > value) {
-      // console.log("congrats u win the bet");
-      setShowDiceClr(true);
-      if (diceBetActive) {
+    if (betInProgress) {
+      let profit = 0;
+      if (diceNumber > value) {
+        setShowDiceClr(true);
         const audio = new Audio(diceBetWinEffect);
         audio.volume = 0.5;
         audio.play();
-      }
-    } else if (!(!rollOver && diceNumber > value)) {
-      // console.log("value is Greater than the diceNumeber");
-      setShowDiceClr(false);
-      if (diceBetActive) {
-        const audio = new Audio(diceBetWinEffect);
-        audio.volume = 0.5;
-        audio.play();
-      }
-    }
 
-    // if (diceBetActive) {
-    //   getRewardMultiplier();
-    // }
-  }, [diceNumber, value, diceBetActive]);
+        profit = estimatedProfit;
+      } else {
+        setShowDiceClr(false);
+      }
+
+      if (profit > 0) {
+        dispatch({
+          type: "SET_PROFIT_FROM_DICE",
+          payload: reduxBetAmount * profit,
+        });
+      } else {
+        dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
+      }
+
+      setBetInProgress(false); // Bet processing finished
+    }
+  }, [
+    diceNumber,
+    value,
+    estimatedProfit,
+    betInProgress,
+    dispatch,
+    reduxBetAmount,
+  ]);
 
   const handleRollOver = () => {
     setRollOver(!rollOver);
   };
 
-  useEffect(() => {
-    let profit = 0;
-    if (diceBetActive) {
-      if (diceNumber > value) {
-        if (value >= 98) {
-          profit = 49.5;
-          console.log(profit);
-        } else if (value >= 97) {
-          profit = 33;
-          console.log(profit);
-        } else if (value >= 96) {
-          profit = 24.75;
-          console.log(profit);
-        } else if (value >= 94) {
-          profit = 16.5;
-          console.log(profit);
-        } else if (value >= 92) {
-          profit = 2;
-          console.log(profit);
-        } else if (value >= 90) {
-          profit = 9.9;
-          console.log(profit);
-        } else if (value >= 85) {
-          profit = 6.6;
-          console.log(profit);
-        } else if (value >= 80) {
-          profit = 4.95;
-          console.log(profit);
-        } else if (value >= 75) {
-          profit = 3.96;
-          console.log(profit);
-        } else if (value >= 70) {
-          profit = 3.3;
-          console.log(profit);
-        } else if (value >= 65) {
-          profit = 2.82;
-          console.log(profit);
-        } else if (value >= 60) {
-          profit = 2.47;
-          console.log(profit);
-        } else if (value >= 55) {
-          profit = 2.23;
-          console.log(profit);
-        } else if (value >= 50) {
-          profit = 2;
-          console.log(profit);
-        } else if (value >= 45) {
-          profit = 1.8;
-          console.log(profit);
-        } else if (value >= 40) {
-          profit = 1.65;
-          console.log(profit);
-        } else if (value >= 35) {
-          profit = 1.52;
-          console.log(profit);
-        } else if (value >= 30) {
-          profit = 1.41;
-          console.log(profit);
-        } else if (value >= 25) {
-          profit = 1.32;
-          console.log(profit);
-        } else if (value >= 20) {
-          profit = 1.23;
-          console.log(profit);
-        } else if (value >= 15) {
-          profit = 1.16;
-          console.log(profit);
-        } else if (value >= 10) {
-          profit = 1.1;
-          console.log(profit);
-        } else if (value >= 5) {
-          profit = 1.04;
-          console.log(profit);
-        }
-      }
-      console.log("value : ", value);
-      console.log("profit : ", profit);
-      if (!profit > 0) {
-        console.log("Profit is greater than 0 on this bet");
-        dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
-      } else {
-        dispatch({
-          type: "SET_PROFIT_FROM_DICE",
-          payload: reduxBetAmount * profit,
-        });
-      }
-    }
-  }, [value, diceNumber]);
-
+  // console.log("diceEstimatedProfit ", diceEstimatedProfit);
   // console.log("walletBalance is ", walletBalance);
   // console.log("diceNumber: " + diceNumber)
   // console.log(typeof reduxBetAmount)
   // console.log(diceNumber)
   // console.log(value)
-  // console.log("animation is", showAnimation);
   // console.log("diceNumber is", diceNumber);
   // console.log("dicePixelPosition is", dicePixelPosition);
   // console.log("selected Dice range value is ", value);
   // console.log("roll Over is ", rollOver);
   // console.log("dice bet Actice is ", diceBetActive);
   // console.log("showDice Clr is ", showDiceClr);
-  console.log("diceBEtActive is ", diceBetActive);
 
+  const calculateProfit = (value) => {
+    if (value >= 98) return 49.5;
+    if (value >= 97) return 33;
+    if (value >= 96) return 24.75;
+    if (value >= 94) return 16.5;
+    if (value >= 92) return 12;
+    if (value >= 90) return 9.9;
+    if (value >= 85) return 6.6;
+    if (value >= 80) return 4.95;
+    if (value >= 75) return 3.96;
+    if (value >= 70) return 3.3;
+    if (value >= 65) return 2.82;
+    if (value >= 60) return 2.45;
+    if (value >= 55) return 2.23;
+    if (value >= 50) return 2;
+    if (value >= 45) return 1.8;
+    if (value >= 40) return 1.65;
+    if (value >= 35) return 1.52;
+    if (value >= 30) return 1.41;
+    if (value >= 25) return 1.32;
+    if (value >= 20) return 1.23;
+    if (value >= 15) return 1.16;
+    if (value >= 10) return 1.1;
+    if (value >= 5) return 1.04;
+    return 0;
+  };
+
+  useEffect(() => {
+    setEstimatedProfit(calculateProfit(parseFloat(value).toFixed(2)));
+    dispatch({
+      type: "SET_DICE_ESTIMATED_PROFIT",
+      payload: calculateProfit(value),
+    });
+  }, [value, dispatch]);
+
+  // console.log("estimatedProfit is ", estimatedProfit * reduxBetAmount);
   return (
     <div className="dice">
       <div className="child-dice">
@@ -288,10 +247,6 @@ const Dice = () => {
         </div>
         {/* <button onClick={genrateDiceFloat}>Click To Roll Dice</button> */}
       </div>
-      {/* <div className="parent-hexagon-img">
-        <img src={hexagon} alt="" />
-        <h1 className="dice-appear-number">{diceNumber}</h1>
-      </div> */}
     </div>
   );
 };

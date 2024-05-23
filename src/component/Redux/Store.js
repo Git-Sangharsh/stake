@@ -12,6 +12,7 @@ const initialState = {
   profitBox: false,
   diceBetActive: false,
   diceBetWin: false,
+  diceEstimatedProfit: 0,
   mineEncounter: false,
   mineCounter: 5,
   cashOutAmount: 0.0,
@@ -49,6 +50,8 @@ const Reducer = (state = initialState, action) => {
       return { ...state, diceBetActive: action.payload };
     case "SET_DICE_BET_WIN":
       return { ...state, diceBetWin: action.payload };
+    case "SET_DICE_ESTIMATED_PROFIT":
+      return { ...state, diceEstimatedProfit: action.payload };
     case "SET_PROFIT_FROM_DICE":
       const newWalletBalanceFromDice = state.walletBalance + action.payload;
       return {
