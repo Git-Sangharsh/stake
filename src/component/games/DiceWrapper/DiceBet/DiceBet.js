@@ -14,13 +14,7 @@ const DiceBet = () => {
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
   const diceEstimatedProfit = useSelector((state) => state.diceEstimatedProfit);
 
-  // const [betAmount, setBetAmount] = useState(() => {
-  //   const amount =  localStorage.getItem("betAmount") || "0.00";
-  //   console.log("initial bet amount is ", amount);
-  //   return amount
-  // });
   const [betAmount, setBetAmount] = useState(10);
-  const reduxBetAmount = useSelector((state) => state.betAmount);
   const [showEstimatedProfit, setShowEstimatedProfit] = useState("669");
 
   const handleBetAmount = (e) => {
@@ -38,7 +32,7 @@ const DiceBet = () => {
 
   const handleIncreaseByOneTwoX = () => {
     const halfAmount = parseFloat(betAmount) / 2;
-    if (halfAmount < 1) { 
+    if (halfAmount < 1) {
       setBetAmount(0);
     } else {
       setBetAmount(halfAmount);
