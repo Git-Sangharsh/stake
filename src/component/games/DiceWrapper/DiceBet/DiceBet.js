@@ -37,40 +37,16 @@ const DiceBet = () => {
   };
 
   const handleIncreaseByOneTwoX = () => {
-    if (!diceBetActice) {
-      // const multipliedAmount = parseFloat(betAmount) * 1.5;
-      const multipliedAmount = parseFloat(reduxBetAmount) * 1.5;
-      if (multipliedAmount > walletBalance) {
-        console.log("not enough balance in wallet");
-        // setBetAmount(walletBalance);
-        dispatch({ type: "SET_BET_AMOUNT", payload: walletBalance });
-      } else {
-        // setBetAmount(multipliedAmount.toFixed(2));
-        dispatch({
-          type: "SET_BET_AMOUNT",
-          payload: multipliedAmount.toFixed(2),
-        });
-      }
-    }
+    const multipliedAmount = parseFloat(betAmount) / 2;
+    setBetAmount(multipliedAmount);
+    console.log(multipliedAmount)
   };
 
   const handleIncreaseByTwoX = () => {
-    if (!diceBetActice) {
-      // const multipliedAmount = parseFloat(betAmount) * 2;
-      const multipliedAmount = parseFloat(reduxBetAmount) * 2;
-      if (multipliedAmount > walletBalance) {
-        console.log("not enough balance in wallet");
-        // setBetAmount(walletBalance);
-        dispatch({ type: "SET_BET_AMOUNT", payload: walletBalance });
-      } else {
-        // setBetAmount(multipliedAmount.toFixed(2));
-        dispatch({
-          type: "SET_BET_AMOUNT",
-          payload: multipliedAmount.toFixed(2),
-        });
-      }
-    }
+    const multipliedAmount = parseFloat(betAmount) * 2;
+    setBetAmount(multipliedAmount);
   };
+
 
   // console.log("betAmount: ", betAmount)
   // console.log("walletBalance: ", walletBalance)
