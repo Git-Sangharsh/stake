@@ -73,7 +73,10 @@
   border-radius: 100px;
   padding: 10px;
 }
-
+/* ! this is important to manage the width of range */
+/* .dice-range{
+  width: 1170px !important;
+} */
 .dice-range::-webkit-slider-thumb,
 .dice-range-green::-webkit-slider-thumb {
   -webkit-appearance: none;

@@ -69,7 +69,10 @@ const Dice = () => {
   useEffect(() => {
     if (betInProgress) {
       let profit = 0;
-      if ((!rollOver && diceNumber > value) || (rollOver && diceNumber < value)) {
+      if (
+        (!rollOver && diceNumber > value) ||
+        (rollOver && diceNumber < value)
+      ) {
         setShowDiceClr(true);
         const audio = new Audio(diceBetWinEffect);
         audio.volume = 0.5;
