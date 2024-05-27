@@ -37,15 +37,16 @@ const DiceBet = () => {
     } else {
       setBetAmount(halfAmount);
     }
-    console.log(halfAmount);
   };
 
   const handleIncreaseByTwoX = () => {
     const multipliedAmount = parseFloat(betAmount) * 2;
     if (multipliedAmount > walletBalance) {
       setBetAmount(walletBalance);
+    } else {
+      setBetAmount(multipliedAmount);
     }
-    setBetAmount(walletBalance);
+    console.log(multipliedAmount);
   };
 
   // console.log("betAmount: ", betAmount)
