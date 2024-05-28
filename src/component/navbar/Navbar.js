@@ -23,7 +23,7 @@ const Navbar = () => {
   const login = useSelector((state) => state.login);
   const viewRegister = useSelector((state) => state.viewRegister);
   const viewSignIn = useSelector((state) =>  state.viewSignin)
-  const userEmail = useSelector((state) => state.userEmail);
+  // const userEmail = useSelector((state) => state.userEmail);
   // console.log("userEmail", userEmail);
   // console.log("viewRegister is ", viewRegister);
 

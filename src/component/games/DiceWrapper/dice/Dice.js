@@ -19,6 +19,7 @@ const Dice = () => {
   const [showDiceClr, setShowDiceClr] = useState("");
   const [betInProgress, setBetInProgress] = useState(false);
   const [estimatedProfit, setEstimatedProfit] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(1200);
 
   const handleValueChange = (e) => {
     const newValue = parseFloat(e.target.value);
@@ -43,8 +44,9 @@ const Dice = () => {
     const fitNumber = (diceFloat * 100).toFixed(2);
     setDiceNumber(parseFloat(fitNumber));
 
-    const containerWidth = 1200;
+    // const containerWidth = 1200;
     const pixels = (fitNumber / 110.2) * containerWidth;
+
 
     setDicePixelPosition(pixels);
   };
@@ -178,6 +180,22 @@ const Dice = () => {
   }, [value, dispatch, rollOver]);
   // console.log("estimatedProfit is ", estimatedProfit * reduxBetAmount);
   // console.log("roll over is ", rollOver);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1024) {
+        console.log("width is small");
+        setContainerWidth(580)
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="dice">
       <div className="child-dice">
