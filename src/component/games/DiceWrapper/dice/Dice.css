@@ -144,7 +144,7 @@
   /* border: 6px solid red; */
 }
 
-.parent-assume-img{
+.parent-assume-img {
   /* border: 1px solid red; */
   width: 100%;
   position: relative;
@@ -226,32 +226,44 @@
   cursor: pointer;
 }
 
-
-.show-dice-clr-red{
+.show-dice-clr-red {
   color: red;
   border: 2px solid red;
   transition: 1s ease;
 }
 
-.show-dice-clr-green{
+.show-dice-clr-green {
   color: rgb(15, 205, 15);
   border: 2px solid rgb(15, 205, 15);
   transition: 1s ease;
-
 }
 
-@media (max-width: 1024px){
-  .diceWrapper{
-    margin: 10px;
+@media (max-width: 1024px) {
+  .diceWrapper {
+    margin: 10px 0px;
+    padding: 90px 0px !important;
+    height: 100vh;
   }
-  .dice{
+  .dice {
     width: 600px;
     height: 400px !important;
     margin: 0;
-    border: 2px solid white;
+    /* border: 2px solid white; */
   }
 
-  .child-dice{
+  .child-dice {
     justify-content: center;
+  }
+  .parent-assume-img {
+    width: 580px;
+    padding: 0px 10px ;
+    box-sizing: border-box;
+  }
+  .assume-img {
+    top: -70px;
+  }
+
+  .hexagon-img{
+    width: 40px;
   }
 }

@@ -185,7 +185,9 @@ const Dice = () => {
     const handleResize = () => {
       if (window.innerWidth <= 1024) {
         console.log("width is small");
-        setContainerWidth(580)
+        setContainerWidth(570)
+      } else{
+        setContainerWidth(1200)
       }
     };
 
@@ -194,7 +196,9 @@ const Dice = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [containerWidth]);
+
+  console.log("containerWidth is ", containerWidth)
 
   return (
     <div className="dice">
