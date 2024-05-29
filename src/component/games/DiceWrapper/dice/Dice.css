@@ -302,7 +302,7 @@
     padding-bottom: 20px !important;
   }
 
-  body{
+  body {
     overflow: scroll !important;
     overflow: visible !important;
   }
@@ -314,5 +314,33 @@
   }
   .assume-img {
     top: -75px;
+  }
+}
+
+@media (max-width: 765px) {
+  .dice {
+    width: 480px;
+    /* border: 2px solid white; */
+  }
+
+  .parent-assume-img {
+    width: 420px;
+    border: 2px solid white;
+  }
+}
+
+@media (max-width: 500px) {
+  .dice {
+    width: 400px;
+    /* border: 2px solid white; */
+  }
+
+  .parent-assume-img {
+    width: 0px;
+    /* border: 2px solid white; */
+    margin: 0 !important;
+    margin-left: 10px !important;
+    align-self: flex-start; /* Align to the start of the flex container */
+
   }
 }

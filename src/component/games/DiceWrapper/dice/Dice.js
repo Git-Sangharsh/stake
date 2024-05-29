@@ -182,15 +182,21 @@ const Dice = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 911 && window.innerWidth <= 1024) {
+      if (window.innerWidth >= 910 && window.innerWidth <= 1024) {
         console.log("condition one");
         setContainerWidth(570);
-      } else if (window.innerWidth >= 769 && window.innerWidth <= 910) {
+      } else if (window.innerWidth >= 805 && window.innerWidth <= 910) {
         console.log("condition two");
         setContainerWidth(470);
-      } else if (window.innerWidth >= 0 && window.innerWidth <= 768) {
+      } else if (window.innerWidth >= 766 && window.innerWidth <= 806) {
         console.log("condition Three");
         setContainerWidth(720);
+      } else if (window.innerWidth >= 501 && window.innerWidth <= 765) {
+        console.log("condition Four");
+        setContainerWidth(420);
+      } else if (window.innerWidth >= 300 && window.innerWidth <= 500) {
+        console.log("condition Five");
+        setContainerWidth(310);
       } else {
         console.log("condition Last");
         setContainerWidth(1200);

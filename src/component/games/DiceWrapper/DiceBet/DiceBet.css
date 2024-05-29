@@ -14,3 +14,18 @@
         width: 750px;
     }
 }
+
+@media (max-width: 765px){
+    .dice-bet{
+        height: 100%;
+        width: 480px;
+    }
+
+}
+
+@media ( max-width : 500px){
+    .dice-bet{
+        height: 100%;
+        width: 400px;
+    }
+}
