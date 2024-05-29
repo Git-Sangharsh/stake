@@ -185,11 +185,14 @@ const Dice = () => {
       if (window.innerWidth >= 911 && window.innerWidth <= 1024) {
         console.log("condition one");
         setContainerWidth(570);
-      } else if (window.innerWidth <= 910) {
+      } else if (window.innerWidth >= 769 && window.innerWidth <= 910) {
         console.log("condition two");
         setContainerWidth(470);
+      } else if (window.innerWidth >= 0 && window.innerWidth <= 768) {
+        console.log("condition Three");
+        setContainerWidth(720);
       } else {
-        console.log("condition three");
+        console.log("condition Last");
         setContainerWidth(1200);
       }
     };

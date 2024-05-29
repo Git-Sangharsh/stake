@@ -11,5 +11,7 @@
         justify-content: center;
         flex-direction: column-reverse;
         /* height: 100%; */
+        /* padding-bottom: 20px; */
+
     }
 }
