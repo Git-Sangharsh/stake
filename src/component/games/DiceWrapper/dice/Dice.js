@@ -47,7 +47,6 @@ const Dice = () => {
     // const containerWidth = 1200;
     const pixels = (fitNumber / 110.2) * containerWidth;
 
-
     setDicePixelPosition(pixels);
   };
 
@@ -183,11 +182,15 @@ const Dice = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1024) {
-        console.log("width is small");
-        setContainerWidth(570)
-      } else{
-        setContainerWidth(1200)
+      if (window.innerWidth >= 911 && window.innerWidth <= 1024) {
+        console.log("condition one");
+        setContainerWidth(570);
+      } else if (window.innerWidth <= 910) {
+        console.log("condition two");
+        setContainerWidth(470);
+      } else {
+        console.log("condition three");
+        setContainerWidth(1200);
       }
     };
 
@@ -198,7 +201,7 @@ const Dice = () => {
     };
   }, [containerWidth]);
 
-  console.log("containerWidth is ", containerWidth)
+  console.log("containerWidth is ", containerWidth);
 
   return (
     <div className="dice">

@@ -71,13 +71,10 @@ const DiceBet = () => {
   };
 
   useEffect(() => {
-    // console.log("real amount", betAmount * diceEstimatedProfit);
     setShowEstimatedProfit(betAmount * diceEstimatedProfit);
   }, [betAmount, diceEstimatedProfit]);
 
-  // console.log("diceBet js dice bet active is ", diceBetActice);
-  // console.log("redux Bet Amount is ", reduxBetAmount);
-  // console.log("redux betActive is ", reduxBetActive);
+
 
   return (
     // <div className="bet limbo-bet dice-bet">
