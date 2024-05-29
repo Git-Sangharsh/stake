@@ -7,3 +7,10 @@
         height: 400px;
     }
 }
+
+@media ( max-width : 805px){
+    .dice-bet{
+        height: 100%;
+        border: 2px solid red;
+    }
+}

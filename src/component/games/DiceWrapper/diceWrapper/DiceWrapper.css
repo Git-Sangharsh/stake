@@ -5,3 +5,11 @@
     padding-top: 130px;
 }
 
+@media (max-width: 805px){
+    .diceWrapper{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+        /* height: 100%; */
+    }
+}
