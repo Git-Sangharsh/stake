@@ -206,12 +206,15 @@ const Dice = () => {
       }
     };
 
+    // Call handleResize immediately to set initial width
+    handleResize();
+
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [containerWidth]);
+  }, []);
 
   console.log("containerWidth is ", containerWidth);
 
