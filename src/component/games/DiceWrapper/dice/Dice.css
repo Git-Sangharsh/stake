@@ -312,4 +312,7 @@
     padding-top: 20px;
     height: 100%;
   }
+  .assume-img {
+    top: -75px;
+  }
 }
