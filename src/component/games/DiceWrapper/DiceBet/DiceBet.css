@@ -25,7 +25,12 @@
 
 @media ( max-width : 500px){
     .dice-bet{
-        height: 100%;
         width: 400px;
     }
 }
+
+@media (max-width: 410px) {
+    .dice-bet {
+      width: 300px;
+    }
+  }

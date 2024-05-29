@@ -325,7 +325,7 @@
 
   .parent-assume-img {
     width: 420px;
-    border: 2px solid white;
+    /* border: 2px solid white; */
   }
 }
 
@@ -341,6 +341,26 @@
     margin: 0 !important;
     margin-left: 10px !important;
     align-self: flex-start; /* Align to the start of the flex container */
+  }
+}
+
+@media (max-width: 410px) {
+  .dice {
+    width: 300px;
+    /* border: 2px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 290px !important;
+  }
+
+  .child-dice{
+    height: 100%;
+  }
+  .dice-range::-webkit-slider-thumb{
+    width: 20px;
+    height: 20px;
+  margin-top: -6.5px; /* Adjust thumb position */
 
   }
 }
