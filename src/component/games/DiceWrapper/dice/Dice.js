@@ -177,8 +177,7 @@ const Dice = () => {
       });
     }
   }, [value, dispatch, rollOver]);
-  // console.log("estimatedProfit is ", estimatedProfit * reduxBetAmount);
-  // console.log("roll over is ", rollOver);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -199,7 +198,6 @@ const Dice = () => {
       }
     };
 
-    // Call handleResize immediately to set initial width
     handleResize();
 
     window.addEventListener("resize", handleResize);
