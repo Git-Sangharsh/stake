@@ -24,7 +24,7 @@ const Wallet = () => {
   const [showLoader, setShowLoader] = useState(false);
   const [showLoaderWhileSetAmount, setshowLoaderWhileSetAmount] =
     useState(false);
-
+  const [minimumDeposit, setMinimumDeposit] = useState(false);
   useEffect(() => {
     if (viewWallet) {
       document.body.classList.add("walletOpen");
@@ -54,14 +54,19 @@ const Wallet = () => {
   };
 
   const handleAddMoneyInWallet = () => {
-    setshowLoaderWhileSetAmount(true);
-    setTimeout(() => {
-      setshowLoaderWhileSetAmount(false);
+    if (selectedAmount >= 500) {
+      setshowLoaderWhileSetAmount(true);
       setTimeout(() => {
-        const amountToAdd = parseFloat(selectedAmount);
-        dispatch({ type: "SET_WALLET_BALANCE", payload: amountToAdd });
-      }, 0);
-    }, 2000);
+        setshowLoaderWhileSetAmount(false);
+        setTimeout(() => {
+          const amountToAdd = parseFloat(selectedAmount);
+          dispatch({ type: "SET_WALLET_BALANCE", payload: amountToAdd });
+        }, 0);
+      }, 2000);
+    } else {
+      console.log("this thing is not working");
+      setMinimumDeposit(true);
+    }
   };
 
   // console.log('setShowLoader is', showLoaderWhileSetAmount)
@@ -92,11 +97,22 @@ const Wallet = () => {
     }
   }, [selectedAmount, AmountBtn]);
 
+  useEffect(() => {
+    if (minimumDeposit) {
+      const timer = setTimeout(() => {
+        setMinimumDeposit(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [minimumDeposit]);
+
   // console.log("amount btn is ", AmountBtn)
   // console.log('selectedAmount length is ', selectedAmount.length);
 
   // console.log("routeDeposit is", routeDeposit);
-
+  // console.log("Selected Amount is", selectedAmount);
+  console.log("minmimDeposit is", minimumDeposit);
   return (
     <AnimatePresence>
       {viewWallet && (
@@ -189,9 +205,21 @@ const Wallet = () => {
                       onClick={handleAmountToZero}
                     />
                   </div>
-                  <h3 className="minimum-text">
-                    Minimum: ₹500 | Maximum: ₹49,999
-                  </h3>
+
+                  {minimumDeposit ? (
+                    <motion.h3
+                      className="minimum-text"
+                      initial={{ color: "#aab0b5" }}
+                      animate={{ color: "#ff0000" }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      Minimum: ₹500 | Maximum: ₹49,999
+                    </motion.h3>
+                  ) : (
+                    <h3 className="minimum-text">
+                      Minimum: ₹500 | Maximum: ₹49,999
+                    </h3>
+                  )}
                   {AmountBtn && (
                     <div className="final-amount">
                       <h5 className="final-amount-header">Total</h5>

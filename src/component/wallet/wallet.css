@@ -248,6 +248,10 @@
   font-size: 15px;
 }
 
+.minimum-text-state{
+  color: red;
+}
+
 .set-amount {
   text-align: center;
   width: 100%;
