@@ -35,7 +35,7 @@ const Dice = () => {
     setValue(newValue);
 
     const audio = new Audio(diceAudio);
-    audio.volume = 0;
+    audio.volume = 0.5;
     audio.play();
   };
 
