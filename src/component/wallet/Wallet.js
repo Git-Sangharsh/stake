@@ -112,7 +112,7 @@ const Wallet = () => {
 
   // console.log("routeDeposit is", routeDeposit);
   // console.log("Selected Amount is", selectedAmount);
-  console.log("minmimDeposit is", minimumDeposit);
+  // console.log("minmimDeposit is", minimumDeposit);
   return (
     <AnimatePresence>
       {viewWallet && (
