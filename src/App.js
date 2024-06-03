@@ -11,13 +11,17 @@ import Keno from "./component/games/kenoWrapper/keno/Keno";
 import Register from "./component/authentication/register/Register";
 import Signin from "./component/authentication/signin/Signin";
 import DiceWrapper from "./component/games/DiceWrapper/diceWrapper/diceWrapper";
+import Statistics from "./component/statistics/Statistics";
 
 const App = () => {
+
+
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Wallet />
+        <Statistics />
         <Routes>
           <Route
             path="/"

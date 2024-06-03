@@ -76,7 +76,6 @@ const DiceBet = () => {
     setShowEstimatedProfit(betAmount * diceEstimatedProfit);
   }, [betAmount, diceEstimatedProfit]);
 
-  // console.log("bet Counter is ", betCounter);
 
   return (
     // <div className="bet limbo-bet dice-bet">
