@@ -22,6 +22,7 @@ const initialState = {
   viewSignin: false,
   userEmail: "",
   login: false,
+  betCounter: 0,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -87,6 +88,8 @@ const Reducer = (state = initialState, action) => {
       return { ...state, userEmail: action.payload };
     case "SET_LOG_IN":
       return { ...state, login: action.payload };
+    case "SET_BET_COUNTER":
+      return { ...state, betCounter: state.betCounter + 1 };
     default:
       return state;
   }
