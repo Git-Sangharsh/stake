@@ -11,6 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -22,7 +23,7 @@ const Navbar = () => {
   const viewProfileDropDown = useSelector((state) => state.viewProfileDropDown);
   const login = useSelector((state) => state.login);
   const viewRegister = useSelector((state) => state.viewRegister);
-  const viewSignIn = useSelector((state) =>  state.viewSignin)
+  const viewSignIn = useSelector((state) => state.viewSignin);
   // const userEmail = useSelector((state) => state.userEmail);
   // console.log("userEmail", userEmail);
   // console.log("viewRegister is ", viewRegister);
@@ -38,7 +39,6 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch({ type: "SET_LOG_IN", payload: false });
     dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false });
-
   };
 
   // console.log("log out is ", login)
@@ -75,11 +75,11 @@ const Navbar = () => {
 
   const handleNavRegister = () => {
     dispatch({ type: "SET_VIEW_REGISTER", payload: true });
-  }
+  };
 
   const handleNavSignin = () => {
-    dispatch({type: "SET_VIEW_SIGNIN", payload: !viewSignIn  })
-  }
+    dispatch({ type: "SET_VIEW_SIGNIN", payload: !viewSignIn });
+  };
 
   return (
     <div className="parent-nav">
@@ -136,8 +136,12 @@ const Navbar = () => {
             onClick={handleRouteLimbo}
           />
           <div className="nav-up-in-btn">
-            <h3 className="nav-login" onClick={handleNavSignin}>Sign In</h3>
-            <h3 className="nav-register" onClick={handleNavRegister}>Register</h3>
+            <h3 className="nav-login" onClick={handleNavSignin}>
+              Sign In
+            </h3>
+            <h3 className="nav-register" onClick={handleNavRegister}>
+              Register
+            </h3>
           </div>
         </div>
       )}
@@ -154,6 +158,10 @@ const Navbar = () => {
             <li className="profile-dropdown-li">
               <ManageAccountsIcon className="wallet-icon profile-dropdown-li-icon-color" />
               PROFILE
+            </li>
+            <li className="profile-dropdown-li">
+              <AnalyticsIcon className="wallet-icon profile-dropdown-li-icon-color" />
+              STATISTICS
             </li>
             <li className="profile-dropdown-li" onClick={viewWalletOnClick}>
               <WalletIcon className="wallet-icon profile-dropdown-li-icon-color" />
