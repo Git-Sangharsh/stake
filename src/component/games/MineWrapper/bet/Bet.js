@@ -15,7 +15,6 @@ const Bet = () => {
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
   const mineEncounter = useSelector((state) => state.mineEncounter);
   const betActive = useSelector((state) => state.betActive);
-  const betCounter = useSelector((state) => state.betCounter);
   // console.log("mineEncouter is ", mineEncounter);
   // console.log("active is", reduxBetActive);
   // console.log("profitFrom bet is", betProfit);
@@ -126,7 +125,6 @@ const Bet = () => {
   }, [betAmount]);
 
   // console.log("bet Active is ", betActive);
-  console.log("bet Counter is ", betCounter);
 
   useEffect(() => {
     if (betActive) {

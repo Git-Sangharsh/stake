@@ -27,7 +27,6 @@ const Limbo = () => {
     if (betActive) {
       generateRandomNumber();
       setStateRed(false);
-
     }
   }, [betActive, dispatch]);
 

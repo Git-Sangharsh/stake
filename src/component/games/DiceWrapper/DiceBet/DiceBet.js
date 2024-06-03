@@ -13,6 +13,7 @@ const DiceBet = () => {
   const profitMultiplier = useSelector((state) => state.profitMultiplier);
   const notEnoughBalance = useSelector((state) => state.notEnoughBalance);
   const diceEstimatedProfit = useSelector((state) => state.diceEstimatedProfit);
+  const betCounter = useSelector((state) => state.betCounter);
 
   const [betAmount, setBetAmount] = useState(10);
   const [showEstimatedProfit, setShowEstimatedProfit] = useState("669");
@@ -67,6 +68,7 @@ const DiceBet = () => {
       dispatch({ type: "SET_BET_AMOUNT", payload: betAmount });
       dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
+      dispatch({ type: "SET_BET_COUNTER" });
     }
   };
 
@@ -74,7 +76,7 @@ const DiceBet = () => {
     setShowEstimatedProfit(betAmount * diceEstimatedProfit);
   }, [betAmount, diceEstimatedProfit]);
 
-
+  // console.log("bet Counter is ", betCounter);
 
   return (
     // <div className="bet limbo-bet dice-bet">

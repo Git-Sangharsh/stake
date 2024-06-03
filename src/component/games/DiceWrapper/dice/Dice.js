@@ -207,7 +207,7 @@ const Dice = () => {
     };
   }, []);
 
-  console.log("containerWidth is ", containerWidth);
+  // console.log("containerWidth is ", containerWidth);
 
   return (
     <div className="dice">
