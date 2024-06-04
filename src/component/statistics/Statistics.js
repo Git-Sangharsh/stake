@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const Statistics = () => {
@@ -26,7 +26,7 @@ const Statistics = () => {
       .catch((err) =>
         console.log("error found on the Statistics Counter ", err)
       );
-  }, [betCounter]);
+  }, [betCounter, betCounterWin, betCounterLoss]);
 
   return <div></div>;
 };

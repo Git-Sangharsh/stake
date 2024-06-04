@@ -98,6 +98,7 @@ const Reducer = (state = initialState, action) => {
     case "SET_BET_COUNTER_LOSS": {
       return { ...state, betCounterLoss: state.betCounterLoss + 1 };
     }
+
     default:
       return state;
   }

@@ -178,7 +178,6 @@ const Dice = () => {
     }
   }, [value, dispatch, rollOver]);
 
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 910 && window.innerWidth <= 1024) {
@@ -206,6 +205,16 @@ const Dice = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    if (diceBetActive) {
+      if (showDiceClr) {
+        dispatch({ type: "SET_BET_COUNTER_WIN"})
+      } else {
+        dispatch({ type: "SET_BET_COUNTER_LOSS" });
+      }
+    }
+  }, [diceBetActive, showDiceClr]);
 
   // console.log("containerWidth is ", containerWidth);
 

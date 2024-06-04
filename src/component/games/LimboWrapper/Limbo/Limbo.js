@@ -68,10 +68,13 @@ const Limbo = () => {
             payload: betAmount * targetMultiplier,
           });
           setBetWin(true);
+          dispatch({ type: "SET_BET_COUNTER_WIN"})
+          // console.log("bet Win")
         } else {
-          console.log("Bet Failed Successfully")
+          dispatch({ type: "SET_BET_COUNTER_LOSS"})
           setStateRed(true);
           setBetWin(false);
+          // console.log("Bet Failed Successfully")
         }
         updateEndNumbers(endNumber);
       }
