@@ -7,11 +7,13 @@ const Statistics = () => {
   const betCounter = useSelector((state) => state.betCounter);
   const betCounterWin = useSelector((state) => state.betCounterWin);
   const betCounterLoss = useSelector((state) => state.betCounterLoss);
+  // const betCounterWageredAmount = useSelector((state) => state.betCounterWageredAmount)
 
   // console.log("userEmail is ", userEmail);
   // console.log("totalBet is ", betCounter);
-  console.log("betCounterWin is", betCounterWin);
-  console.log("betCounterLoss is", betCounterLoss);
+  // console.log("betCounterWin is", betCounterWin);
+  // console.log("betCounterLoss is", betCounterLoss);
+  // console.log("betCounterWageredAmount is", betCounterWageredAmount);
 
   useEffect(() => {
     const betCounterObj = {

@@ -25,6 +25,7 @@ const initialState = {
   betCounter: 0,
   betCounterWin: 0,
   betCounterLoss: 0,
+  betCounterWageredAmount: 0,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -97,6 +98,12 @@ const Reducer = (state = initialState, action) => {
     }
     case "SET_BET_COUNTER_LOSS": {
       return { ...state, betCounterLoss: state.betCounterLoss + 1 };
+    }
+    case "SET_BET_COUNTER_WAGERED_AMOUNT": {
+      return {
+        ...state,
+        betCounterWageredAmount: state.betCounterWageredAmount + action.payload,
+      };
     }
 
     default:
