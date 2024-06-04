@@ -31,10 +31,7 @@ const Bet = () => {
   });
   const [stateMineSet, setStateMineSet] = useState(1);
 
-  // const rewardValue = [
-  //   1.24, 1.54, 2.0, 2.58, 3.39, 4.52, 6.14, 8.5, 12.04, 17.52, 26.17, 40.87,
-  //   66.41, 113.85, 184.83, 275.82, 380.94, 532, 748, 803.77,
-  // ];
+
   const selectMineNumb = Array.from({ length: 24 }, (_, index) => index + 1);
 
   // console.log(selectMineNumb)
@@ -54,7 +51,6 @@ const Bet = () => {
     if (!reduxBetActive) {
       const multipliedAmount = parseFloat(betAmount) * 1.5;
       if (multipliedAmount > walletBalance) {
-        console.log("not enough balance in wallet");
         setBetAmount(walletBalance);
       } else {
         setBetAmount(multipliedAmount.toFixed(2));
@@ -103,8 +99,9 @@ const Bet = () => {
   const handleCashout = () => {
     dispatch({ type: "SET_BET_ACTIVE", payload: false });
     dispatch({ type: "SET_CASH_OUT_AMOUNT" });
-    // dispatch({ type: "SET_PROFIT_MULTIPLIER", payload: 0.0 });
+    dispatch({ type: "SET_BET_COUNTER_WIN"})
     const audio = new Audio(cashoutSoundEffect);
+    console.log("hello world");
     audio.volume = 0.5;
     audio.play();
     if (!mineEncounter && reduxBetActive) {

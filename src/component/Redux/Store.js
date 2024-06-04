@@ -23,6 +23,8 @@ const initialState = {
   userEmail: "",
   login: false,
   betCounter: 0,
+  betCounterWin: 0,
+  betCounterLoss: 0,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -90,6 +92,12 @@ const Reducer = (state = initialState, action) => {
       return { ...state, login: action.payload };
     case "SET_BET_COUNTER":
       return { ...state, betCounter: state.betCounter + 1 };
+    case "SET_BET_COUNTER_WIN": {
+      return { ...state, betCounterWin: state.betCounterWin + 1 };
+    }
+    case "SET_BET_COUNTER_LOSS": {
+      return { ...state, betCounterLoss: state.betCounterLoss + 1 };
+    }
     default:
       return state;
   }

@@ -19,20 +19,11 @@ const Mine = () => {
   useEffect(() => {
     if (mineEncounter) {
       dispatch({ type: "SET_BET_ACTIVE", payload: false });
+      dispatch({ type: "SET_BET_COUNTER_LOSS"})
     }
   }, [dispatch, mineEncounter]);
 
-  // useEffect(() => {
-  //   if (profitBox) {
-  //     const timer = setTimeout(() => {
-  //       dispatch({ type: "SET_PROFIT_BOX", payload: false });
-  //     }, 3000);
 
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [dispatch, profitBox]); // D
-
-  // console.log("betActive is ", reduxBetActive);
   // console.log('mineEncounter is ', mineEncounter)
   const reduxBetAmount = useSelector((state) => state.betAmount);
   // console.log( "active is" , reduxBetActive)
