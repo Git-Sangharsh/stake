@@ -105,6 +105,7 @@ const Mine = () => {
           audio.play();
         }
       }
+      
     } else {
       console.log("pls place a bet first");
     }

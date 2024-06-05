@@ -101,7 +101,6 @@ const Bet = () => {
     dispatch({ type: "SET_CASH_OUT_AMOUNT" });
     dispatch({ type: "SET_BET_COUNTER_WIN"})
     const audio = new Audio(cashoutSoundEffect);
-    console.log("hello world");
     audio.volume = 0.5;
     audio.play();
     if (!mineEncounter && reduxBetActive) {
@@ -126,6 +125,7 @@ const Bet = () => {
   useEffect(() => {
     if (betActive) {
       dispatch({ type: "SET_BET_COUNTER" });
+      dispatch({ type: "SET_BET_COUNTER_WAGERED_AMOUNT", payload: betAmount});
     }
   }, [betActive]);
   return (

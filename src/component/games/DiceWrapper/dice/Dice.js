@@ -88,9 +88,11 @@ const Dice = () => {
           type: "SET_PROFIT_FROM_DICE",
           payload: reduxBetAmount * profit,
         });
-      } else {
-        dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
       }
+      //  else {
+      //   dispatch({ type: "SET_BET_AMOUNT", payload: 0 });
+      //   console.log("setting Bet Amount to zero")
+      // }
 
       setBetInProgress(false);
     }

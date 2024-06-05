@@ -70,6 +70,7 @@ const LimboBet = () => {
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
       dispatch({ type: "SET_PROFIT_BOX", payload: false });
       dispatch({ type: "SET_BET_COUNTER" });
+      dispatch({ type: "SET_BET_COUNTER_WAGERED_AMOUNT", payload: betAmount})
     }
   };
 

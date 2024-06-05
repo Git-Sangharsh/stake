@@ -69,6 +69,7 @@ const DiceBet = () => {
       dispatch({ type: "SET_DICE_BET_ACTIVE", payload: true });
       dispatch({ type: "SET_NOT_ENOUGH_BALANCE", payload: false });
       dispatch({ type: "SET_BET_COUNTER" });
+      dispatch({ type: "SET_BET_COUNTER_WAGERED_AMOUNT", payload: betAmount})
     }
   };
 
