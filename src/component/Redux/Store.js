@@ -40,7 +40,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         betAmount: action.payload,
-        walletBalance: newWalletBalance,
+        walletBalance: newWalletBalance.toFixed(2),
       };
     case "SET_BET_ACTIVE":
       return { ...state, betActive: action.payload };
