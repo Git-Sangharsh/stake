@@ -29,7 +29,7 @@ const Statistics = () => {
       .catch((err) =>
         console.log("error found on the Statistics Counter ", err)
       );
-  }, [userEmail, betCounter, betCounterWin, betCounterLoss, betCounterWagered ]);
+  }, [userEmail, betCounter, betCounterWin, betCounterLoss, betCounterWagered, ]);
 
   return <div></div>;
 };
