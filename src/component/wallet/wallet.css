@@ -43,11 +43,23 @@
 }
 
 .wallet-title {
-  color: #fffff2;
   font-size: 22px;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;
+  color: #000008 ;
+  color: #fffff2 !important;
+
+}
+.green{
+  background-color: #1fff20 !important;
+  cursor: pointer;
+
+}
+
+.green:hover{
+  background-color: #19d019 !important;
+
 }
 
 .wallet-icon,

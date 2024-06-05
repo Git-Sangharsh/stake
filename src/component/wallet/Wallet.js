@@ -22,9 +22,12 @@ const Wallet = () => {
   const [routeDeposit, setRouteDeposit] = useState(false);
   const [AmountBtn, setAmountBtn] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
+  const [selectedAmount, setSelectedAmount] = useState(0);
   const [showLoaderWhileSetAmount, setshowLoaderWhileSetAmount] =
     useState(false);
   const [minimumDeposit, setMinimumDeposit] = useState(false);
+  const [showDone, setShowDone] = useState(false);
+
   useEffect(() => {
     if (viewWallet) {
       document.body.classList.add("walletOpen");
@@ -40,6 +43,7 @@ const Wallet = () => {
   const handleCloseWallet = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: false });
     setRouteDeposit(false);
+    setShowDone(false);
   };
 
   const handleRouteDeposit = () => {
@@ -62,6 +66,7 @@ const Wallet = () => {
           const amountToAdd = parseFloat(selectedAmount);
           dispatch({ type: "SET_WALLET_BALANCE", payload: amountToAdd });
         }, 0);
+        setShowDone(true);
       }, 2000);
     } else {
       console.log("this thing is not working");
@@ -71,7 +76,6 @@ const Wallet = () => {
 
   // console.log('setShowLoader is', showLoaderWhileSetAmount)
 
-  const [selectedAmount, setSelectedAmount] = useState(0);
 
   const handleAmountClick = (amount) => {
     setSelectedAmount(amount);
@@ -240,14 +244,27 @@ const Wallet = () => {
                       />
                     </div>
                   ) : (
-                    <button
-                      className={`set-amount ${
-                        AmountBtn ? "before-set-amount" : ""
-                      }`}
-                      onClick={handleAddMoneyInWallet}
-                    >
-                      Set amount
-                    </button>
+                    <>
+                      {showDone ? (
+                        <button
+                          className={`set-amount ${
+                            AmountBtn ? "before-set-amount green" : ""
+                          }`}
+                          onClick={handleCloseWallet}
+                        >
+                          Done
+                        </button>
+                      ) : (
+                        <button
+                          className={`set-amount ${
+                            AmountBtn ? "before-set-amount" : ""
+                          }`}
+                          onClick={handleAddMoneyInWallet}
+                        >
+                          Set amount
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
               ) : (

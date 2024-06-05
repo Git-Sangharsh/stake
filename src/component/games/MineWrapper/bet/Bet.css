@@ -169,6 +169,11 @@ li {
   overflow-y: auto; /* or overflow-y: hidden; depending on your requirements */
 }
 
+.green{
+  background-color: #1fff20;
+}
+
+
 .bet-btn {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
