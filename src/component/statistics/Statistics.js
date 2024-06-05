@@ -11,7 +11,7 @@ const Statistics = () => {
   const login = useSelector((state) => state.login);
 
   // console.log("userEmail is ", userEmail);
-  // console.log("totalBet is ", betCounter);
+  // console.log("betCounter is ", betCounter);
   // console.log("betCounterWin is", betCounterWin);
   // console.log("betCounterLoss is", betCounterLoss);
   // console.log("betCounterWagered is", betCounterWagered);

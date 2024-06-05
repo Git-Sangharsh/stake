@@ -21,7 +21,7 @@ const App = () => {
       <div className="App">
         <Navbar />
         <Wallet />
-        {/* <Statistics /> */}
+        <Statistics />
         <Routes>
           <Route
             path="/"
