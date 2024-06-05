@@ -65,7 +65,7 @@ const Register = () => {
       // Send userEmail to the backend
       axios
         .post("https://stakeserver.onrender.com/verifyemail", registerData)
-        // .post("http://localhost:5000/verifyemail", { registerData })
+        // .post("http://localhost:5000/verifyemail", registerData )
         .then((response) => {
           if (response.data.success) {
             setShowVerificationInput(true);
@@ -183,7 +183,7 @@ const Register = () => {
             <div className="register-wrapper">
               <div className="register-header">
                 <h4 className="signin-header">
-                  <LoginIcon className="wallet-icon close-icon" /> Sign In
+                  <LoginIcon className="wallet-icon close-icon" /> Register
                 </h4>
                 <CloseIcon
                   className="user-icon close-icon"
