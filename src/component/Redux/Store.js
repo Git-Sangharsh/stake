@@ -3,7 +3,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const initialState = {
-  betCounterWageredAmount: 0,
+  betCounterWagered: 0,
   viewWallet: false,
   walletBalance: 0,
   betActive: false,
@@ -101,10 +101,10 @@ const Reducer = (state = initialState, action) => {
     }
     case "SET_BET_COUNTER_WAGERED_AMOUNT": {
       const payload = Number(action.payload); // Ensure payload is a number
-      const NumberBetCounterWageredAmount = Number(state.betCounterWageredAmount)
+      const NumberbetCounterWagered = Number(state.betCounterWagered)
       return {
         ...state,
-        betCounterWageredAmount: NumberBetCounterWageredAmount + payload,
+        betCounterWagered: NumberbetCounterWagered + payload,
       };
     }
 
