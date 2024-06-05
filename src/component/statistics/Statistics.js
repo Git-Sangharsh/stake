@@ -7,7 +7,7 @@ const Statistics = () => {
   const betCounter = useSelector((state) => state.betCounter);
   const betCounterWin = useSelector((state) => state.betCounterWin);
   const betCounterLoss = useSelector((state) => state.betCounterLoss);
-  const betCounterWagered = useSelector((state) => state.betCounterWagered)
+  const betCounterWagered = useSelector((state) => state.betCounterWagered);
 
   // console.log("userEmail is ", userEmail);
   // console.log("totalBet is ", betCounter);
@@ -21,7 +21,7 @@ const Statistics = () => {
       betCounter: betCounter,
       betCounterWin: betCounterWin,
       betCounterLoss: betCounterLoss,
-      betCounterWagered: betCounterWagered
+      betCounterWagered: betCounterWagered,
     };
     axios
       .post("https://stakeserver.onrender.com/betcounter", betCounterObj)
@@ -29,7 +29,7 @@ const Statistics = () => {
       .catch((err) =>
         console.log("error found on the Statistics Counter ", err)
       );
-  }, [betCounter, betCounterWin, betCounterLoss]);
+  }, [userEmail, betCounter, betCounterWin, betCounterLoss, betCounterWagered ]);
 
   return <div></div>;
 };
