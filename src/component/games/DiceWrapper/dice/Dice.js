@@ -192,8 +192,10 @@ const Dice = () => {
         setContainerWidth(420);
       } else if (window.innerWidth >= 411 && window.innerWidth <= 500) {
         setContainerWidth(310);
-      } else if (window.innerWidth >= 300 && window.innerWidth <= 410) {
+      } else if (window.innerWidth >= 376 && window.innerWidth <= 410) {
         setContainerWidth(220);
+      } else if (window.innerWidth >= 300 && window.innerWidth <= 375) {
+        setContainerWidth(280);
       } else {
         setContainerWidth(1200);
       }
@@ -211,7 +213,7 @@ const Dice = () => {
   useEffect(() => {
     if (diceBetActive) {
       if (showDiceClr) {
-        dispatch({ type: "SET_BET_COUNTER_WIN"})
+        dispatch({ type: "SET_BET_COUNTER_WIN" });
       } else {
         dispatch({ type: "SET_BET_COUNTER_LOSS" });
       }
