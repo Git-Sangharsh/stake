@@ -31,12 +31,13 @@
 
 @media (max-width: 410px) {
     .dice-bet {
-      width: 300px;
+      width: 380px;
     }
   }
 
   @media (max-width: 375px) {
     .dice-bet {
-        width: 350px;
+        width: 320px;
+
       }
   }

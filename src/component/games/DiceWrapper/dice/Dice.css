@@ -346,8 +346,7 @@
 
 @media (max-width: 410px) {
   .dice {
-    width: 300px;
-    /* border: 2px solid white; */
+    width: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,11 +361,25 @@
     height: 20px;
     margin-top: -6.5px; /* Adjust thumb position */
   }
+  .parent-assume-img {
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
+  .assume-img{
+    /* border: 2px solid white; */
+    width: 330px;
+    position: absolute;
+    left: -10px;
+  }
 }
 
 @media (max-width: 375px) {
   .dice {
-    width: 350px;
+    width: 320px;
     /* border: 2px solid white; */
     display: flex;
     align-items: center;
@@ -376,7 +389,7 @@
 
   .child-dice {
     height: 100%;
-    width: 100%;
+    width: 320px;
   }
 
   .parent-assume-img {
