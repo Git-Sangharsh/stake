@@ -70,15 +70,20 @@ const Reducer = (state = initialState, action) => {
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":
       return { ...state, mineCounter: action.payload };
-    case "SET_CASH_OUT_AMOUNT":
-      const updatedWalletBalance = (
-        state.walletBalance + state.profitFromBet
-      ).toFixed(2);
-      return {
-        ...state,
-        walletBalance: updatedWalletBalance,
-        profitFromBet: 0,
-      };
+      case "SET_CASH_OUT_AMOUNT":
+        // Ensure both walletBalance and profitFromBet are numbers
+        const walletBalance = parseFloat(state.walletBalance);
+        const profitFromBet = parseFloat(state.profitFromBet);
+
+        // Add them and convert the result to a fixed decimal number
+        const updatedWalletBalance = (walletBalance + profitFromBet).toFixed(2);
+
+        return {
+          ...state,
+          walletBalance: parseFloat(updatedWalletBalance),  // Convert back to number
+          profitFromBet: 0,
+        };
+
     case "SET_NOT_ENOUGH_BALANCE":
       return { ...state, notEnoughBalance: action.payload };
     case "SET_PROFIT_FROM_LIMBO":
