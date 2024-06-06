@@ -378,9 +378,9 @@
     height: 100%;
     width: 100%;
   }
-  
+
   .parent-assume-img {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -388,7 +388,7 @@
     position: relative;
   }
   .assume-img{
-    border: 2px solid white;
+    /* border: 2px solid white; */
     width: 300px;
     position: absolute;
     left: -10px;
