@@ -44,10 +44,10 @@ const Signin = () => {
 
         console.log("Statistics Are", response.data);
 
-        // dispatch({ type: "SET_BET_COUNTER_VALUE", payload: response.data.betCounter });
-        // dispatch({ type: "SET_BET_COUNTER_WIN_VALUE", payload: response.data.betCounterWin });
-        // dispatch({ type: "SET_BET_COUNTER_LOSS_VALUE", payload: response.data.betCounterLoss });
-        // dispatch({ type: "SET_BET_COUNTER_WAGERED_VALUE", payload: response.data.betCounterWagered });
+        dispatch({ type: "SET_BET_COUNTER_VALUE", payload: response.data.betCounter });
+        dispatch({ type: "SET_BET_COUNTER_WIN_VALUE", payload: response.data.betCounterWin });
+        dispatch({ type: "SET_BET_COUNTER_LOSS_VALUE", payload: response.data.betCounterLoss });
+        dispatch({ type: "SET_BET_COUNTER_WAGERED_VALUE", payload: response.data.betCounterWagered });
       }
     } catch (err) {
       console.log("error found on the sign in post ", err);
