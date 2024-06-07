@@ -56,30 +56,29 @@ const Reducer = (state = initialState, action) => {
       return { ...state, diceBetWin: action.payload };
     case "SET_DICE_ESTIMATED_PROFIT":
       return { ...state, diceEstimatedProfit: action.payload };
-      case "SET_PROFIT_FROM_DICE":
-        const currentWalletBalance = parseFloat(state.walletBalance);
-        const profitFromDice = parseFloat(action.payload);
-        const newWalletBalanceFromDice = currentWalletBalance + profitFromDice;
-        return {
-          ...state,
-          walletBalance: parseFloat(newWalletBalanceFromDice.toFixed(2)),
-        };
-
+    case "SET_PROFIT_FROM_DICE":
+      const currentWalletBalance = parseFloat(state.walletBalance);
+      const profitFromDice = parseFloat(action.payload);
+      const newWalletBalanceFromDice = currentWalletBalance + profitFromDice;
+      return {
+        ...state,
+        walletBalance: parseFloat(newWalletBalanceFromDice.toFixed(2)),
+      };
 
     case "SET_MINE_ENCOUNTER":
       return { ...state, mineEncounter: action.payload };
     case "SET_MINE_COUNTER":
       return { ...state, mineCounter: action.payload };
-      case "SET_CASH_OUT_AMOUNT":
-        const walletBalance = parseFloat(state.walletBalance);
-        const profitFromBet = parseFloat(state.profitFromBet);
-        const updatedWalletBalance = (walletBalance + profitFromBet).toFixed(2);
+    case "SET_CASH_OUT_AMOUNT":
+      const walletBalance = parseFloat(state.walletBalance);
+      const profitFromBet = parseFloat(state.profitFromBet);
+      const updatedWalletBalance = (walletBalance + profitFromBet).toFixed(2);
 
-        return {
-          ...state,
-          walletBalance: parseFloat(updatedWalletBalance),  // Convert back to number
-          profitFromBet: 0,
-        };
+      return {
+        ...state,
+        walletBalance: parseFloat(updatedWalletBalance), // Convert back to number
+        profitFromBet: 0,
+      };
 
     case "SET_NOT_ENOUGH_BALANCE":
       return { ...state, notEnoughBalance: action.payload };
@@ -112,7 +111,18 @@ const Reducer = (state = initialState, action) => {
         betCounterWagered: NumberbetCounterWagered + payload,
       };
     }
-
+    case "GET_SET_BET_COUNTER":
+      return { ...state, betCounter: action.payload };
+    case "GET_SET_BET_COUNTER_WIN":
+      return { ...state, betCounterWin: action.payload };
+    case "GET_SET_BET_COUNTER_LOSS":
+      return { ...state, betCounterLoss: action.payload };
+    case "GET_SET_BET_COUNTER_WAGERED_AMOUNT": {
+      return { ...state, betCounterWagered: action.payload };
+    }
+    case "RESET_BET_COUNTER_ON_LOGOUT": {
+      return { ...state, betCounter: 0, betCounterWin: 0, betCounterLoss: 0, betCounterWagered: 0}
+    }
     default:
       return state;
   }

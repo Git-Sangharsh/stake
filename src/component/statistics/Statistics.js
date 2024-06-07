@@ -15,7 +15,7 @@ const Statistics = () => {
   // console.log("betCounterWin is", betCounterWin);
   // console.log("betCounterLoss is", betCounterLoss);
   // console.log("betCounterWagered is", betCounterWagered);
-  console.log("login is ", login);
+  // console.log("login is ", login);
 
   useEffect(() => {
     if (login) {

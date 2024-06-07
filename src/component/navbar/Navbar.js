@@ -39,6 +39,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch({ type: "SET_LOG_IN", payload: false });
     dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false });
+    dispatch({ type: "RESET_BET_COUNTER_ON_LOGOUT"});
   };
 
   // console.log("log out is ", login)

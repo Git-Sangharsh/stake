@@ -26,22 +26,32 @@ const Signin = () => {
   const handlePassInput = (e) => {
     setPassInput(e.target.value);
   };
-  const handleSigninBtn = () => {
+  const handleSigninBtn = async () => {
     const userSignObj = {
       sendSignEmail: emailInput,
       sendSignPass: passInput,
     };
-    axios
-      // .post("http://localhost:5000/signin", userSignObj)
-      .post("https://stakeserver.onrender.com/signin", userSignObj)
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data.status === true) {
-          console.log("login succesful");
-          dispatch({ type: "SET_LOG_IN", payload: true });
-        }
-      })
-      .catch((err) => console.log("error found on the sign in post ", err));
+
+    try {
+      const res = await axios.post("https://stakeserver.onrender.com/signin", userSignObj);
+      if (res.data.status === true) {
+        console.log("login successful");
+        dispatch({ type: "SET_LOG_IN", payload: true });
+
+        const response = await axios.get("https://stakeserver.onrender.com/betCounter", {
+          params: { userEmail: emailInput } // Note: Use an object for params
+        });
+
+        console.log("Statistics Are", response.data);
+
+        // dispatch({ type: "SET_BET_COUNTER_VALUE", payload: response.data.betCounter });
+        // dispatch({ type: "SET_BET_COUNTER_WIN_VALUE", payload: response.data.betCounterWin });
+        // dispatch({ type: "SET_BET_COUNTER_LOSS_VALUE", payload: response.data.betCounterLoss });
+        // dispatch({ type: "SET_BET_COUNTER_WAGERED_VALUE", payload: response.data.betCounterWagered });
+      }
+    } catch (err) {
+      console.log("error found on the sign in post ", err);
+    }
   };
 
   const login = useSelector((state) => state.login);
