@@ -115,7 +115,7 @@
   width: 100%;
 }
 .profile-dropdown {
-  z-index: 1000;
+  z-index: 995;
   margin-top: 60px;
   position: fixed;
   right: 20px;

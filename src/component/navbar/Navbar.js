@@ -151,10 +151,10 @@ const Navbar = () => {
         {viewProfileDropDown && (
           <motion.div
             className="profile-dropdown"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, ease: "easeIn" }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: "-100%", filter: "blur(1px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.3, ease: "easeIn" }}
+            exit={{ opacity: 0, y: "-100%", filter: "blur(1px)" }}
           >
             <li className="profile-dropdown-li">
               <ManageAccountsIcon className="wallet-icon profile-dropdown-li-icon-color" />
