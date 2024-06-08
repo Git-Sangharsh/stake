@@ -180,7 +180,7 @@
 
 @media (max-width: 907px){
   .home {
-    padding-top: 90px;
+    padding-top: 30px !important;
     height: 100%;
   }
   .poster-child {

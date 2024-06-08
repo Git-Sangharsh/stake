@@ -12,7 +12,7 @@
 
 @media (max-width: 2560px) {
   .mine-wrapper {
-    padding-top: 130px;
+    padding-top: 30px !important;
     overflow: hidden;
   }
 }

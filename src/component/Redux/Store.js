@@ -20,6 +20,7 @@ const initialState = {
   viewProfileDropDown: true,
   viewRegister: false,
   viewSignin: false,
+  viewStatistics: false,
   userEmail: "",
   login: false,
   betCounter: 0,
@@ -91,6 +92,8 @@ const Reducer = (state = initialState, action) => {
       return { ...state, viewRegister: action.payload };
     case "SET_VIEW_SIGNIN":
       return { ...state, viewSignin: action.payload };
+    case "SET_VIEW_STATISTICS":
+      return { ...state, viewStatistics: action.payload };
     case "SET_USER_EMAIL":
       return { ...state, userEmail: action.payload };
     case "SET_LOG_IN":
@@ -130,7 +133,7 @@ const Reducer = (state = initialState, action) => {
         betCounterWin: 0,
         betCounterLoss: 0,
         betCounterWagered: 0,
-        walletBalance: 0
+        walletBalance: 0,
       };
     }
     default:

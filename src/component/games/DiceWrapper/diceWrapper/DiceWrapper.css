@@ -1,17 +1,17 @@
-.diceWrapper{
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
-    padding-top: 130px;
+.diceWrapper {
+  margin-top: 00px;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
 }
 
-@media (max-width: 805px){
-    .diceWrapper{
-        align-items: center;
-        justify-content: center;
-        flex-direction: column-reverse;
-        /* height: 100%; */
-        /* padding-bottom: 20px; */
-
-    }
+@media (max-width: 805px) {
+  .diceWrapper {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    margin-top: 10px !important;
+    /* height: 100%; */
+    /* padding-bottom: 20px; */
+  }
 }

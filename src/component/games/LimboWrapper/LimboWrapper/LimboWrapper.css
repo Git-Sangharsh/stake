@@ -14,7 +14,7 @@
 
 @media (max-width: 2560px) {
   .limbo-wrapper {
-    padding-top: 130px;
+    padding-top: 30px !important;
     overflow: hidden;
   }
 }

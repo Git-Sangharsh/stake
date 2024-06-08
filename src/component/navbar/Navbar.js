@@ -24,12 +24,17 @@ const Navbar = () => {
   const login = useSelector((state) => state.login);
   const viewRegister = useSelector((state) => state.viewRegister);
   const viewSignIn = useSelector((state) => state.viewSignin);
+  const viewStatistics = useSelector((state) => state.viewStatistics);
   // const userEmail = useSelector((state) => state.userEmail);
   // console.log("userEmail", userEmail);
-  // console.log("viewRegister is ", viewRegister);
+  // console.log("viewStatistics is ", viewStatistics);
 
   const viewWalletOnClick = () => {
     dispatch({ type: "SET_VIEW_WALLET", payload: !viewWallet });
+  };
+
+  const viewStatisticsOnClick = () => {
+    dispatch({ type: "SET_VIEW_STATISTICS", payload: !viewStatistics });
   };
 
   const viewRegisterOnClick = () => {
@@ -39,7 +44,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch({ type: "SET_LOG_IN", payload: false });
     dispatch({ type: "SET_VIEW_PROFILE_DROPDOWN", payload: false });
-    dispatch({ type: "RESET_BET_COUNTER_ON_LOGOUT"});
+    dispatch({ type: "RESET_BET_COUNTER_ON_LOGOUT" });
   };
 
   // console.log("log out is ", login)
@@ -160,7 +165,7 @@ const Navbar = () => {
               <ManageAccountsIcon className="wallet-icon profile-dropdown-li-icon-color" />
               PROFILE
             </li>
-            <li className="profile-dropdown-li">
+            <li className="profile-dropdown-li" onClick={viewStatisticsOnClick}>
               <AnalyticsIcon className="wallet-icon profile-dropdown-li-icon-color" />
               STATISTICS
             </li>
@@ -181,7 +186,7 @@ const Navbar = () => {
             )}
             <li className="profile-dropdown-li" onClick={closeProfileDropDown}>
               <CloseIcon className="wallet-icon profile-dropdown-li-icon-color" />{" "}
-              CLOSE{" "}
+              CLOSE
             </li>
           </motion.div>
         )}
