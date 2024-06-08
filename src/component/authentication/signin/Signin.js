@@ -41,13 +41,12 @@ const Signin = () => {
         const response = await axios.get("https://stakeserver.onrender.com/betCounter", {
           params: { userEmail: emailInput } // Note: Use an object for params
         });
-
         console.log("Statistics Are", response.data);
-
-        dispatch({ type: "SET_BET_COUNTER_VALUE", payload: response.data.betCounter });
-        dispatch({ type: "SET_BET_COUNTER_WIN_VALUE", payload: response.data.betCounterWin });
-        dispatch({ type: "SET_BET_COUNTER_LOSS_VALUE", payload: response.data.betCounterLoss });
-        dispatch({ type: "SET_BET_COUNTER_WAGERED_VALUE", payload: response.data.betCounterWagered });
+        dispatch({ type: "GET_SET_WALLETBALANCE", payload: response.data.walletBalance });
+        dispatch({ type: "GET_SET_BET_COUNTER", payload: response.data.betCounter });
+        dispatch({ type: "GET_SET_BET_COUNTER_WIN", payload: response.data.betCounterWin });
+        dispatch({ type: "GET_SET_BET_COUNTER_LOSS", payload: response.data.betCounterLoss });
+        dispatch({ type: "GET_SET_BET_COUNTER_WAGERED_AMOUNT", payload: response.data.betCounterWagered });
       }
     } catch (err) {
       console.log("error found on the sign in post ", err);

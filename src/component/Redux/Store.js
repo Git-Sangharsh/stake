@@ -120,8 +120,18 @@ const Reducer = (state = initialState, action) => {
     case "GET_SET_BET_COUNTER_WAGERED_AMOUNT": {
       return { ...state, betCounterWagered: action.payload };
     }
+    case "GET_SET_WALLETBALANCE": {
+      return { ...state, walletBalance: action.payload };
+    }
     case "RESET_BET_COUNTER_ON_LOGOUT": {
-      return { ...state, betCounter: 0, betCounterWin: 0, betCounterLoss: 0, betCounterWagered: 0}
+      return {
+        ...state,
+        betCounter: 0,
+        betCounterWin: 0,
+        betCounterLoss: 0,
+        betCounterWagered: 0,
+        walletBalance: 0
+      };
     }
     default:
       return state;

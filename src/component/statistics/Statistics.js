@@ -8,7 +8,9 @@ const Statistics = () => {
   const betCounterWin = useSelector((state) => state.betCounterWin);
   const betCounterLoss = useSelector((state) => state.betCounterLoss);
   const betCounterWagered = useSelector((state) => state.betCounterWagered);
+
   const login = useSelector((state) => state.login);
+  const walletBalance = useSelector((state) => state.walletBalance);
 
   // console.log("userEmail is ", userEmail);
   // console.log("betCounter is ", betCounter);
@@ -16,6 +18,7 @@ const Statistics = () => {
   // console.log("betCounterLoss is", betCounterLoss);
   // console.log("betCounterWagered is", betCounterWagered);
   // console.log("login is ", login);
+  console.log("walletBalance is ", walletBalance);
 
   useEffect(() => {
     if (login) {
@@ -25,6 +28,7 @@ const Statistics = () => {
         betCounterWin: betCounterWin,
         betCounterLoss: betCounterLoss,
         betCounterWagered: betCounterWagered,
+        walletBalance: Number(walletBalance)
       };
       axios
         .post("https://stakeserver.onrender.com/betcounter", betCounterObj)

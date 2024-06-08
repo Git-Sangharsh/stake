@@ -76,7 +76,6 @@ const Wallet = () => {
 
   // console.log('setShowLoader is', showLoaderWhileSetAmount)
 
-
   const handleAmountClick = (amount) => {
     setSelectedAmount(amount);
     setAmountBtn(true);

@@ -17,7 +17,6 @@ const Home = () => {
     setLoader(true);
     setTimeout(() => {
       navigate("/casino");
-
       setLoader(false);
     }, 2000);
   };

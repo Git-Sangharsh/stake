@@ -109,6 +109,11 @@
   transition: 0.3s ease-in;
 }
 
+.parent-nav{
+  /* border: 2px solid red !important; */
+  height: 60px;
+  width: 100%;
+}
 .profile-dropdown {
   z-index: 1000;
   margin-top: 60px;
