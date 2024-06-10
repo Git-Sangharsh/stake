@@ -94,9 +94,16 @@
     font-size: 16px;
 }
 
+.registerErr{
+    color: rgb(0, 166, 255);
+    margin-top: 10px;
+}
+
 .login-success{
     border: 3px solid red;
 }
+
+
 
 
 @media (max-width: 1024px){
@@ -134,13 +141,20 @@
     .register-wrapper{
         width: 300px;
         gap: 0;
+        padding: 20px !important;
+    }
+
+    .registerErr{
+        font-size: 10px;
     }
 }
 
 @media (max-width: 475px){
     .register-wrapper{
         width: 250px;
-
+    }
+    .registerErr{
+        font-size: 8px;
     }
 }
 

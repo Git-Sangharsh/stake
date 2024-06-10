@@ -84,7 +84,7 @@ const Statistics = () => {
                 </div>
                 <div className="card-statistics">
                   <h4 className="card-statistics-header">Wagered</h4>
-                  <h3 className="card-statistics-number">{betCounterWagered}</h3>
+                  <h3 className="card-statistics-number">{betCounterWagered} ₹</h3>
                 </div>
               </div>
             </div>

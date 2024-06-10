@@ -22,9 +22,11 @@ const Register = () => {
   const [routeToRegister, setRouteToRegister] = useState(false);
   const [seconds, setSeconds] = useState(120);
   const [loginSuccess, setLoginSuccess] = useState(true);
-
-  console.log("showVerificationInput is ", showVerificationInput);
-  console.log("routeToRegister is ", routeToRegister);
+  const [registerErr, setRegisterErr] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+  // console.log("showVerificationInput is ", showVerificationInput);
+  // console.log("routeToRegister is ", routeToRegister);
+  console.log("registerErr is", registerErr);
 
   const genrateVerificationCode = () => {
     const code = Math.floor(1000 + Math.random() * 9000); //genrating random number
@@ -36,6 +38,8 @@ const Register = () => {
     setShowVerificationInput(false);
     setRouteToRegister(false);
     setLoginSuccess(false);
+    setRegisterErr(false);
+    setEmailValid(false);
   };
 
   const closeRegisterAfterSuccessSignIn = () => {
@@ -45,6 +49,8 @@ const Register = () => {
   const handleEmailInput = (e) => {
     dispatch({ type: "SET_USER_EMAIL", payload: e.target.value });
     genrateVerificationCode(); // Generate the verification code
+    setRegisterErr(false);
+    setEmailValid(false);
   };
 
   const handleUsernameInput = (e) => {
@@ -61,16 +67,20 @@ const Register = () => {
       sendVerificationCode: verificationCode,
     };
 
-    if (userEmail !== "") {
+    if (userEmail !== "" && userEmail.endsWith("@gmail.com")) {
       // Send userEmail to the backend
       axios
         .post("https://stakeserver.onrender.com/verifyemail", registerData)
         // .post("http://localhost:5000/verifyemail", registerData )
         .then((response) => {
-          if (response.data.success) {
+          if (response.data.userEmailExist === "exist") {
+            setRegisterErr(true);
+            console.log("The UserEmail is registered");
+          } else if (response.data.success) {
             setShowVerificationInput(true);
             setSeconds(120);
-            console.log(response.data);
+            setRegisterErr(false);
+            // console.log(response.data);
           } else {
             console.log(
               "Error sending verification email:",
@@ -86,9 +96,12 @@ const Register = () => {
         });
     } else {
       console.log("Please enter your email address.");
+      setEmailValid(true);
     }
   };
-  console.log("verification code is ", verificationCode);
+  console.log("emailvalid ", emailValid)
+
+  // console.log("verification code is ", verificationCode);
   // console.log("seconds left is ", seconds);
 
   const handleVerifyInput = (e) => {
@@ -166,8 +179,9 @@ const Register = () => {
     }
   }, [login]);
 
-  console.log("login is ", login);
-  console.log("loginSucess is ", loginSuccess);
+  // console.log("login is ", login);
+  // console.log("loginSucess is ", loginSuccess);
+  // console.log("verification code is", verificationCode);
 
   return (
     <>
@@ -282,11 +296,33 @@ const Register = () => {
                   </div>
                 )
               ) : (
-                <div
-                  className="deposit-btn btn-green"
-                  onClick={handleVerifyEmail}
-                >
-                  Verify Email
+                <div>
+                  <div
+                    className="deposit-btn btn-green"
+                    onClick={handleVerifyEmail}
+                  >
+                    Verify Email
+                  </div>
+                  {registerErr && (
+                    <motion.h1
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, ease: "easeIn" }}
+                      className="red-warning registerErr"
+                    >
+                      Email is already in use try signin!
+                    </motion.h1>
+                  )}
+                  {emailValid && (
+                    <motion.h1
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, ease: "easeIn" }}
+                      className="red-warning registerErr"
+                    >
+                      Email is Invalid!
+                    </motion.h1>
+                  )}
                 </div>
               )}
             </div>
