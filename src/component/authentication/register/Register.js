@@ -26,7 +26,7 @@ const Register = () => {
   const [emailValid, setEmailValid] = useState(false);
   // console.log("showVerificationInput is ", showVerificationInput);
   // console.log("routeToRegister is ", routeToRegister);
-  console.log("registerErr is", registerErr);
+  // console.log("registerErr is", registerErr);
 
   const genrateVerificationCode = () => {
     const code = Math.floor(1000 + Math.random() * 9000); //genrating random number
@@ -99,7 +99,7 @@ const Register = () => {
       setEmailValid(true);
     }
   };
-  console.log("emailvalid ", emailValid)
+  // console.log("emailvalid ", emailValid)
 
   // console.log("verification code is ", verificationCode);
   // console.log("seconds left is ", seconds);

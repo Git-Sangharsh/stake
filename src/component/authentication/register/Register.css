@@ -152,6 +152,7 @@
 @media (max-width: 475px){
     .register-wrapper{
         width: 250px;
+        padding: 15px !important;
     }
     .registerErr{
         font-size: 8px;

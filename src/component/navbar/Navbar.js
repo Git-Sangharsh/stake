@@ -80,12 +80,24 @@ const Navbar = () => {
   }, [viewRegister]);
 
   const handleNavRegister = () => {
-    dispatch({ type: "SET_VIEW_REGISTER", payload: true });
-  };
+    if (!viewRegister) {
+      dispatch({ type: "SET_VIEW_REGISTER", payload: true });
+      if (viewSignIn) {
+        dispatch({ type: "SET_VIEW_SIGNIN", payload: false });
+      }
+    } else {
+      dispatch({ type: "SET_VIEW_REGISTER", payload: false });
+    }  };
 
   const handleNavSignin = () => {
-    dispatch({ type: "SET_VIEW_SIGNIN", payload: !viewSignIn });
-  };
+    if (!viewSignIn) {
+      dispatch({ type: "SET_VIEW_SIGNIN", payload: true });
+      if (viewRegister) {
+        dispatch({ type: "SET_VIEW_REGISTER", payload: false });
+      }
+    } else {
+      dispatch({ type: "SET_VIEW_SIGNIN", payload: false });
+    }  };
 
   return (
     <div className="parent-nav">
