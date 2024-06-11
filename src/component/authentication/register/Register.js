@@ -24,6 +24,9 @@ const Register = () => {
   const [loginSuccess, setLoginSuccess] = useState(true);
   const [registerErr, setRegisterErr] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
+  const [userUniqueErr, setUserUniqueErr] = useState(false);
+  const [verifyEmptyErr, setVerifyEmptyErr] = useState(false);
+  const [emptyUserPassErr, setEmptyUserPassErr] = useState(false);
   // console.log("showVerificationInput is ", showVerificationInput);
   // console.log("routeToRegister is ", routeToRegister);
   // console.log("registerErr is", registerErr);
@@ -35,11 +38,16 @@ const Register = () => {
 
   const closeRegister = () => {
     dispatch({ type: "SET_VIEW_REGISTER", payload: false });
+    dispatch({ type: "SET_USER_EMAIL", payload: "" });
+
     setShowVerificationInput(false);
     setRouteToRegister(false);
     setLoginSuccess(false);
     setRegisterErr(false);
     setEmailValid(false);
+    setUserUniqueErr(false);
+    setVerifyEmptyErr(false);
+    setEmptyUserPassErr(false);
   };
 
   const closeRegisterAfterSuccessSignIn = () => {
@@ -55,10 +63,13 @@ const Register = () => {
 
   const handleUsernameInput = (e) => {
     setInputUsername(e.target.value);
+    setUserUniqueErr(false);
+    setEmptyUserPassErr(false);
   };
 
   const handlePasswordInput = (e) => {
     setInputPassword(e.target.value);
+    setEmptyUserPassErr(false);
   };
 
   const handleVerifyEmail = () => {
@@ -110,9 +121,12 @@ const Register = () => {
 
   //   console.log( typeof inputVerifyCode)
   const handleVerifyCodeBtn = () => {
-    if (inputVerifyCode === verificationCode) {
+    if (inputVerifyCode === "") {
+      console.log("verify code is empty");
+      setVerifyEmptyErr(true);
+    } else if (inputVerifyCode === verificationCode) {
       setRouteToRegister(true);
-      console.log("this verification code is true");
+      // console.log("this verification code is true");
     } else {
       setRouteToRegister(false);
     }
@@ -144,45 +158,61 @@ const Register = () => {
   const handleRegister = async () => {
     const hashedPassword = await bcrypt.hash(inputPassword, 10);
 
-    const registerData = {
-      sendRegisterEmail: userEmail,
-      sendRegisterUsername: inputUsername,
-      sendRegisterPassword: hashedPassword,
-      // sendRegisterPassword: inputPassword,
-    };
-    axios
-      .post("https://stakeserver.onrender.com/register", registerData)
-      // .post("http://localhost:5000/register", registerData)
-      .then((res) => {
-        console.log("res data is ", res.data);
-        if (res.data.registerStatus === "success") {
-          console.log(res.data.info);
-          console.log("login success");
-          dispatch({ type: "SET_LOG_IN", payload: true });
-          setLoginSuccess(true);
-        } else {
-          console.log("else res data", res.data);
-          console.log(res.data.info);
-          console.log("register failed");
-          dispatch({ type: "SET_LOG_IN", payload: false });
-          setLoginSuccess(false);
-        }
-      })
-      .catch((err) =>
-        console.log("Error found while posting data in register endpoint", err)
-      );
+    if (inputUsername !== "" && inputPassword !== "") {
+      const registerData = {
+        sendRegisterEmail: userEmail,
+        sendRegisterUsername: inputUsername,
+        sendRegisterPassword: hashedPassword,
+        // sendRegisterPassword: inputPassword,
+      };
+      axios
+        .post("https://stakeserver.onrender.com/register", registerData)
+        // .post("http://localhost:5000/register", registerData)
+        .then((res) => {
+          // console.log("res data is ", res.data);
+          if (res.data.registerStatus === "success") {
+            console.log(res.data.info);
+            console.log("login success");
+            dispatch({ type: "SET_LOG_IN", payload: true });
+            setLoginSuccess(true);
+          } else if (res.data.userUnique === true) {
+            setUserUniqueErr(true);
+            console.log("user Unique is true");
+          } else {
+            console.log("register failed");
+            dispatch({ type: "SET_LOG_IN", payload: false });
+            setLoginSuccess(false);
+          }
+        })
+        .catch((err) =>
+          console.log(
+            "Error found while posting data in register endpoint",
+            err
+          )
+        );
+    } else {
+      console.log("please fill all the inputs!!");
+      setEmptyUserPassErr(true);
+    }
   };
 
   useEffect(() => {
     if (!login) {
       setLoginSuccess(false);
+      setRouteToRegister(false)
+      setShowVerificationInput(false)
+    } else if (login) {
+      dispatch({ type: "SET_VIEW_REGISTER", payload: false });
+      setRouteToRegister(false)
     }
   }, [login]);
 
   // console.log("login is ", login);
   // console.log("loginSucess is ", loginSuccess);
   // console.log("verification code is", verificationCode);
-
+  // console.log("userEmail is", userEmail);
+  // console.log("routeToRegister is ", routeToRegister);
+  // console.log("login is", login)
   return (
     <>
       <AnimatePresence>
@@ -275,25 +305,59 @@ const Register = () => {
                         Done
                       </div>
                     ) : (
-                      <div
-                        className="deposit-btn btn-green"
-                        onClick={handleRegister}
-                      >
-                        Register Account
-                      </div>
+                      <>
+                        <div
+                          className="deposit-btn btn-green"
+                          onClick={handleRegister}
+                        >
+                          Register Account
+                        </div>
+                        {userUniqueErr && (
+                          <motion.h1
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3, ease: "easeIn" }}
+                            className="red-warning registerErr"
+                          >
+                            Username already in use!
+                          </motion.h1>
+                        )}
+                        {emptyUserPassErr && (
+                          <motion.h1
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3, ease: "easeIn" }}
+                            className="red-warning registerErr"
+                          >
+                            Invalid Input!
+                          </motion.h1>
+                        )}
+                      </>
                     )}
 
-                    <h4 className="red-warning">
+                    {/* <h4 className="red-warning">
                       *Rememeber this website is still under construction
-                    </h4>
+                    </h4> */}
                   </div>
                 ) : (
-                  <div
-                    className="deposit-btn btn-green"
-                    onClick={handleVerifyCodeBtn}
-                  >
-                    Verify
-                  </div>
+                  <>
+                    <div
+                      className="deposit-btn btn-green"
+                      onClick={handleVerifyCodeBtn}
+                    >
+                      Verify
+                    </div>
+                    {verifyEmptyErr && (
+                      <motion.h1
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, ease: "easeIn" }}
+                        className="red-warning registerErr"
+                      >
+                        Invalid Input!
+                      </motion.h1>
+                    )}
+                  </>
                 )
               ) : (
                 <div>

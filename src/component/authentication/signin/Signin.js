@@ -58,7 +58,7 @@ const Signin = () => {
               params: { userEmail: emailInput }, // Note: Use an object for params
             }
           );
-          console.log("Statistics Are", response.data);
+          // console.log("Statistics Are", response.data);
           dispatch({
             type: "GET_SET_WALLETBALANCE",
             payload: response.data.walletBalance,
