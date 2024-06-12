@@ -86,7 +86,7 @@ const Register = () => {
         .then((response) => {
           if (response.data.userEmailExist === "exist") {
             setRegisterErr(true);
-            console.log("The UserEmail is registered");
+            // console.log("The UserEmail is registered");
           } else if (response.data.success) {
             setShowVerificationInput(true);
             setSeconds(120);
@@ -106,7 +106,7 @@ const Register = () => {
           );
         });
     } else {
-      console.log("Please enter your email address.");
+      // console.log("Please enter your email address.");
       setEmailValid(true);
     }
   };
@@ -122,7 +122,7 @@ const Register = () => {
   //   console.log( typeof inputVerifyCode)
   const handleVerifyCodeBtn = () => {
     if (inputVerifyCode === "") {
-      console.log("verify code is empty");
+      // console.log("verify code is empty");
       setVerifyEmptyErr(true);
     } else if (inputVerifyCode === verificationCode) {
       setRouteToRegister(true);
@@ -142,9 +142,9 @@ const Register = () => {
             clearInterval(timer); // Stopping the timer
             setTimeout(() => {
               setShowVerificationInput(false); // Set showVerificationInput to false after 10 seconds
-              console.log(
-                "showVerificationInput set to false after 10 seconds"
-              );
+              // console.log(
+              //   "showVerificationInput set to false after 10 seconds"
+              // );
             }, 0);
             return 0;
           }
@@ -171,15 +171,15 @@ const Register = () => {
         .then((res) => {
           // console.log("res data is ", res.data);
           if (res.data.registerStatus === "success") {
-            console.log(res.data.info);
-            console.log("login success");
+            // console.log(res.data.info);
+            // console.log("login success");
             dispatch({ type: "SET_LOG_IN", payload: true });
             setLoginSuccess(true);
           } else if (res.data.userUnique === true) {
             setUserUniqueErr(true);
-            console.log("user Unique is true");
+            // console.log("user Unique is true");
           } else {
-            console.log("register failed");
+            // console.log("register failed");
             dispatch({ type: "SET_LOG_IN", payload: false });
             setLoginSuccess(false);
           }
@@ -191,7 +191,7 @@ const Register = () => {
           )
         );
     } else {
-      console.log("please fill all the inputs!!");
+      // console.log("please fill all the inputs!!");
       setEmptyUserPassErr(true);
     }
   };
