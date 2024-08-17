@@ -3,7 +3,7 @@
 .home {
   padding-top: 30px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #0f212e;
 }
 
@@ -15,8 +15,7 @@
 }
 
 .poster-div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   place-items: center;
   width: 65%;
   font-family: "Poppins", sans-serif;
@@ -28,7 +27,6 @@
 }
 
 .poster-child {
-  width: min-content;
   box-sizing: border-box;
 }
 
@@ -107,7 +105,8 @@
 
 @media (min-width: 1904px)  {
   .poster-img {
-    width: 600px;
+    width: 100%;
+
   }
   .casino-btn {
     box-sizing: border-box;
@@ -138,7 +137,7 @@
 
   @media (min-width: 1440px) and (max-width: 1903px) {
     .poster-img {
-    width: 400px;
+    width: 100%;
   }
   .poster-child-header,
   .poster-child-p {
@@ -148,7 +147,8 @@
 
 @media (max-width: 1439px)  {
   .poster-img {
-  width: 400px;
+  width: 100%;
+
 }
 .poster-child-header,
 .poster-child-p {
@@ -157,9 +157,13 @@
 }
 @media (max-width: 1024px) {
   .home {
-    padding-top: 100px;
+    padding-top: 00px;
   }
 
+  .home-wrapper{
+    height: 100% !important;
+    box-sizing: border-box;
+  }
   .poster-img {
     width: 400px;
   }
@@ -174,6 +178,15 @@
 
   .home-footer {
     width: 90%;
+  }
+
+  .poster-child {
+    width: 100%;
+  }
+
+  .poster-img {
+    width: 100%;
+    height: 300px;
   }
 }
 
@@ -318,3 +331,5 @@
     width: 50px;
   }
 }
+
+

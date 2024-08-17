@@ -32,7 +32,8 @@ const Home = () => {
                 boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
               }}
               transition={{ duration: 0.1 }}
-              src={poster1}
+              // src={poster1}
+              src="https://media.istockphoto.com/id/1415903531/vector/online-casino-red-poster-with-monitor-with-slot-machine-casino-roulette-poker-chips-and.jpg?s=612x612&w=0&k=20&c=7o8g630yI5BQwq9061r7WA9xcBP0NH_47iKrjwfX56w="
               alt=""
               className="poster-img"
             />
@@ -49,7 +50,7 @@ const Home = () => {
               Go To Casino
             </h1>
           </div>
-          <div className="poster-child">
+          {/* <div className="poster-child">
             <motion.img
               initial={{ y: 0, boxShadow: "none" }}
               whileHover={{
@@ -70,7 +71,7 @@ const Home = () => {
               experience.
             </p>
             <h1 className="casino-btn">Comming Soon!!!</h1>
-          </div>
+          </div> */}
         </div>
         <div className="home-footer">
           <h1 className="home-footer-header">No Crypto? No problem.</h1>
