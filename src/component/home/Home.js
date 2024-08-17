@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
-import poster1 from "../assets/home-casino-poster.avif";
-import poster2 from "../assets/home-casino-poster-2.avif";
+// import poster1 from "../assets/home-casino-poster.avif";
+// import poster2 from "../assets/home-casino-poster-2.avif";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import gpaySvg from "../assets/gpay.svg";

@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  height: 100%;
+  width: 100%;
 }
 
 .casino-wrapper {
@@ -14,6 +16,8 @@
   flex-direction: column;
   width: 60%;
   padding: 15px;
+  box-sizing: border-box !important;
+  overflow: hidden;
 }
 
 .lobby-nav {
@@ -51,6 +55,7 @@
   border-radius: 9px;
   cursor: pointer;
   text-align: center;
+  width: 100%;
 }
 
 .route-loader {
