@@ -173,10 +173,10 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: "easeIn" }}
             exit={{ opacity: 0, y: "-100%", filter: "blur(1px)" }}
           >
-            <li className="profile-dropdown-li">
+            {/* <li className="profile-dropdown-li">
               <ManageAccountsIcon className="wallet-icon profile-dropdown-li-icon-color" />
               PROFILE
-            </li>
+            </li> */}
             <li className="profile-dropdown-li" onClick={viewStatisticsOnClick}>
               <AnalyticsIcon className="wallet-icon profile-dropdown-li-icon-color" />
               STATISTICS
