@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./Casino.css";
-import casinoMine from "../assets/casinoMine.avif";
-import casinoLimbo from "../assets/casinoLimbo.avif";
-import casinoDice from "../assets/casinoDice.avif";
+// import casinoMine from "../assets/casinoMine.avif";
+// import casinoLimbo from "../assets/casinoLimbo.avif";
+// import casinoDice from "../assets/casinoDice.avif";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
+import realMine from "../assets/realmine.jpg";
+import realDice from "../assets/realdice.jpg";
+import realLimbo from "../assets/reallimbo.jpg";
 
 const Casino = () => {
   const navigate = useNavigate();
@@ -37,7 +40,7 @@ const Casino = () => {
       <div className="casino-wrapper">
         <div className="lobby-nav">
           <li className="lobby-nav-header lobby-nav-header-selected">Lobby</li>
-          <li className="lobby-nav-header">Comming Soon!</li>
+          {/* <li className="lobby-nav-header">Comming Soon!</li> */}
         </div>
         <div className="stake-originals">
           <motion.img
@@ -47,19 +50,19 @@ const Casino = () => {
               boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
             }}
             transition={{ duration: 0.1 }}
-            src={casinoMine}
+            src={realMine}
             className="stake-originals-img"
             alt=""
             onClick={handleMineRoute}
           />
           <motion.img
-            initial={{ y: 0}}
+            initial={{ y: 0 }}
             whileHover={{
               y: -5,
               boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
             }}
             transition={{ duration: 0.1 }}
-            src={casinoLimbo}
+            src={realLimbo}
             className="stake-originals-img"
             alt=""
             onClick={handleLimboRoute}
@@ -71,7 +74,7 @@ const Casino = () => {
               boxShadow: "4px 5px 5px rgba(0, 0, 0, 0.3)",
             }}
             transition={{ duration: 0.1 }}
-            src={casinoDice}
+            src={realDice}
             className="stake-originals-img"
             alt=""
             onClick={handleDiceRoute}

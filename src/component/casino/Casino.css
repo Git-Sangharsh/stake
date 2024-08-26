@@ -37,7 +37,9 @@
   font-style: normal;
   color: #ffffff;
   cursor: pointer;
+  width: 100% !important;
   font-size: 20px;
+  text-align: center;
 }
 
 .lobby-nav-header-selected {
@@ -49,6 +51,7 @@
   gap: 10px;
   width: 100%;
   margin: 15px 0px;
+  box-sizing: border-box;
 }
 
 .stake-originals-img {
@@ -169,4 +172,25 @@
   .game-4 {
     display: none;
   }
+}
+
+
+
+.stake-originals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 15px 0px;
+  box-sizing: border-box;
+}
+
+.stake-originals-img {
+  border-radius: 9px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
