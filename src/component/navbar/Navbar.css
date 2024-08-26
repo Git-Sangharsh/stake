@@ -116,8 +116,8 @@
 }
 .profile-dropdown {
   z-index: 995;
-  margin-top: 60px;
   position: fixed;
+  top: -2px;
   right: 20px;
   background-color: #ffffff;
   border-radius: 9px;
